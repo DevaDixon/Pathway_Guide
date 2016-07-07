@@ -73,11 +73,14 @@ public class CourseClassLoader {
                 //Database way
                 courseLabels = wrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
                 pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
+                coursePrereqs = loadInPreReqs(courseLabels);
+                courseFullTitles = loadInTitles(courseLabels);
+
                 //Old Way
-                courseLabels = context.getResources().getStringArray(R.array.AlliedHealthPathway);
-                courseFullTitles = context.getResources().getStringArray(R.array.AlliedHealthPathwayFullTitles);
-                coursePrereqs = context.getResources().getStringArray(R.array.AlliedHealthPrereqs);
-                courseURLs = context.getResources().getStringArray(R.array.AlliedHealthURLS);
+                //courseLabels = context.getResources().getStringArray(R.array.AlliedHealthPathway);
+                //courseFullTitles = new String[courseLabels.length]; //context.getResources().getStringArray(R.array.AlliedHealthPathwayFullTitles);
+                //coursePrereqs = context.getResources().getStringArray(R.array.AlliedHealthPrereqs);
+                courseURLs = new String[courseLabels.length]; //context.getResources().getStringArray(R.array.AlliedHealthURLS);
                 break;
             }
             case CourseContract.TSM.TSM:
@@ -85,27 +88,32 @@ public class CourseClassLoader {
                 //DataBase Way
                 courseLabels = wrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
                 pathwayText = CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME;
+                coursePrereqs = loadInPreReqs(courseLabels);
+                courseFullTitles = loadInTitles(courseLabels);
                 //OldWay
-                courseLabels = context.getResources().getStringArray(R.array.TSMPathway);
-                courseFullTitles = context.getResources().getStringArray(R.array.TSMPathwayFullTitles);
-                coursePrereqs =  context.getResources().getStringArray(R.array.TSMPrereqs);
-                courseURLs = context.getResources().getStringArray(R.array.TSMURLS);
+                //courseLabels = context.getResources().getStringArray(R.array.TSMPathway);
+                //courseFullTitles = new String[courseLabels.length]; //context.getResources().getStringArray(R.array.TSMPathwayFullTitles);
+                //coursePrereqs =  loadInPreReqs(courseLabels); //context.getResources().getStringArray(R.array.TSMPrereqs);
+                courseURLs = new String[courseLabels.length]; //context.getResources().getStringArray(R.array.TSMURLS);
                 break;
             }
             default:
             {
-                //database way
+                //Database way
                 courseLabels = wrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
                 pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
-                //old way
-                courseLabels = context.getResources().getStringArray(R.array.AlliedHealthPathway);
-                courseFullTitles = context.getResources().getStringArray(R.array.AlliedHealthPathwayFullTitles);
-                coursePrereqs = context.getResources().getStringArray(R.array.AlliedHealthPrereqs);
-                courseURLs = context.getResources().getStringArray(R.array.AlliedHealthURLS);
+                coursePrereqs = loadInPreReqs(courseLabels);
+                courseFullTitles = loadInTitles(courseLabels);
+
+
+                //Old Way
+                //courseLabels = context.getResources().getStringArray(R.array.AlliedHealthPathway);
+                //courseFullTitles = new String[courseLabels.length]; //context.getResources().getStringArray(R.array.AlliedHealthPathwayFullTitles);
+                //coursePrereqs = context.getResources().getStringArray(R.array.AlliedHealthPrereqs);
+                courseURLs = new String[courseLabels.length]; //context.getResources().getStringArray(R.array.AlliedHealthURLS);
                 break;
             }
         }
-
 
 
         //This is the assignment of courseObjects and sortedObjects
@@ -227,4 +235,31 @@ public class CourseClassLoader {
     }
 
     public String getPathway() {return pathwayText;}
+
+    private String[] loadInPreReqs(String[] courses){
+        String[] preReq = new String[courses.length];
+        DatabaseWrapper wrapper = new DatabaseWrapper();
+        for ( int i = 0; i < courses.length; i++) {
+            if (wrapper.getClassPrereqs(courses[i]).length!=0)
+                preReq[i] = wrapper.getClassPrereqs(courses[i])[0];
+            else
+                preReq[i] = "NONE";
+        }
+        return preReq;
+    }
+
+    private String[] loadInTitles(String[] courses){
+        String[] titles = new String[courses.length];
+        DatabaseWrapper wrapper = new DatabaseWrapper();
+        for (int i = 0; i<courses.length; i++){
+            String[] cur = wrapper.getClassInfo(courses[i]);
+
+
+            if (cur.length !=0)
+                titles[i] = cur[1];
+            else
+                titles[i] = "Null";
+        }
+        return titles;
+    }
 }

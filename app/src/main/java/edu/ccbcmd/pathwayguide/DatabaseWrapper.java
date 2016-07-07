@@ -3,7 +3,10 @@ package edu.ccbcmd.pathwayguide;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class DatabaseWrapper {
 
@@ -80,8 +83,9 @@ public class DatabaseWrapper {
         return prereqs;
     }
 
-    // returns all unique prereqs for all classes
-    public static String[] getAllPrereqs() {
+    // returns all unique prereqs for all classes  THIS WORKS!  THANKS!
+    //TODO: FIGURE OUT HOW TO USE IT...
+    public static String[] getAllUniquePrereqs() {
         Cursor c = db.query(true, "classes", new String[] {"prereqs"}, null, null, null, null, null, null);
         HashSet<String> set = new HashSet<String>();
         while(c.moveToNext()) {
