@@ -5,6 +5,7 @@ package edu.ccbcmd.pathwayguide;
  */
 
 
+import android.content.pm.ActivityInfo;
 import android.widget.Button;
 import android.graphics.drawable.ColorDrawable;
 import android.widget.TextView;
@@ -34,16 +35,7 @@ public class demo_info_2 extends AppCompatActivity implements View.OnClickListen
         return (int)(n * Resources.getSystem().getDisplayMetrics().density);
     }
 
-    public int[] loadArrayInt(final String s) {
 
-        final SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
-        final int int1 = sharedPreferences.getInt(s + "_size", 0);
-        final int[] array = new int[int1];
-        for (int i = 0; i < int1; ++i) {
-            array[i] = sharedPreferences.getInt(s + "_" + i, 1);
-        }
-        return array;
-    }
 
     public void onClick(final View view) {
 
@@ -54,6 +46,8 @@ public class demo_info_2 extends AppCompatActivity implements View.OnClickListen
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_demo_info_2); //2130968609
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         (this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0)).getInt("pathwayID", -1);
         this.prefs.getInt("pathwaysubID", -1);
         Integer.parseInt(this.prefs.getString("choosenID", "0")); // FIXME: 6/29/2016 is this meant to be used?

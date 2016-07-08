@@ -6,6 +6,7 @@ package edu.ccbcmd.pathwayguide;
 
 
 
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.util.Log;
 import android.util.TypedValue;
@@ -91,6 +92,8 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
 
             super.onCreate(bundle);
             this.setContentView(R.layout.activity_choose_sub__pathway); //2130968607
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
             this.getSupportActionBar().show();
             this.getSupportActionBar().setTitle("Choose Your Pathway");
             this.getSupportActionBar().setHomeButtonEnabled(true);

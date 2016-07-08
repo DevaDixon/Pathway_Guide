@@ -7,6 +7,7 @@ package edu.ccbcmd.pathwayguide;
 
 
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -24,6 +25,8 @@ public class internet_setting extends AppCompatActivity
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_internet_setting); //2130968614
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         this.getSupportActionBar().show();
         this.getSupportActionBar().setTitle("Internet Setting");
         final Resources resources = this.getResources();

@@ -11,6 +11,7 @@ import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -35,6 +36,8 @@ public class Settings extends AppCompatActivity
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_settings); //2130968621
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         this.getSupportActionBar().show();
         this.getSupportActionBar().setTitle("Menu");
         final Resources resources = this.getResources();

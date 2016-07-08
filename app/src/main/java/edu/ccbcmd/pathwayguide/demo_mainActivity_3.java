@@ -7,6 +7,7 @@ package edu.ccbcmd.pathwayguide;
 
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -57,6 +58,8 @@ public class demo_mainActivity_3 extends AppCompatActivity implements View.OnCli
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_demo_main_activity_2); //2130968611
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         this.getSupportActionBar().hide();
         final Resources resources = this.getResources();
         final LinearLayout linearLayout = (LinearLayout)this.findViewById(R.id.linearLayout2); //2131624046

@@ -7,6 +7,7 @@ package edu.ccbcmd.pathwayguide;
  * Created by dixo8 on 6/24/2016.
  */
 
+        import android.content.pm.ActivityInfo;
         import android.os.Build;
 
         import android.content.res.Resources;
@@ -58,6 +59,7 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_main_activity_zoom_out);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         courseClassLoader = new CourseClassLoader(getApplicationContext());
         coursesList = courseClassLoader.loadClassObjects();

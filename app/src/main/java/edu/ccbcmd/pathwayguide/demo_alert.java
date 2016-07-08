@@ -6,6 +6,7 @@ package edu.ccbcmd.pathwayguide;
 
 
 
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.widget.Toast;
 import android.widget.Button;
@@ -30,6 +31,8 @@ public class demo_alert extends Activity
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_demo_alert); //2130968608
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         final Button button = (Button)this.findViewById(R.id.buttonCollect); //2131624021
         final Button button2 = (Button)this.findViewById(R.id.button2); //2131624022
         button.setOnClickListener(new View.OnClickListener() {

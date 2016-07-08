@@ -3,6 +3,7 @@ package edu.ccbcmd.pathwayguide;
 
 
 
+        import android.content.pm.ActivityInfo;
         import android.content.res.Resources;
         import android.preference.PreferenceManager;
         import android.util.TypedValue;
@@ -76,6 +77,7 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_choose_pathway);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.getSupportActionBar().show();
         this.getSupportActionBar().setTitle("Choose Your Pathway");

@@ -3,6 +3,7 @@ package edu.ccbcmd.pathwayguide;
 
 
 
+        import android.content.pm.ActivityInfo;
         import android.content.res.Resources;
 
         import android.widget.Button;
@@ -27,6 +28,8 @@ public class cantRegister extends AppCompatActivity
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_cant_register); //2130968603
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         this.getSupportActionBar().show();
         this.getSupportActionBar().setTitle("What's the issue?");
         final Resources resources = this.getResources();

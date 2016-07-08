@@ -5,6 +5,7 @@ package edu.ccbcmd.pathwayguide;
  */
 
 
+        import android.content.pm.ActivityInfo;
         import android.widget.Button;
 
         import android.net.Uri;
@@ -23,6 +24,8 @@ public class blackboardReminder extends AppCompatActivity
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_blackboard_reminder); //2130968602
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         final Button button = (Button)this.findViewById(R.id.buttonCollect); //2131624021
         this.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() { //2131624022
 

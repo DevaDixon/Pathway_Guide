@@ -10,7 +10,8 @@ package edu.ccbcmd.pathwayguide;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
+        import android.content.pm.ActivityInfo;
+        import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -118,6 +119,8 @@ public class demo_info extends AppCompatActivity
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_demo_info); //2130968609
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         this.mPbar = (ProgressBar)this.findViewById(R.id.progressBar2); //2131624040
         prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         final int pathID = prefs.getInt("pathwayID", 0);

@@ -7,6 +7,8 @@ package edu.ccbcmd.pathwayguide;
 
 
 import java.net.InetAddress;
+
+import android.content.pm.ActivityInfo;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
@@ -77,23 +79,13 @@ public class info extends AppCompatActivity
         return (int)((point.x / 355.0) * 100.0);
     }
 
-    public int[] loadArrayInt(final String s) {
-        Log.w("loadArInt string", s);
-        final SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
-        final int int1 = 14; //sharedPreferences.getInt(s + "_size", 0);
-        Log.w("loadArInt s+size", String.valueOf(int1));
-        final int[] array = new int[int1];
-        for (int i = 0; i < int1; ++i) {
-            array[i] = sharedPreferences.getInt(s + "_" + i, 1);
-        }
-        return array;
-    }
+
 
     public void onCreate(final Bundle bundle) {
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_info); //2130968613
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         final String string = this.prefs.getString("choosenID", "0");

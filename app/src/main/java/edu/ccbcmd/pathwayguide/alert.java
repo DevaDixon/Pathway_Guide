@@ -1,5 +1,6 @@
 package edu.ccbcmd.pathwayguide;
 
+import android.content.pm.ActivityInfo;
 import android.widget.Button;
 import android.content.Context;
 
@@ -24,6 +25,7 @@ public class alert extends Activity
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_alert); //2130968601
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
 
         final int int3 = Integer.parseInt(this.prefs.getString("choosenID", "0"));

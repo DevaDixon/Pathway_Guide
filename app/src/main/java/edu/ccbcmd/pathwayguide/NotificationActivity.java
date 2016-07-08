@@ -6,6 +6,7 @@ package edu.ccbcmd.pathwayguide;
 
 
 
+        import android.content.pm.ActivityInfo;
         import android.content.res.Resources;
         import android.app.PendingIntent;
         import android.app.AlarmManager;
@@ -45,6 +46,8 @@ public class NotificationActivity extends AppCompatActivity
         super.onCreate(bundle);
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         this.setContentView(R.layout.activity_notification); //2130968619
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         this.getSupportActionBar().show();
         this.getSupportActionBar().setTitle("It's time to register!");
         final Resources resources = this.getResources();

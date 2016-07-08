@@ -8,6 +8,7 @@ package edu.ccbcmd.pathwayguide;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -30,6 +31,8 @@ public class links extends AppCompatActivity
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_links); //2130968615
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         this.getSupportActionBar().show();
         this.getSupportActionBar().setTitle("Links");
         final Resources resources = this.getResources();

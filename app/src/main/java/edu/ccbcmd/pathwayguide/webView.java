@@ -8,6 +8,7 @@ package edu.ccbcmd.pathwayguide;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,8 @@ public class webView extends AppCompatActivity
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_web_view); //2130968623
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         final String stringExtra = this.getIntent().getStringExtra("url");
         this.getSupportActionBar().setHomeButtonEnabled(true);
         final WebView webView = (WebView)this.findViewById(R.id.webView); //2131624059

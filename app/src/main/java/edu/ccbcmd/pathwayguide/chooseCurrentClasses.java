@@ -1,6 +1,7 @@
 package edu.ccbcmd.pathwayguide;
 
 import android.annotation.TargetApi;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 
 import android.os.Build;
@@ -88,7 +89,7 @@ public class chooseCurrentClasses extends AppCompatActivity
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_choose_current_classes); //2130968605
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         List<CourseClass> courseList = MainActivity.courseClassLoader.loadClassObjects();
         length_of_classes = MainActivity.courseClassLoader.howManyCourses();

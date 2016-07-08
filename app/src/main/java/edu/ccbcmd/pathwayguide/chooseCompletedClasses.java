@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
@@ -86,11 +87,14 @@ public class chooseCompletedClasses extends AppCompatActivity
     PathwaysDBHelper dataBase;
     static private int length_of_courses;
 
+
     @TargetApi(23)
     public void onCreate(final Bundle bundle) {
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_choose_completed_classes); //2130968604
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         this.getSupportActionBar().show();
         this.getSupportActionBar().setTitle("Choose Completed Courses");
         final Resources resources = this.getResources();

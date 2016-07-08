@@ -8,6 +8,7 @@ package edu.ccbcmd.pathwayguide;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.AnimationDrawable;
@@ -27,6 +28,7 @@ public class splash extends AppCompatActivity
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_splash); //2130968622
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         final AnimationDrawable animationDrawable = new AnimationDrawable();
         animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.health), 1000); //2130837595

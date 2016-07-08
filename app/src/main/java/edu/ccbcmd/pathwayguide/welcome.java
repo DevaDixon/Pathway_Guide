@@ -8,6 +8,7 @@ package edu.ccbcmd.pathwayguide;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -27,6 +28,8 @@ public class welcome extends AppCompatActivity
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_welcome); //2130968624
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         this.getSupportActionBar().show();
         this.getSupportActionBar().setTitle("Welcome");
         final Resources resources = this.getResources();
