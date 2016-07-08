@@ -19,9 +19,7 @@ public class CourseContract {
 
         final public static int ALLIED_HEALTH_NURSING_ASN = 101;
         final public static String ALLIED_HEALTH_NURSING_ASN_NAME = "Nursing";
-        public static final String PRE_ALLIED_HEALTH_XML_COURSENAMES = "AlliedHealthPathway";
-        public static final String PRE_ALLIED_HEALTH_XML_PREREQS = "AlliedHealthPrereqs";
-        public static final String PRE_ALLIED_HEALTH_XML_URL = "AlliedHealthURLS";
+
 
         final public static int THE_REST = 102;
         final public static String THE_REST_NAME = "Not Implemented";
@@ -38,9 +36,7 @@ public class CourseContract {
 
         final public static int TSM_COMPUTER_SCIENCE_IT = 211;
         final public static String TSM_COMPUTER_SCIENCE_IT_NAME = "Information Technology";
-        public static final String TSM_COMPUTER_SCIENCE_IT_XML_COURSENAMES = "TSMPathway";
-        public static final String TSM_COMPUTER_SCIENCE_IT_XML_PREREQS = "TSMPrereqs";
-        public static final String TSM_COMPUTER_SCIENCE_IT_XML_URL = "TSMURLS";
+
     }
 
     final public static class BUSINESS_LAW_CRIMINAL_JUSTICE {

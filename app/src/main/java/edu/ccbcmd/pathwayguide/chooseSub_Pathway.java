@@ -1,11 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-/**
- * Created by dixo8 on 6/24/2016.
- */
-
-
-
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.util.Log;
@@ -46,18 +40,62 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
         SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
         //The editor so we can save those preferences.
         SharedPreferences.Editor editor = pathwayPref.edit();
+        boolean valid = false;
         switch (pathwayPref.getInt("PathwayChoice",100)) {
             case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH: {
                 switch (view.getId()) {
                     case 0: {
                         editor.putInt("PathwaySubChoice", CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN);
+                        valid = true;
                         break;
                     }
                     case 1: {
-                        //TODO ADD THE REST OF THE SUBPATHS
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 2: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 3: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 4: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 5: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 6: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 7: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 8: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 9: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 10: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 11: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
                     }
                     default: {
                         editor.putInt("PathwaySubChoice", CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN);
+                        valid = true;
                         break;
                     }
                 }
@@ -66,21 +104,67 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
                 switch (view.getId()) {
                     case 0: {
                         editor.putInt("PathwaySubChoice", CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT);
+                        valid = true;
                         break;
                     }
-                    case 1:{
-                        //TODO PUT REST IN
+                    case 1: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 2: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 3: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 4: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 5: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 6: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 7: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 8: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 9: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 10: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 11: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
                     }
                     default:{
                         editor.putInt("PathwaySubChoice", CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT);
+                        valid=true;
                         break;
                     }
                 }
             }
         }
-        final Intent intent = new Intent(this, (Class)chooseCompletedClasses.class);
-        this.startActivity(intent);
-        return;
+        if (valid) {
+
+            final Intent intent = new Intent(this, (Class) chooseCompletedClasses.class);
+            this.startActivity(intent);
+            return;
+        }
 
 
 
@@ -120,28 +204,28 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
             case 100:{
                 //Databaseway
                 subPath = wrapper.getSubPathways(CourseContract.PRE_ALLIED_HEALTH.PRE_ALLIED_HEALTH_NAME);
-
-                //Old Way
-                //subPath = getResources().getStringArray(R.array.PathwayCategoryPRE);
                 length = subPath.length;
                 break;
+                //Old Way
+                //subPath = getResources().getStringArray(R.array.PathwayCategoryPRE);
+
             }
             case 200:{
                 subPath = wrapper.getSubPathways(CourseContract.TSM.TSM_NAME);
-
-                //Old Way
-                //subPath = getResources().getStringArray(R.array.PathwayCategoryTSM);
                 length = subPath.length;
                 break;
+                //Old Way
+                //subPath = getResources().getStringArray(R.array.PathwayCategoryTSM);
+
             }
             default:{
                 //Databaseway
                 subPath = wrapper.getSubPathways(CourseContract.PRE_ALLIED_HEALTH.PRE_ALLIED_HEALTH_NAME);
-
-                //Old Way
-                //subPath = getResources().getStringArray(R.array.PathwayCategoryPRE);
                 length = subPath.length;
                 break;
+                //Old Way
+                //subPath = getResources().getStringArray(R.array.PathwayCategoryPRE);
+
             }
         }
             for (int i = 0; i < length; ++i) {

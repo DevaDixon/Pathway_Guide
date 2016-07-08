@@ -43,6 +43,7 @@ public class chooseCompletedClasses extends AppCompatActivity
         return context.getResources().getColor(n);
     }
 
+    private  CourseClassLoader loader;
     private void loopQuestions(final ViewGroup viewGroup) {
 
 
@@ -50,7 +51,8 @@ public class chooseCompletedClasses extends AppCompatActivity
         SharedPreferences sharedPrefDone = getSharedPreferences("courses", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPrefDone.edit();
 
-        String[] courseLabels = MainActivity.courseClassLoader.getCourseLabels();
+
+        String[] courseLabels = loader.getCourseLabels();
         List<CheckBox> checkBoxesDone = new ArrayList<CheckBox>();
 
         for (int i = 0; i<viewGroup.getChildCount(); i++){
@@ -105,7 +107,7 @@ public class chooseCompletedClasses extends AppCompatActivity
         //Initializing the database
         dataBase = new PathwaysDBHelper(getApplicationContext());
         DatabaseWrapper wrapper = new DatabaseWrapper();
-        CourseClassLoader loader = new CourseClassLoader(getApplicationContext());
+        loader = new CourseClassLoader(getApplicationContext());
         length_of_courses = loader.howManyCourses();
 
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);

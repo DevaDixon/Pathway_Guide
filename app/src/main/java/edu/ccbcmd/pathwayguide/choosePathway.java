@@ -47,29 +47,47 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         //The editor so we can save those preferences.
         SharedPreferences.Editor editor = pathwayPref.edit();
 
-
+        boolean valid = false;
 
         switch (view.getId()){
             case 0: {
                 editor.putInt("PathwayChoice", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
                 editor.apply();
+                valid = true;
                 break;
             }
             case 1: {
                 editor.putInt("PathwayChoice", CourseContract.TSM.TSM);
                 editor.apply();
+                valid = true;
+                break;
+            }
+            case 2:
+            {
+                Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                break;
+            }
+            case 3:
+            {
+                Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                break;
+            }
+            case 4:{
+                Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
                 break;
             }
             default: {
                 editor.putInt("PathwayChoice", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
                 editor.apply();
+                valid = true;
                 break;
             }
         }
-
-        final Intent intent = new Intent(this, (Class) chooseSub_Pathway.class);
-        intent.putExtra("arrayID", String.valueOf(view.getId()));
-        this.startActivity(intent);
+        if(valid) {
+            final Intent intent = new Intent(this, (Class) chooseSub_Pathway.class);
+            intent.putExtra("arrayID", String.valueOf(view.getId()));
+            this.startActivity(intent);
+        }
 
     }
 

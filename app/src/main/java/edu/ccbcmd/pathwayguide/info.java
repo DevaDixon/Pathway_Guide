@@ -79,7 +79,7 @@ public class info extends AppCompatActivity
         return (int)((point.x / 355.0) * 100.0);
     }
 
-
+    private CourseClassLoader loader;
 
     public void onCreate(final Bundle bundle) {
 
@@ -93,7 +93,8 @@ public class info extends AppCompatActivity
 
         this.mPbar = (ProgressBar)this.findViewById(R.id.progressBar2); //2131624040
 
-        final CourseClass course = MainActivity.courseClassLoader.getXMLOrder(int3);
+        loader = new CourseClassLoader(getApplicationContext());
+        final CourseClass course = loader.getXMLOrder(int3);
         ((TextView)this.findViewById(R.id.textView)).setText(course.getFullTitle()); //2131624036
         this.getSupportActionBar().setTitle(course.getTitle());
 
@@ -157,7 +158,7 @@ public class info extends AppCompatActivity
         SharedPreferences sharedPrefIP = getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editorDone = sharedPrefDone.edit();
         final SharedPreferences.Editor editorIP = sharedPrefIP.edit();
-        final String[] courseLabels = MainActivity.courseClassLoader.getCourseLabels();
+        final String[] courseLabels = loader.getCourseLabels();
 
         button2.setOnClickListener(new View.OnClickListener() {
 
@@ -185,7 +186,6 @@ public class info extends AppCompatActivity
                     return;
                 }
 
-                //TODO HOW TO HANDLE IF SOMEONE CAN TAKE THE COURSE WITHOUT PREREQ?
                 if (course.getAnyPreReqs()) {
                     SharedPreferences pathwayPermission = getApplicationContext().getSharedPreferences("permission",Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = pathwayPermission.edit();
@@ -199,20 +199,13 @@ public class info extends AppCompatActivity
             }
         });
 
-        final Calendar instance = Calendar.getInstance();
-        int value = instance.get(Calendar.YEAR); //1
-        int n6 = instance.get(Calendar.YEAR) % 100;
-        if (instance.get(Calendar.MONTH) >= 5) { //5
-            ++n6;
-        }
-        else {
-            --value;
-        }
-        final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n6 + "&prefix=" + course.getTitle().replace(" ", "&code="));
+        Log.e("Webview",  course.getTitle().substring(0,4) + "/" + course.getTitle().substring(4,7));
+        final String value2 = String.valueOf("http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/"+ course.getTitle().substring(0,4) + "/" + course.getTitle().substring(4,7));
         this.getSupportActionBar().setHomeButtonEnabled(true);
         final WebView webView = (WebView)this.findViewById(R.id.descriptionwebview);
         webView.loadData("<h1>Loading, please wait...</h1>", "text/html", "utf-8");
-        webView.setWebViewClient(new WebViewClient() {
+        webView.loadUrl(value2);
+        /*webView.setWebViewClient(new WebViewClient() {
 
             public void onPageFinished(final WebView webView, final String s) {
 
@@ -238,16 +231,8 @@ public class info extends AppCompatActivity
 
             public boolean shouldOverrideUrlLoading(final WebView webView, final String s) {
 
-                final Calendar instance = Calendar.getInstance();
-                int value = instance.get(Calendar.YEAR); //1
-                int n = instance.get(Calendar.YEAR) % 100; //1
-                if (instance.get(Calendar.MONTH) >= 5) {  //2
-                    ++n;
-                }
-                else {
-                    --value;
-                }
-                final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + course.getTitle().replace(" ", "&code="));
+
+                final String value2 =  String.valueOf("http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/"+ course.getTitle().substring(0,4) + "/" + course.getTitle().substring(4,6));
                 final Integer value3 = info.this.prefs.getInt("internet", 1);
 
                 if (value3 != 1) {
@@ -269,7 +254,7 @@ public class info extends AppCompatActivity
             }
         });
         CookieManager.getInstance().setAcceptCookie(false);
-        webView.getSettings().setJavaScriptEnabled(true);
+
         webView.getSettings().setUserAgentString("User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)");
         webView.getSettings();
         this.getResources();
@@ -307,7 +292,7 @@ public class info extends AppCompatActivity
         webView.getSettings().setLoadWithOverviewMode(false);
         webView.getSettings().setUseWideViewPort(false);
         webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        webView.loadDataWithBaseURL("", "<h1 >Internet Use Disabled</h1><h3>You have disabled internet. To view course descriptions, go to internet settings found in the menu.</h3>", "text/html", "utf-8", "");
+        webView.loadDataWithBaseURL("", "<h1 >Internet Use Disabled</h1><h3>You have disabled internet. To view course descriptions, go to internet settings found in the menu.</h3>", "text/html", "utf-8", "");*/
     }
 
     public boolean onOptionsItemSelected(final MenuItem menuItem) {

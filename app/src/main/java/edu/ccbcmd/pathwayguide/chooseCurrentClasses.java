@@ -50,7 +50,7 @@ public class chooseCurrentClasses extends AppCompatActivity
     private void loopQuestions(final ViewGroup viewGroup) {
 
 
-        String[] courseLabels = MainActivity.courseClassLoader.getCourseLabels();
+        String[] courseLabels = loader.getCourseLabels();
         List<CheckBox> checkBoxesInProgress = new ArrayList<CheckBox>();
         for (int i = 0; i<viewGroup.getChildCount(); i++){
             checkBoxesInProgress.add((CheckBox) viewGroup.getChildAt(i));
