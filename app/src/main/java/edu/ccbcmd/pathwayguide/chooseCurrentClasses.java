@@ -60,7 +60,7 @@ public class chooseCurrentClasses extends AppCompatActivity
         SharedPreferences.Editor editorIP = sharedPrefInProgress.edit();
 
         //To ensure no stragglers have it set to true without permission.
-        for (int i = 0; i < MainActivity.courseClassLoader.howManyCourses(); i++)
+        for (int i = 0; i < loader.howManyCourses(); i++)
         {
             editorIP.putBoolean(courseLabels[i], false);
             editorIP.apply();
@@ -82,6 +82,7 @@ public class chooseCurrentClasses extends AppCompatActivity
         this.startActivity(new Intent(this, (Class)MainActivity.class));
     }
 
+    private CourseClassLoader loader;
     private static int length_of_classes;
 
     @TargetApi(23)
@@ -90,9 +91,10 @@ public class chooseCurrentClasses extends AppCompatActivity
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_choose_current_classes); //2130968605
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        loader = new CourseClassLoader(getApplicationContext());
+        List<CourseClass> courseList = loader.loadClassObjects();
 
-        List<CourseClass> courseList = MainActivity.courseClassLoader.loadClassObjects();
-        length_of_classes = MainActivity.courseClassLoader.howManyCourses();
+        length_of_classes = loader.howManyCourses();
 
         this.getSupportActionBar().show();
         this.getSupportActionBar().setTitle("Choose Classes");
