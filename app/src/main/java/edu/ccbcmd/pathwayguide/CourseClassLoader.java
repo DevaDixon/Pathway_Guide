@@ -375,16 +375,6 @@ public class CourseClassLoader {
         return null;
     }
 
-    public int getCoursePosition(String name){
-        for (CourseClass course : sortedObject){
-            if (course.getTitle().equals(name))
-            {
-                return course.getPosition();
-            }
-        }
-        return -1;
-    }
-
     public String getPathway() {return pathwayText;}
 
     private String[] loadInPreReqs(String[] courses){

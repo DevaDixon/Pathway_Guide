@@ -265,8 +265,6 @@ public class InfoForDoubleCourses extends AppCompatActivity
         }
     }
 
-
-
     private class CourseAdapter extends ArrayAdapter<CourseClass> {
 
         Context context;
@@ -282,11 +280,9 @@ public class InfoForDoubleCourses extends AppCompatActivity
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            View row = convertView;
-
 
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = inflater.inflate(R.layout.list_view_header_row, parent, false);
+            View row = inflater.inflate(R.layout.list_view_header_row, parent, false);
 
             TextView txtTitle = (TextView)row.findViewById(R.id.txtHeader);
             TextView txtDesc =  (TextView) row.findViewById(R.id.txtFullDesc);
