@@ -199,7 +199,14 @@ public class info extends AppCompatActivity
         this.getSupportActionBar().setHomeButtonEnabled(true);
         final WebView webView = (WebView)this.findViewById(R.id.descriptionwebview);
         webView.loadData("<h1>Loading, please wait...</h1>", "text/html", "utf-8");
-        webView.loadUrl(value2);
+
+        // Here we implement the data on off feature.
+        final Integer value3 = info.this.prefs.getInt("internet", 1);
+        if (value3 == 1) {
+            webView.loadUrl(value2);
+        } else {
+            webView.loadData("<h1 >Internet Use Disabled</h1><h3>You have disabled internet. To view course descriptions, go to internet settings found in the menu.</h3>", "text/html", "utf-8");
+        }
         /*webView.setWebViewClient(new WebViewClient() {
 
             public void onPageFinished(final WebView webView, final String s) {
@@ -231,7 +238,6 @@ public class info extends AppCompatActivity
                 final Integer value3 = info.this.prefs.getInt("internet", 1);
 
                 if (value3 != 1) {
-                    webView.loadData("<h1 >Internet Use Disabled</h1><h3>You have disabled internet. To view course descriptions, go to internet settings found in the menu.</h3>", "text/html", "utf-8");
                     return true;
                 }
                 if (!Uri.parse(s).getHost().equals(value2)) {
@@ -244,7 +250,6 @@ public class info extends AppCompatActivity
                 if (info.access$000(info.this)) {
                     return false;
                 }
-                webView.loadData("<h1 style='font-size:40px'>No Internet Connection</h1><h3>Course Description could not be loaded. Please check your internet connection and try again.</h3>", "text/html", "utf-8");
                 return true;
             }
         });
