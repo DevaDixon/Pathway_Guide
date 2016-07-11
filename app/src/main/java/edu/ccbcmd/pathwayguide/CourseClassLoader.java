@@ -160,6 +160,11 @@ public class CourseClassLoader {
             boolean meet = false;
             if (courseLabels[i].equals("GEMATH")){meet = true;}
 
+            boolean isDoubleClass = false;
+            //TODO FIGURE OUT WHAT THIS IS TRIGGERED BY? DATABASE CALL?
+            //if (somecondition){ isDoubleClass = true;}
+            isDoubleClass =true;
+
             //After setting all of the appropriate flags,  The course object itself is instantiated.
             CourseClass course = new CourseClass(courseLabels[i],
                     courseFullTitles[i],
@@ -171,7 +176,8 @@ public class CourseClassLoader {
                     isCourseAvailableForRegistration,
                     i,
                     meet,
-                    canJump);
+                    canJump,
+                    isDoubleClass);
 
 
             //This section of code adds the course to the particular container, that is, done, inprogress, etc. container

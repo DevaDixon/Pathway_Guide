@@ -32,6 +32,9 @@ public class CourseClass {
     //This will store if the student can get around prereq issues.
     private boolean canTakeWOPrereq;
 
+    //This will store if the course is a double class
+    private boolean isDoubleCourse;
+
     public CourseClass()
     {
         //Null constructor.  DO NOT use.
@@ -46,9 +49,9 @@ public class CourseClass {
         position = -1;
         meetWithAdvisor = false;
         canTakeWOPrereq = false;
+        isDoubleCourse = false;
     }
-
-    public CourseClass(String title, String fullTitle, String url, boolean done, boolean inProgress, boolean anyPreReqs, String preReqs, boolean isOpenForRegistration, int position, boolean meet, boolean jumpTheLine){
+    public CourseClass(String title, String fullTitle, String url, boolean done, boolean inProgress, boolean anyPreReqs, String preReqs, boolean isOpenForRegistration, int position, boolean meet, boolean jumpTheLine, boolean doubleCourse){
         super();
         //The proper constructor.
         this.title = title;
@@ -62,6 +65,7 @@ public class CourseClass {
         this.position = position;
         this.meetWithAdvisor = meet;
         this.canTakeWOPrereq = jumpTheLine;
+        this.isDoubleCourse = doubleCourse;
     }
 
     //The getters and setters.
@@ -88,27 +92,13 @@ public class CourseClass {
     public int getPosition(){return position;}
     public boolean getMeetWithAdvisor(){return meetWithAdvisor;}
     public boolean getCanTakeWOPrereq(){return canTakeWOPrereq;}
+    public boolean getIsDoubleCourse(){return isDoubleCourse;}
 
     public void setTitle(String title){
         this.title = title;
     }
-    public void setFullTitle(String title){this.fullTitle = title;}
-    public void setUrl(String url){
-        this.url = url;
-    }
-    public void setDone(boolean done){
-        this.done = done;
-    }
-    public void setInProgress(boolean inProgress){
-        this.inProgress = inProgress;
-    }
-    public void setAnyPreReqs(boolean anyPreReqs){
-        this.anyPreReqs = anyPreReqs;
-    }
-    public  void setPreReqs(String preReqs){this.preReqs = preReqs; }
-    public void setCanTakeWOPrereq(boolean canJump){this.canTakeWOPrereq = canJump;}
 
-    public void setIsOpenForRegistaration(boolean is) {this.isOpenForRegistration = is;}
+
 
 
 

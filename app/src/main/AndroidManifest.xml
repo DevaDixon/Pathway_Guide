@@ -8,6 +8,9 @@
     <activity android:name="edu.ccbcmd.pathwayguide.info" android:parentActivityName="edu.ccbcmd.pathwayguide.MainActivity" android:screenOrientation="portrait">
         <meta-data android:name="android.support.PARENT_ACTIVITY" android:screenOrientation="portrait" android:value=".MainActivity"/>
     </activity>
+    <activity android:name="edu.ccbcmd.pathwayguide.InfoForDoubleCourses" android:parentActivityName="edu.ccbcmd.pathwayguide.MainActivity" android:screenOrientation="portrait">
+        <meta-data android:name="android.support.PARENT_ACTIVITY" android:screenOrientation="portrait" android:value=".MainActivity"/>
+    </activity>
     <activity android:name="edu.ccbcmd.pathwayguide.choosePathway" android:parentActivityName="edu.ccbcmd.pathwayguide.MainActivity" android:screenOrientation="portrait">
         <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".MainActivity"/>
     </activity>
