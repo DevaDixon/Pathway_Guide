@@ -75,7 +75,11 @@ public class InfoForDoubleCourses extends AppCompatActivity
 
             this.getSupportActionBar().setTitle("Select Course"); //Green
 
-            CourseClass[] data = getDoubleCourses(course);
+            String[] coursesDouble = course.getDoubleCourse();
+            CourseClass[] data = new CourseClass[coursesDouble.length];
+            for(int i = 0; i < coursesDouble.length; i++){
+                data[i] = loader.getCourseByName(coursesDouble[i]);
+            }
             CourseAdapter adapter = new CourseAdapter(c, R.layout.list_view_header_row, data);
             ListView listView = (ListView) findViewById(R.id.listView);
             listView.setAdapter(adapter);
@@ -83,8 +87,9 @@ public class InfoForDoubleCourses extends AppCompatActivity
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     //TODO MUST FIX THIS! IT MUST FIND THE NAME OF THE course AND FIND THAT course TO PASS ON.
-
-                    runRest(loader.getXMLOrder(position), position);
+                    String name = (String)((TextView) view.findViewById(R.id.txtHeader)).getText();
+                    CourseClass newCourse = loader.getCourseByName(name);
+                    runRest(newCourse,newCourse.getPosition());
                 }
             });
         }
@@ -293,8 +298,5 @@ public class InfoForDoubleCourses extends AppCompatActivity
         }
     }
 
-    private CourseClass[] getDoubleCourses(CourseClass course){
 
-        return new CourseClass[]{loader.getXMLOrder(0), loader.getXMLOrder(1)};
-    }
 }
