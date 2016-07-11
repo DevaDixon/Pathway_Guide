@@ -118,6 +118,11 @@ public class DatabaseWrapper {
         return info;
     }
 
+    public static String[] getCoursesThatQualify(String classID){
+        String [] classesThatQualify = new String[]{""};
+        return classesThatQualify;
+    }
+
     // updates a class status in the database and returns its success
     // use the constants in DatabaseWrapper for the status (NOT_AVAILABLE, NOT_COMPLETED, IN_PROGRESS, COMPLETED)
     // if the status isn't valid (ie isn't one of the constants), it throws an IllegalArgumentException

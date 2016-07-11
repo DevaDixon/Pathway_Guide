@@ -52,6 +52,9 @@ public class CourseClassLoader {
         //The fourth instance of sharedpreferences is to get the permission of a course
         SharedPreferences pathwayPermission = context.getSharedPreferences("permission",Context.MODE_PRIVATE);
 
+        //The fifth instance of sharedpreferences is to get the double class status
+        SharedPreferences pathwayDoubleCourse = context.getSharedPreferences("DoubleCourse",Context.MODE_PRIVATE);
+
         //Initializing the database
         dataBase = new PathwaysDBHelper(context);
         DatabaseWrapper wrapper = new DatabaseWrapper();
@@ -125,59 +128,182 @@ public class CourseClassLoader {
         List<CourseClass> courseInProgress = new ArrayList<CourseClass>();
         List<CourseClass> courseTop = new ArrayList<CourseClass>();
         List<CourseClass> courseAvailable = new ArrayList<CourseClass>();
+
+        CourseClass course = null;
+
         boolean canJump = false;
         //This Loop determines what category each of the courses is in.
         for (int i = courseLabels.length-1; i>=0; i--)
         {
             //This section of code initializes from the shared preferences whether a course is done, inprogress or has prerequisites
-            //TODO: PROTECT THIS SECTION FROM BAD INITIALIZations  AS IN: MAKE SURE NONE OF THESE ARE NULL.
+
             boolean isCourseAvailableForRegistration = false;
-            String iCoursePrereq = coursePrereqs[i];
+
+            boolean isDoublePrereq = false;
+            //TODO FIGURE OUT WHAT THIS IS TRIGGERED BY? DATABASE CALL?
+            //if (somecondition){ isDoublePrereq = true;}  //This stands to be the trigger if the class has either/or prereqs.
+
+            boolean isDoubleClass = false;
+            //TODO FIGURE OUT WHAT WILL TRIGGER THE DOUBLE Class!
+            if (courseLabels[i].substring(0,2).equals("GE")){isDoubleClass = true;}
+
+
             boolean done = sharedPrefDone.getBoolean(courseLabels[i], false);
             boolean inProgress = sharedPrefInProgress.getBoolean(courseLabels[i], false);
             boolean preReq = false;
 
-            //These lines check if the course has a listed prerequisite, and sets the corresponding flag.
-            if (!iCoursePrereq.equals("NONE")){preReq = true;}
 
-            //this complicated bit of logic asks if prerequisites have been done for a course that is not done nor in progress.
-            //I must mention, I don't follow the logic today, but I'm sure that it works... somehow.
-            if (!done&&!inProgress){
+            if (isDoubleClass){
 
-                for (int j =0; j<courseLabels.length-1; j++)
-                {
-                    String courseString = courseLabels[j];
-                    boolean prereqDone = sharedPrefDone.getBoolean(courseLabels[j],false);
-                    if (courseString.equals(iCoursePrereq)&&prereqDone){
-                        isCourseAvailableForRegistration = true;
+                String title = pathwayDoubleCourse.getString(("Double"+courseLabels[i]),courseLabels[i]);
+                String[] doubleClasses = wrapper.getCoursesThatQualify(title);
+
+                String iCoursePrereq = coursePrereqs[i];
+                //These lines check if the course has a listed prerequisite, and sets the corresponding flag.
+                if (!iCoursePrereq.equals("NONE")){preReq = true;}
+
+                //this complicated bit of logic asks if prerequisites have been done for a course that is not done nor in progress.
+                //I must mention, I don't follow the logic today, but I'm sure that it works... somehow.
+                if (!done&&!inProgress){
+
+                    for (int j =0; j<courseLabels.length-1; j++)
+                    {
+                        String courseString = title;
+                        boolean prereqDone = sharedPrefDone.getBoolean(courseLabels[j],false);
+                        if (courseString.equals(iCoursePrereq)&&prereqDone){
+                            isCourseAvailableForRegistration = true;
+                        }
                     }
+                    canJump = pathwayPermission.getBoolean("permission"+title,false);
+                    if (!isCourseAvailableForRegistration && !done && !inProgress && preReq && canJump){ isCourseAvailableForRegistration = true;}
+                    if (!isCourseAvailableForRegistration && !done && !inProgress &&!preReq){isCourseAvailableForRegistration = true;}
                 }
-                canJump = pathwayPermission.getBoolean("permission"+courseLabels[i],false);
-                if (!isCourseAvailableForRegistration && !done && !inProgress && preReq && canJump){ isCourseAvailableForRegistration = true;}
-                if (!isCourseAvailableForRegistration && !done && !inProgress &&!preReq){isCourseAvailableForRegistration = true;}
+
+
+                //This sets the flag to see if you need to meet with the advisor to decide which class to take
+                boolean meet = false;
+                if (courseLabels[i].equals("GEMATH")){meet = true;}
+
+                String[] courseInfo = wrapper.getClassInfo(title);
+
+
+
+
+                //After setting all of the appropriate flags,  The course object itself is instantiated.
+                course = new CourseClass(title,
+                        courseInfo[1],
+                        courseInfo[2],
+                        done,
+                        inProgress,
+                        preReq,
+                        new String[] {coursePrereqs[i]},
+                        isCourseAvailableForRegistration,
+                        i,
+                        meet,
+                        canJump,
+                        isDoubleClass,
+                        doubleClasses);
+
             }
 
-            boolean meet = false;
-            if (courseLabels[i].equals("GEMATH")){meet = true;}
 
-            boolean isDoubleClass = false;
-            //TODO FIGURE OUT WHAT THIS IS TRIGGERED BY? DATABASE CALL?
-            //if (somecondition){ isDoubleClass = true;}
-            isDoubleClass =true;
+            if(isDoublePrereq && !isDoubleClass){
+                String[] iCoursePrereqArray = coursePrereqs[i].split(",");
+                for (int iterator = 0; i<iCoursePrereqArray.length; i++) {
+                    String iCoursePrereq = iCoursePrereqArray[iterator];
+                    //These lines check if the course has a listed prerequisite, and sets the corresponding flag.
+                    if (!iCoursePrereq.equals("NONE")) {
+                        preReq = true;
+                    }
 
-            //After setting all of the appropriate flags,  The course object itself is instantiated.
-            CourseClass course = new CourseClass(courseLabels[i],
-                    courseFullTitles[i],
-                    courseURLs[i],
-                    done,
-                    inProgress,
-                    preReq,
-                    coursePrereqs[i],
-                    isCourseAvailableForRegistration,
-                    i,
-                    meet,
-                    canJump,
-                    isDoubleClass);
+                    //this complicated bit of logic asks if prerequisites have been done for a course that is not done nor in progress.
+                    //I must mention, I don't follow the logic today, but I'm sure that it works... somehow.
+                    if (!done && !inProgress) {
+
+                        for (int j = 0; j < courseLabels.length - 1; j++) {
+                            String courseString = courseLabels[j];
+                            boolean prereqDone = sharedPrefDone.getBoolean(courseLabels[j], false);
+                            if (courseString.equals(iCoursePrereq) && prereqDone) {
+                                isCourseAvailableForRegistration = true;
+                            }
+                        }
+                        canJump = pathwayPermission.getBoolean("permission" + courseLabels[i], false);
+                        if (!isCourseAvailableForRegistration && !done && !inProgress && preReq && canJump) {
+                            isCourseAvailableForRegistration = true;
+                        }
+                        if (!isCourseAvailableForRegistration && !done && !inProgress && !preReq) {
+                            isCourseAvailableForRegistration = true;
+                        }
+                    }
+                }
+
+                boolean meet = false;
+                if (courseLabels[i].equals("GEMATH")){meet = true;}
+
+
+
+                //After setting all of the appropriate flags,  The course object itself is instantiated.
+                course = new CourseClass(courseLabels[i],
+                        courseFullTitles[i],
+                        courseURLs[i],
+                        done,
+                        inProgress,
+                        preReq,
+                        new String[] {coursePrereqs[i]},
+                        isCourseAvailableForRegistration,
+                        i,
+                        meet,
+                        canJump,
+                        false,
+                        new String[] {""});
+            } else {
+                String iCoursePrereq = coursePrereqs[i];
+                //These lines check if the course has a listed prerequisite, and sets the corresponding flag.
+                if (!iCoursePrereq.equals("NONE")){preReq = true;}
+
+                //this complicated bit of logic asks if prerequisites have been done for a course that is not done nor in progress.
+                //I must mention, I don't follow the logic today, but I'm sure that it works... somehow.
+                if (!done&&!inProgress){
+
+                    for (int j =0; j<courseLabels.length-1; j++)
+                    {
+                        String courseString = courseLabels[j];
+                        boolean prereqDone = sharedPrefDone.getBoolean(courseLabels[j],false);
+                        if (courseString.equals(iCoursePrereq)&&prereqDone){
+                            isCourseAvailableForRegistration = true;
+                        }
+                    }
+                    canJump = pathwayPermission.getBoolean("permission"+courseLabels[i],false);
+                    if (!isCourseAvailableForRegistration && !done && !inProgress && preReq && canJump){ isCourseAvailableForRegistration = true;}
+                    if (!isCourseAvailableForRegistration && !done && !inProgress &&!preReq){isCourseAvailableForRegistration = true;}
+                }
+
+                boolean meet = false;
+                if (courseLabels[i].equals("GEMATH")){meet = true;}
+
+
+
+                //After setting all of the appropriate flags,  The course object itself is instantiated.
+                course = new CourseClass(courseLabels[i],
+                        courseFullTitles[i],
+                        courseURLs[i],
+                        done,
+                        inProgress,
+                        preReq,
+                        new String[] {coursePrereqs[i]},
+                        isCourseAvailableForRegistration,
+                        i,
+                        meet,
+                        canJump,
+                        false,
+                        new String[] {""});
+            }
+
+
+
+
+
+
 
 
             //This section of code adds the course to the particular container, that is, done, inprogress, etc. container
@@ -197,25 +323,24 @@ public class CourseClassLoader {
             if (!added){
                 courseTop.add(course);
             }
-            //unnecessary anymore, we can simply remove this  I think.
-            //coursesObject.add(course);
+
         }
 
         //This section of loops adds the courses object into the sortedobject correctly.
-        for (CourseClass course : courseTop) {
-            sortedObject.add(course);
+        for (CourseClass course1 : courseTop) {
+            sortedObject.add(course1);
 
         }
-        for (CourseClass course : courseAvailable){
-            sortedObject.add(course);
+        for (CourseClass course1 : courseAvailable){
+            sortedObject.add(course1);
         }
 
-        for (CourseClass course : courseInProgress){
-            sortedObject.add(course);
+        for (CourseClass course1 : courseInProgress){
+            sortedObject.add(course1);
 
         }
-        for (CourseClass course : courseDone){
-            sortedObject.add(course);
+        for (CourseClass course1 : courseDone){
+            sortedObject.add(course1);
 
         }
 

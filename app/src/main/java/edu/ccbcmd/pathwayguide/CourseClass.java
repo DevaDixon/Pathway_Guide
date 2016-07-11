@@ -21,7 +21,7 @@ public class CourseClass {
     //This will be set by a calculation.
     private boolean isOpenForRegistration;
     //This will store the name of the prerequisite course (if there is one, else it will be "NONE")
-    private String preReqs;
+    private String[] preReqs;
 
     //This will store what position in the XML the course is
     private int position;
@@ -34,6 +34,9 @@ public class CourseClass {
 
     //This will store if the course is a double class
     private boolean isDoubleCourse;
+
+    //This will store the choices the student can choose from
+    private String[] doubleCourses;
 
     public CourseClass()
     {
@@ -50,8 +53,21 @@ public class CourseClass {
         meetWithAdvisor = false;
         canTakeWOPrereq = false;
         isDoubleCourse = false;
+        doubleCourses = null;
     }
-    public CourseClass(String title, String fullTitle, String url, boolean done, boolean inProgress, boolean anyPreReqs, String preReqs, boolean isOpenForRegistration, int position, boolean meet, boolean jumpTheLine, boolean doubleCourse){
+    public CourseClass(String title,
+                       String fullTitle,
+                       String url,
+                       boolean done,
+                       boolean inProgress,
+                       boolean anyPreReqs,
+                       String[] preReqs,
+                       boolean isOpenForRegistration,
+                       int position,
+                       boolean meet,
+                       boolean jumpTheLine,
+                       boolean doubleCourse,
+                       String[] doubleChoices){
         super();
         //The proper constructor.
         this.title = title;
@@ -66,6 +82,7 @@ public class CourseClass {
         this.meetWithAdvisor = meet;
         this.canTakeWOPrereq = jumpTheLine;
         this.isDoubleCourse = doubleCourse;
+        this.doubleCourses = doubleChoices;
     }
 
     //The getters and setters.
@@ -84,15 +101,18 @@ public class CourseClass {
     public boolean getAnyPreReqs(){
         return anyPreReqs;
     }
-    public String getPreReqs(){
-        return preReqs;
+    public String getPreReqs(int i){
+        return preReqs[i];
     }
+    public String[] getAllPreReqs(){ return preReqs;}
+
     public String getFullTitle(){return fullTitle;}
     public boolean getIsOpenForRegistration() {return isOpenForRegistration;}
     public int getPosition(){return position;}
     public boolean getMeetWithAdvisor(){return meetWithAdvisor;}
     public boolean getCanTakeWOPrereq(){return canTakeWOPrereq;}
     public boolean getIsDoubleCourse(){return isDoubleCourse;}
+    public String[] getDoubleCourse() {return doubleCourses;}
 
     public void setTitle(String title){
         this.title = title;
