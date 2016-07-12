@@ -31,6 +31,38 @@ public class DatabaseWrapper {
         }
     }
 
+    // returns possible program electives for a specified subpathway
+    // it's structured so that the first index is a discrete group of possible electives
+    // and the second index is a particular member of that group (an id of a possible elective)
+    // there may be fewer groups than PRELEC placeholders. just use the last group for all following placeholders in that case
+    // if the subpathway is invalid, it returns a 2d array with no length and nothing in it
+    // for a list of valid subpathway names, look in res/raw/pathwayvalues.txt
+    public static String[][] getProgramElectives(String subpathway) {
+        Cursor c = db.query(true, "subpathways", new String[] {"prelec"}, "name = ?", new String[] {subpathway}, null, null, null, null);
+        if (c.getCount() == 0) return new String[0][0];
+        else {
+            c.moveToNext();
+            String[] elecGroups = c.getString(c.getColumnIndex("prelec")).split(" ");
+            String[][] electives = new String[elecGroups.length][0];
+            for (int i=0; i<elecGroups.length; i++) electives[i] = elecGroups[i].split(",");
+            return electives;
+        }
+    }
+
+    // returns gen ed courses for a specified gen ed letter (one of M, S, B, A, L, E, I, W)
+    // M: math, S: social sciences, B: biological/physical sciences, A: arts/humanities
+    // L: lab science, E: english, I: IT, W: wellness/health
+    // if the gen ed id is invalid, it returns an array of length 0
+    public static String[] getGenEdClasses(String genedId) {
+        Cursor c = db.query(true, "classes", new String[] {"id"}, "gened LIKE '%" + genedId + "%'", null, null, null, null, null);
+        if (c.getCount() == 0) return new String[0];
+        else {
+            String[] result = new String[c.getCount()];
+            for (int i=0;c.moveToNext();i++) result[i] = c.getString(c.getColumnIndex("id"));
+            return result;
+        }
+    }
+
     // returns the printed name of the subpathway (like Nursing A.S.N.)
     // if the subpathway name is invalid, returns an empty string
     // for a list of valid subpathway names, look in res/raw/pathwayvalues.txt
