@@ -77,10 +77,9 @@ public class InfoForDoubleCourses extends AppCompatActivity
 
             String[] coursesDouble = course.getDoubleCourse();
 
-            CourseClass[] data = new CourseClass[coursesDouble.length];
+            final CourseClass[] data = new CourseClass[coursesDouble.length];
             for(int i = 0; i < coursesDouble.length; i++){
                 data[i] = loader.getCourseByName(coursesDouble[i], c);
-                Log.e("INFODC",""+i);
             }
             CourseAdapter adapter = new CourseAdapter(c, R.layout.list_view_header_row, data);
             ListView listView = (ListView) findViewById(R.id.listView);
@@ -89,14 +88,14 @@ public class InfoForDoubleCourses extends AppCompatActivity
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     //TODO MUST FIX THIS! IT MUST FIND THE NAME OF THE course AND FIND THAT course TO PASS ON.
-                    String name = (String)((TextView) view.findViewById(R.id.txtHeader)).getText();
-                    CourseClass newCourse = loader.getCourseByName(name, c);
-                    runRest(newCourse,newCourse.getPosition());
+
+                    CourseClass newCourse = data[position];
+                    runRest(newCourse);
                 }
             });
         }
         else {
-            runRest(course, int3);
+            runRest(course);
         }
 
     }
@@ -143,13 +142,16 @@ public class InfoForDoubleCourses extends AppCompatActivity
 
     }
 
-    public void runRest(final CourseClass course, final int int3){
+    public void runRest(final CourseClass course){
         ((TextView)findViewById(R.id.textView)).setVisibility(View.VISIBLE);
         ((Button)findViewById(R.id.button)).setVisibility(View.VISIBLE);
         ((Button)findViewById(R.id.colorChange)).setVisibility(View.VISIBLE);
         ((WebView)findViewById(R.id.descriptionwebview)).setVisibility(View.VISIBLE);
-        ((ProgressBar)findViewById(R.id.progressBar2)).setVisibility(View.VISIBLE);
+        ((ProgressBar)findViewById(R.id.progressBar2)).setVisibility(View.INVISIBLE);
         ((ListView)findViewById(R.id.listView)).setVisibility(View.INVISIBLE);
+
+        this.getSupportActionBar().setTitle(course.getTitle());
+        ((TextView)this.findViewById(R.id.textView)).setText(course.getFullTitle());
 
         if (course.getDone()) {
             this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#159b8a"))); //Green
@@ -211,14 +213,14 @@ public class InfoForDoubleCourses extends AppCompatActivity
         SharedPreferences sharedPrefIP = getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editorDone = sharedPrefDone.edit();
         final SharedPreferences.Editor editorIP = sharedPrefIP.edit();
-        final String[] courseLabels = loader.getCourseLabels();
+
 
         button2.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(final View view) {
 
                 if (course.getDone()) {
-                    editorDone.putBoolean(courseLabels[int3], false);
+                    editorDone.putBoolean(course.getTitle(), false);
                     editorDone.apply();
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)MainActivity.class));
                     return;
@@ -233,7 +235,7 @@ public class InfoForDoubleCourses extends AppCompatActivity
 
 
                 if (course.getIsOpenForRegistration()) {
-                    editorIP.putBoolean(courseLabels[int3],true);
+                    editorIP.putBoolean(course.getTitle(),true);
                     editorIP.apply();
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)MainActivity.class));
                     return;
@@ -289,7 +291,7 @@ public class InfoForDoubleCourses extends AppCompatActivity
             TextView txtTitle = (TextView)row.findViewById(R.id.txtHeader);
             TextView txtDesc =  (TextView) row.findViewById(R.id.txtFullDesc);
 
-            Log.e("INFODC", data[0].getTitle());
+
             txtTitle.setText(data[position].getTitle());
             txtDesc.setText(data[position].getFullTitle());
 
