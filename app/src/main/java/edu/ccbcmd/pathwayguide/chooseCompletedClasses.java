@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -128,8 +129,9 @@ public class chooseCompletedClasses extends AppCompatActivity
         for ( int i = 0; i < length_of_courses; ++i) {
 
             CourseClass course = loader.getXMLOrder(i);
+            Log.w("course loaded", course.getTitle().toString());
 
-            if (true) { // TODO: 7/11/2016 put conditional back in: took out because very confused. !course.getPreReqs(0).equals("PERMISSION"
+            if (true) { // TODO: 7/11/2016 put conditional back in?: took out because very confused. !course.getPreReqs(0).equals("PERMISSION"
 
                 final int id = course.getPosition();
                 final CheckBox checkBox = new CheckBox(this);

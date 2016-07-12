@@ -63,7 +63,6 @@ CSIT241|Applied Systems Analysis & Design| |CSIT111| |
 CSIT267|iOS Application Development| |CSIT210,CSIT212,CSIT214| |
 CSIT268|Android Application Development| |CSIT210,CSIT212,CSIT214| |
 CSIT269|Mobile Application Security| |CSIT267,CSIT268| |
-DCOM101|Intro to Data Communications| | | |
 ENGL213|Technical Writing| |ENGL101| |
 ENGL239|Business Communications| |ENGL101| |
 MNGT104|Intro to E-Business| | | |
