@@ -76,9 +76,11 @@ public class InfoForDoubleCourses extends AppCompatActivity
             this.getSupportActionBar().setTitle("Select Course"); //Green
 
             String[] coursesDouble = course.getDoubleCourse();
+
             CourseClass[] data = new CourseClass[coursesDouble.length];
             for(int i = 0; i < coursesDouble.length; i++){
                 data[i] = loader.getCourseByName(coursesDouble[i]);
+                Log.e("INFODC",""+i);
             }
             CourseAdapter adapter = new CourseAdapter(c, R.layout.list_view_header_row, data);
             ListView listView = (ListView) findViewById(R.id.listView);
@@ -171,7 +173,7 @@ public class InfoForDoubleCourses extends AppCompatActivity
 
 
         final Button button = (Button) findViewById(R.id.button); //2131624037
-        if (course.getAnyPreReqs()) {
+        if (course.getMeetWithAdvisor()) {
             button.setText("Meet with an Adviser"); //WHY IS THIS BUTTON MEET WITH AN ADVISOR? MAYBE I"M NOT FOLLOWING.
         }
         button.setOnClickListener(new View.OnClickListener() {
@@ -280,13 +282,14 @@ public class InfoForDoubleCourses extends AppCompatActivity
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-
+            View row = convertView;
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View row = inflater.inflate(R.layout.list_view_header_row, parent, false);
+            row = inflater.inflate(R.layout.list_view_header_row, parent, false);
 
             TextView txtTitle = (TextView)row.findViewById(R.id.txtHeader);
             TextView txtDesc =  (TextView) row.findViewById(R.id.txtFullDesc);
 
+            Log.e("INFODC", data[0].getTitle());
             txtTitle.setText(data[position].getTitle());
             txtDesc.setText(data[position].getFullTitle());
 

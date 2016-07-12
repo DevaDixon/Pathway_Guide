@@ -128,7 +128,7 @@ public class chooseCompletedClasses extends AppCompatActivity
         for ( int i = 0; i < length_of_courses; ++i) {
 
             CourseClass course = loader.getXMLOrder(i);
-            if (!course.getPreReqs().equals("PERMISSION")) {
+            if (!course.getPreReqs(0).equals("PERMISSION")) {
 
                 final int id = course.getPosition();
                 final CheckBox checkBox = new CheckBox(this);

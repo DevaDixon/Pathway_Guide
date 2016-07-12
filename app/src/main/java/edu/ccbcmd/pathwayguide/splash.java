@@ -51,30 +51,32 @@ public class splash extends AppCompatActivity
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.social), 1000); //2130837600
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.arts), 1000); //2130837580
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.splash), 1000); //2130837601
+                break;
             }
             case 100: {
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.health), 1000); //2130837595
                 time = 1000L;
+                break;
             }
             case 200: {
-
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.tech), 1000); //2130837602
                 time = 1000L;
+                break;
             }
             case 300: {
-
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.business), 1000); //2130837602
                 time = 1000L;
+                break;
             }
             case 400: {
-
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.social), 1000); //2130837602
                 time = 1000L;
+                break;
             }
             case 500: {
-
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.arts), 1000); //2130837602
                 time = 1000L;
+                break;
             }
         }
 

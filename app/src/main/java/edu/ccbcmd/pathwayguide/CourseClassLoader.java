@@ -130,6 +130,7 @@ public class CourseClassLoader {
         List<CourseClass> courseAvailable = new ArrayList<CourseClass>();
 
         CourseClass course = null;
+        boolean hasBeenAdded = false;
 
         boolean canJump = false;
         //This Loop determines what category each of the courses is in.
@@ -144,8 +145,9 @@ public class CourseClassLoader {
             //if (somecondition){ isDoublePrereq = true;}  //This stands to be the trigger if the class has either/or prereqs.
 
             boolean isDoubleClass = false;
-            //TODO FIGURE OUT WHAT WILL TRIGGER THE DOUBLE Class!
-            if (courseLabels[i].substring(0,2).equals("GE")){isDoubleClass = true;}
+            if (courseLabels[i].substring(0,2).equals("GE")){
+                isDoubleClass = true;
+            }
 
 
             boolean done = sharedPrefDone.getBoolean(courseLabels[i], false);
@@ -154,9 +156,22 @@ public class CourseClassLoader {
 
 
             if (isDoubleClass){
+                String title;
+                if (pathwayDoubleCourse.contains("Double"+courseLabels[i])){
+                    title = pathwayDoubleCourse.getString(("Double"+courseLabels[i]),courseLabels[i]);
+                } else {
+                    title = courseLabels[i];
+                }
 
-                String title = pathwayDoubleCourse.getString(("Double"+courseLabels[i]),courseLabels[i]);
-                String[] doubleClasses = wrapper.getCoursesThatQualify(title);
+
+                String[] doubleClasses = {""};
+                if (title.equals(courseLabels[i])) {
+                    doubleClasses = wrapper.getCoursesThatQualify(title);
+                } else {
+
+                    doubleClasses = new String[] {title};
+                }
+                Log.e("WTH",doubleClasses[0]+doubleClasses[1]);
 
                 String iCoursePrereq = coursePrereqs[i];
                 //These lines check if the course has a listed prerequisite, and sets the corresponding flag.
@@ -182,7 +197,7 @@ public class CourseClassLoader {
 
                 //This sets the flag to see if you need to meet with the advisor to decide which class to take
                 boolean meet = false;
-                if (courseLabels[i].equals("GEMATH")){meet = true;}
+                if (courseLabels[i].substring(0,2).equals("GE")){meet = true;}
 
                 String[] courseInfo = wrapper.getClassInfo(title);
 
@@ -190,6 +205,7 @@ public class CourseClassLoader {
 
 
                 //After setting all of the appropriate flags,  The course object itself is instantiated.
+
                 course = new CourseClass(title,
                         courseInfo[1],
                         courseInfo[2],
@@ -203,11 +219,11 @@ public class CourseClassLoader {
                         canJump,
                         isDoubleClass,
                         doubleClasses);
-
+                hasBeenAdded = true;
             }
 
 
-            if(isDoublePrereq && !isDoubleClass){
+            if(isDoublePrereq && !hasBeenAdded){
                 String[] iCoursePrereqArray = coursePrereqs[i].split(",");
                 for (int iterator = 0; i<iCoursePrereqArray.length; i++) {
                     String iCoursePrereq = iCoursePrereqArray[iterator];
@@ -256,7 +272,8 @@ public class CourseClassLoader {
                         canJump,
                         false,
                         new String[] {""});
-            } else {
+                hasBeenAdded = true;
+            } else if(!hasBeenAdded) {
                 String iCoursePrereq = coursePrereqs[i];
                 //These lines check if the course has a listed prerequisite, and sets the corresponding flag.
                 if (!iCoursePrereq.equals("NONE")){preReq = true;}
@@ -298,12 +315,6 @@ public class CourseClassLoader {
                         false,
                         new String[] {""});
             }
-
-
-
-
-
-
 
 
             //This section of code adds the course to the particular container, that is, done, inprogress, etc. container

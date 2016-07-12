@@ -91,6 +91,7 @@ public class info extends AppCompatActivity
         final CourseClass course = loader.getXMLOrder(int3);
 
         boolean doubleCourse = course.getIsDoubleCourse();
+
         if(doubleCourse){
             Intent intent = new Intent(c,InfoForDoubleCourses.class);
             startActivity(intent);
@@ -204,8 +205,11 @@ public class info extends AppCompatActivity
             }
         });
 
-        Log.e("Webview",  course.getTitle().substring(0,4) + "/" + course.getTitle().substring(4,7));
-        final String value2 = String.valueOf("http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/"+ course.getTitle().substring(0,4) + "/" + course.getTitle().substring(4,7));
+        String value2;
+        if ( course.getTitle().length()< 7)
+            value2 = String.valueOf("http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/"+course.getTitle().substring(0,4));
+        else
+            value2 = String.valueOf("http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/"+ course.getTitle().substring(0,4) + "/" + course.getTitle().substring(4,7));
         this.getSupportActionBar().setHomeButtonEnabled(true);
         final WebView webView = (WebView)this.findViewById(R.id.descriptionwebview);
         webView.loadData("<h1>Loading, please wait...</h1>", "text/html", "utf-8");

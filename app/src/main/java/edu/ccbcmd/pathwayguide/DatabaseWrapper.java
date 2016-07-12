@@ -119,7 +119,7 @@ public class DatabaseWrapper {
     }
 
     public static String[] getCoursesThatQualify(String classID){
-        String [] classesThatQualify = new String[]{""};
+        String [] classesThatQualify = new String[]{"GENMATH","GENMATH"};
         return classesThatQualify;
     }
 

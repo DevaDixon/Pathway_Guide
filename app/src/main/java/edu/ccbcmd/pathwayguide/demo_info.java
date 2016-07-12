@@ -143,7 +143,7 @@ public class demo_info extends AppCompatActivity
         else {
             --value;
         }
-        final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + "ENGL&code=101");
+        final String value2 = String.valueOf("http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/ENGL/101");
         this.getSupportActionBar().setHomeButtonEnabled(true);
         final WebView webView = (WebView)this.findViewById(R.id.descriptionwebview); //2131624039
         webView.loadData("<h1>Loading, please wait...</h1>", "text/html", "utf-8");
@@ -185,7 +185,7 @@ public class demo_info extends AppCompatActivity
                 else {
                     --value;
                 }
-                final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + "ENGL 101".replace(" ", "&code="));
+                final String value2 = String.valueOf("http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/ENGL/101");
                 final Integer value3 = demo_info.this.prefs.getInt("internet", 1);
 
                 if (value3 != 1) {
