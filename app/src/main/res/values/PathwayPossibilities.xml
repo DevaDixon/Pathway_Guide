@@ -2,7 +2,7 @@
 <resources>
     <string-array name="PathwayCategory">
         <item>Pre-Allied Health</item>
-        <item>Technology, Science, and Math</item>
+        <item>Technology, Science, &amp; Math</item>
         <item>Business, Law, and Criminal Justice</item>
         <item>Arts and Humanities</item>
         <item>Behavioral and Social Sciences</item>

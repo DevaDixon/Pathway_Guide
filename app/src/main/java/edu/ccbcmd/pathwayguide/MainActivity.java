@@ -65,14 +65,15 @@ public class MainActivity extends Activity implements View.OnClickListener
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         this.prefs.edit().putInt("zoom", 0).commit();
 
+        // TODO: 7/11/2016 check usages.
         Integer value = this.prefs.getInt("pathwayID", 0);
         Integer value2 = this.prefs.getInt("pathwaysubID", 0);
-
+        String subPathTitle = this.prefs.getString("SubPathTitle", "null");
         String string = this.prefs.getString("notifydate", "00/00/0000");
         checkAlarm(string);
 
 
-        if (value2 == -1) {
+        if (value2 == -1 || subPathTitle.equals("null")) {
             this.startActivity(new Intent(this, (Class)choosePathway.class));
             return;
         }
