@@ -1,58 +1,76 @@
-ACDV101|Transitioning to College|This course may not be required for transfer students. Ask your adviser for more information.| |
-ENGL101|College Composition I| | |
-GENMATH|Gen. Ed. Math|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| |
-BIOL110|Biology I: Molecular and Cells| | |
-PSYC101|Intro to Psychology| | |
-BIOL220|Human Anatomy and Physiology I| |BIOL110|
-PSYC103|Principles of Human Growth and Development| |PSYC101|
-CMNS101|Fundamentals of Communication| | |
-SOCL101|Introduction to Sociology| | |
-BIOL230|Microbiology| |BIOL110|
-CSIT101|Technology and Info Sys| | |
-CSIT111|Logic and OO Design| | |
-CSIT121|Web Standards| |CSIT101|
-CSIT142|Intro to MIS| |CSIT101|
-CSIT154|Database Concepts| |CSIT101|
-CSIT210|Intro to Programming| |CSIT111|
-CSIT211|Advanced Programming| |CSIT210|
-MATH251|Calculus I| |MATH165|
-MATH252|Calculus II| |MATH251|
-MATH243|Discrete Math| |MATH165|
-MATH257|Linear Algebra| |MATH251|
-CSIT214|C++ Programming| |CSIT210|
-GENSOSC|Gen. Ed. Social Sci.|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| |
-PRELEC|Program Elective|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| |
-CSIT161|Intro to Information Assurance| |CSIT101|
-CSIT166|Intro to Mobile| |CSIT111|
-GEBIOSC|Gen. Ed. Bio. Sci.|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| |
-DCOM101|Intro to Data Communications| | |
-DCOM142|Intro to Linux/UNIX| | |
-GENARTS|Gen. Ed. Arts|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| |
-GENELAB|Gen. Ed. Science (w/Lab)|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| |
-MATH125|Finite Mathematics and Modeling| | |
-MATH135|Applied Algebra and Trigonometry| | |
-MATH163|College Algebra| | |
-MATH165|Precalculus| |MATH163|
-ENGL102|College Composition II| |ENGL101|
-WMST101|Introduction to Women's Studies| |ENGL101|
-HLTH101|Health and Wellness| | |
-MNTH101|Introduction to Mental Health| | |
-ACCT101|Principles of Accounting I| | |
-MASS101|Introduction to Massage| | |
-PHYS101|Fundamentals of Physics I| |GEMATH|
-RTTT101|Orientation to Radiation Therapy I| | |
-ALHL115|Medical Terminology| | |
-BIOL160|Body Structure and Function| | |
-BIOL107|Human Biology| | |
-BIOL109|Human Anatomy and Physiology| | |
-PSYC105|Multicultural Psychology| | |
-MASS210|Level I - Massage| |BIOL109 MASS101 MASS110|
-MASS110|Musculoskeletal System: Structure and Function| |MASS101 MASS210 BIOL109|
-MASS220|Level II - Massage| |MASS110 MASS210|
-MASS221|Massage Modalities| |MASS220|
-CHEM107|Fundamentals of Chemistry| | |
-CHEM108|Fundamentals of Chemistry Lab.| |CHEM107|
-CSIT120|Diversity in a Technological Society| | |
-VETT106|Introduction to Veterinary Technology| | |
-EMST105|Emergency Medical Technician Basic| | |
-SOCL141|Racial and Cultural Minorities| | |
+ACDV101|Transitioning to College|This course may not be required for transfer students. Ask your adviser for more information.| | |
+ENGL101|College Composition I| | | |
+GEMATH|Gen. Ed. Math|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
+BIOL110|Biology I: Molecular and Cells| | | |
+PSYC101|Intro to Psychology| | | |
+BIOL220|Human Anatomy and Physiology I| |BIOL110| |
+PSYC103|Principles of Human Growth and Development| |PSYC101| |
+CMNS101|Fundamentals of Communication| | | |
+SOCL101|Introduction to Sociology| | | |
+BIOL230|Microbiology| |BIOL110| |
+CSIT101|Technology and Info Sys| | | |
+CSIT111|Logic and OO Design| | | |
+CSIT121|Web Standards| |CSIT101| |
+CSIT142|Intro to MIS| |CSIT101,OFAD114| |
+CSIT154|Database Concepts| |CSIT101| |
+CSIT210|Intro to Programming| |CSIT111| |
+CSIT211|Advanced Programming| |CSIT210| |
+MATH251|Calculus I| |MATH165| |
+MATH252|Calculus II| |MATH251| |
+MATH243|Discrete Math| |MATH165| |
+MATH257|Linear Algebra| |MATH251| |
+CSIT214|C++ Programming| |CSIT210| |
+GESOSC|Gen. Ed. Social Sci.|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
+PRELEC|Program Elective|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
+CSIT161|Intro to Information Assurance| |CSIT101| |
+CSIT166|Intro to Mobile| |CSIT111| |
+GEBIOSC|Gen. Ed. Bio. Sci.|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
+DCOM101|Intro to Data Communications| | | |
+DCOM142|Intro to Linux/UNIX| | | |
+GEARTS|Gen. Ed. Arts|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
+GELAB|Gen. Ed. Science (w/Lab)|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
+MATH125|Finite Mathematics and Modeling| | | |
+MATH135|Applied Algebra and Trigonometry| | | |
+MATH163|College Algebra| | | |
+MATH165|Precalculus| |MATH163| |
+ENGL102|College Composition II| |ENGL101| |
+WMST101|Introduction to Women's Studies| |ENGL101| |
+HLTH101|Health and Wellness| | | |
+MNTH101|Introduction to Mental Health| | | |
+ACCT101|Principles of Accounting I| | | |
+MASS101|Introduction to Massage| | | |
+PHYS101|Fundamentals of Physics I| |MATH135,MATH165,MATH163| |
+RTTT101|Orientation to Radiation Therapy I| | | |
+ALHL115|Medical Terminology| | | |
+BIOL160|Body Structure and Function| | | |
+BIOL107|Human Biology| | | |
+BIOL109|Human Anatomy and Physiology| | | |
+PSYC105|Multicultural Psychology| | | |
+MASS210|Level I - Massage| |BIOL109 MASS101 MASS110| |
+MASS110|Musculoskeletal System: Structure and Function| |MASS101 MASS210 BIOL109| |
+MASS220|Level II - Massage| |MASS110 MASS210| |
+MASS221|Massage Modalities| |MASS220| |
+CHEM107|Fundamentals of Chemistry| | | |
+CHEM108|Fundamentals of Chemistry Lab.| |CHEM107| |
+CSIT120|Diversity in a Technological Society| | | |
+VETT106|Introduction to Veterinary Technology| | | |
+EMST105|Emergency Medical Technician Basic| | | |
+SOCL141|Racial and Cultural Minorities| | | |
+OFAD114|IT Essentials| | | |
+MATH153|Intro to Statistical Methods| | | |
+CSIT212|Visual Basic Programming| |CSIT111| |
+CSIT241|Applied Systems Analysis & Design| |CSIT111| |
+CSIT267|iOS Application Development| |CSIT210,CSIT212,CSIT214| |
+CSIT268|Android Application Development| |CSIT210,CSIT212,CSIT214| |
+CSIT269|Mobile Application Security| |CSIT267,CSIT268| |
+DCOM101|Intro to Data Communications| | | |
+ENGL213|Technical Writing| |ENGL101| |
+ENGL239|Business Communications| |ENGL101| |
+MNGT104|Intro to E-Business| | | |
+MNGT105|Principles of Management| | | |
+CSIT156|Intro to SQL Using Oracle| |CSIT101| |
+CSIT254|Emerging Database Design| |CSIT154,CSIT156| |
+CSIT256|Advanced Oracle| |CSIT156| |
+CSIT125|Intro to JavaScript| |CSIT121| |
+CSIT222|Emerging Web Technologies| |CSIT121 CSIT154| |
+CSIT224|Server-Side Scripting in PHP| |CSIT111,CSIT121,CSIT154| |
