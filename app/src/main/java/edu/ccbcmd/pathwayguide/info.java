@@ -79,17 +79,28 @@ public class info extends AppCompatActivity
     public void onCreate(final Bundle bundle) {
 
         super.onCreate(bundle);
-        this.setContentView(R.layout.activity_info); //2130968613
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         final String string = this.prefs.getString("choosenID", "0");
         final int int3 = Integer.parseInt(string);
+        c = getApplicationContext();
 
         this.mPbar = (ProgressBar)this.findViewById(R.id.progressBar2); //2131624040
 
         loader = new CourseClassLoader(getApplicationContext());
         final CourseClass course = loader.getXMLOrder(int3);
+
+        boolean doubleCourse = course.getIsDoubleCourse();
+
+        if(doubleCourse){
+            Intent intent = new Intent(c,InfoForDoubleCourses.class);
+            startActivity(intent);
+            return;
+        }
+
+        this.setContentView(R.layout.activity_info); //2130968613
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         ((TextView)this.findViewById(R.id.textView)).setText(course.getFullTitle()); //2131624036
         this.getSupportActionBar().setTitle(course.getTitle());
 
@@ -194,13 +205,16 @@ public class info extends AppCompatActivity
             }
         });
 
-        Log.e("Webview",  course.getTitle().substring(0,4) + "/" + course.getTitle().substring(4,7));
-        final String value2 = String.valueOf("http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/"+ course.getTitle().substring(0,4) + "/" + course.getTitle().substring(4,7));
+        String value2;
+        if ( course.getTitle().length()< 7)
+            value2 = String.valueOf("http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/"+course.getTitle().substring(0,4));
+        else
+            value2 = String.valueOf("http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/"+ course.getTitle().substring(0,4) + "/" + course.getTitle().substring(4,7));
         this.getSupportActionBar().setHomeButtonEnabled(true);
         final WebView webView = (WebView)this.findViewById(R.id.descriptionwebview);
         webView.loadData("<h1>Loading, please wait...</h1>", "text/html", "utf-8");
 
-        // Here we implement the data on off feature.
+        // Here we implement the data on/off feature.
         final Integer value3 = info.this.prefs.getInt("internet", 1);
         if (value3 == 1) {
             webView.loadUrl(value2);

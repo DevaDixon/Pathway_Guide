@@ -6,6 +6,7 @@ package edu.ccbcmd.pathwayguide;
 
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -30,13 +31,56 @@ public class splash extends AppCompatActivity
         this.setContentView(R.layout.activity_splash); //2130968622
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+
+        //The third instance of sharedpreferences is the particular pathway chosen.
+        SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
+
+        int pathway = -1;
         final AnimationDrawable animationDrawable = new AnimationDrawable();
-        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.health), 1000); //2130837595
-        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.tech), 1000); //2130837602
-        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.business), 1000); //2130837583
-        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.social), 1000); //2130837600
-        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.arts), 1000); //2130837580
-        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.splash), 1000); //2130837601
+        long time = 6000L;
+        if (pathwayPref.contains("PathwayChoice"))
+        {
+            pathway = pathwayPref.getInt("PathwayChoice", 100);
+        } else { pathway = 0;}
+
+        switch (pathway){
+            case 0: {
+                animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.health), 1000); //2130837595
+                animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.tech), 1000); //2130837602
+                animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.business), 1000); //2130837583
+                animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.social), 1000); //2130837600
+                animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.arts), 1000); //2130837580
+                animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.splash), 1000); //2130837601
+                break;
+            }
+            case 100: {
+                animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.health), 1000); //2130837595
+                time = 1000L;
+                break;
+            }
+            case 200: {
+                animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.tech), 1000); //2130837602
+                time = 1000L;
+                break;
+            }
+            case 300: {
+                animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.business), 1000); //2130837602
+                time = 1000L;
+                break;
+            }
+            case 400: {
+                animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.social), 1000); //2130837602
+                time = 1000L;
+                break;
+            }
+            case 500: {
+                animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.arts), 1000); //2130837602
+                time = 1000L;
+                break;
+            }
+        }
+
+
         animationDrawable.setOneShot(true);
         final ImageView imageView = (ImageView)this.findViewById(R.id.imageView); //2131624058
         if (Build.VERSION.SDK_INT < 16) {
@@ -73,6 +117,6 @@ public class splash extends AppCompatActivity
                 }
                 splash.this.finish();
             }
-        }, 6000L);
+        }, time);
     }
 }

@@ -111,7 +111,7 @@ public class chooseCurrentClasses extends AppCompatActivity
         for (int i = 0; i < length; ++i) {
             CourseClass course = courseList.get(i);
 
-            if (!course.getDone() && !course.getPreReqs().equals("PERMISSION")) {
+            if (!course.getDone() && !course.getPreReqs(0).equals("PERMISSION")) {
                 final CheckBox checkBox = new CheckBox(this);
                 checkBox.setText((course.getTitle() + ": " + course.getFullTitle()));
                 if (course.getInProgress()){

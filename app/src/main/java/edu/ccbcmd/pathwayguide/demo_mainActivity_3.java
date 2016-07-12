@@ -1,9 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-/**
- * Created by dixo8 on 6/24/2016.
- */
-
 
 
 import android.content.Intent;
@@ -17,6 +13,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
