@@ -136,6 +136,7 @@ public class CourseClassLoader {
         //This Loop determines what category each of the courses is in.
         for (int i = courseLabels.length-1; i>=0; i--)
         {
+            hasBeenAdded = false;
             //This section of code initializes from the shared preferences whether a course is done, inprogress or has prerequisites
 
             boolean isCourseAvailableForRegistration = false;
@@ -170,6 +171,8 @@ public class CourseClassLoader {
                 } else {
 
                     doubleClasses = new String[] {title};
+                    //Why did this break things
+                    isDoubleClass = false;
                 }
 
                 String iCoursePrereq = coursePrereqs[i];
@@ -272,7 +275,9 @@ public class CourseClassLoader {
                         false,
                         new String[] {""});
                 hasBeenAdded = true;
-            } else if(!hasBeenAdded) {
+            }
+
+            if(!hasBeenAdded) {
                 String iCoursePrereq = coursePrereqs[i];
                 //These lines check if the course has a listed prerequisite, and sets the corresponding flag.
                 if (!iCoursePrereq.equals("NONE")){preReq = true;}

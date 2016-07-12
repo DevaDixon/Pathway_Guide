@@ -211,8 +211,11 @@ public class InfoForDoubleCourses extends AppCompatActivity
         //Getting a handle for the shared preference editor
         SharedPreferences sharedPrefDone = getSharedPreferences("courses", Context.MODE_PRIVATE);
         SharedPreferences sharedPrefIP = getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
+        //The fifth instance of sharedpreferences is to get the double class status
+        SharedPreferences pathwayDoubleCourse = getSharedPreferences("DoubleCourse",Context.MODE_PRIVATE);
         final SharedPreferences.Editor editorDone = sharedPrefDone.edit();
         final SharedPreferences.Editor editorIP = sharedPrefIP.edit();
+        final SharedPreferences.Editor editorDblClass = pathwayDoubleCourse.edit();
 
 
         button2.setOnClickListener(new View.OnClickListener() {
@@ -220,6 +223,8 @@ public class InfoForDoubleCourses extends AppCompatActivity
             public void onClick(final View view) {
 
                 if (course.getDone()) {
+                    editorDblClass.putString(("Double"+"GENMATH"),course.getTitle());
+                    editorDblClass.apply();
                     editorDone.putBoolean(course.getTitle(), false);
                     editorDone.apply();
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)MainActivity.class));
@@ -227,6 +232,8 @@ public class InfoForDoubleCourses extends AppCompatActivity
                 }
 
                 if (course.getInProgress()) {
+                    editorDblClass.putString(("Double"+"GENMATH"),course.getTitle());
+                    editorDblClass.apply();
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)alert.class));
                     return;
                 }
@@ -235,6 +242,8 @@ public class InfoForDoubleCourses extends AppCompatActivity
 
 
                 if (course.getIsOpenForRegistration()) {
+                    editorDblClass.putString(("Double"+"GENMATH"),course.getTitle());
+                    editorDblClass.apply();
                     editorIP.putBoolean(course.getTitle(),true);
                     editorIP.apply();
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)MainActivity.class));
