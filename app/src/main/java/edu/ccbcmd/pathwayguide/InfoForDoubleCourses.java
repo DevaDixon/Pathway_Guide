@@ -79,7 +79,7 @@ public class InfoForDoubleCourses extends AppCompatActivity
 
             CourseClass[] data = new CourseClass[coursesDouble.length];
             for(int i = 0; i < coursesDouble.length; i++){
-                data[i] = loader.getCourseByName(coursesDouble[i]);
+                data[i] = loader.getCourseByName(coursesDouble[i], c);
                 Log.e("INFODC",""+i);
             }
             CourseAdapter adapter = new CourseAdapter(c, R.layout.list_view_header_row, data);
@@ -90,7 +90,7 @@ public class InfoForDoubleCourses extends AppCompatActivity
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     //TODO MUST FIX THIS! IT MUST FIND THE NAME OF THE course AND FIND THAT course TO PASS ON.
                     String name = (String)((TextView) view.findViewById(R.id.txtHeader)).getText();
-                    CourseClass newCourse = loader.getCourseByName(name);
+                    CourseClass newCourse = loader.getCourseByName(name, c);
                     runRest(newCourse,newCourse.getPosition());
                 }
             });
