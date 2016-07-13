@@ -56,32 +56,20 @@ public class CourseClassLoader {
         SharedPreferences pathwayDoubleCourse = context.getSharedPreferences("DoubleCourse",Context.MODE_PRIVATE);
 
         //Initializing the database
-        dataBase = new PathwaysDBHelper(context); //This line is useless
+        dataBase = new PathwaysDBHelper(context);
         DatabaseWrapper wrapper = new DatabaseWrapper();
 
 
-        String pathway, subPathway;
-
-
-        if (pathwayPref.contains("PathwayTitle") && pathwayPref.contains("SubPathTitle"))
+        int pathway = -1;
+        if (pathwayPref.contains("PathwayChoice"))
         {
-            pathway = pathwayPref.getString("PathwayTitle", null);
-            subPathway = pathwayPref.getString("SubPathTitle", null);
-        } else { pathway = "Pre-Allied Health"; subPathway = "Nursing";} // FIXME: 7/11/2016 should load choosePathway here if needed. -DD
+            pathway = pathwayPref.getInt("PathwayChoice", 100);
+        } else { pathway = 100;}
 
-        courseLabels = DatabaseWrapper.getSubPathwayClasses(subPathway);
-
-
-        courseURLs = courseLabels; // FIXME: 7/12/2016 useless assignment, urls should be removed from courseClass definition. (or dynamically created)
-        pathwayText = subPathway;
-        coursePrereqs = loadInPreReqs(courseLabels);
-        courseFullTitles = loadInTitles(courseLabels);
-
-        /*
         //Once the pathway choice is memorialized as an integer, the switch case statement here will load in the appropriate
         // vectors into the courseLabels and coursePrereqs and courseURLs variables.
-        //TO do FIX THIS SWITCH STATEMENT TO ENCOMPASS ALL OF THE PATHWAYS.
-        //TO do INCLUDE THE SUBPATHWAY STATMENTS AS WELL!
+        //TODO: FIX THIS SWITCH STATEMENT TO ENCOMPASS ALL OF THE PATHWAYS.
+        //TODO: INCLUDE THE SUBPATHWAY STATMENTS AS WELL!
         switch (pathway){
             case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH:
             {
@@ -130,7 +118,7 @@ public class CourseClassLoader {
             }
         }
 
-*/
+
         //This is the assignment of courseObjects and sortedObjects
         //coursesObject = new ArrayList<CourseClass>();
         sortedObject = new ArrayList<CourseClass>();
@@ -148,6 +136,7 @@ public class CourseClassLoader {
         //This Loop determines what category each of the courses is in.
         for (int i = courseLabels.length-1; i>=0; i--)
         {
+            hasBeenAdded = false;
             //This section of code initializes from the shared preferences whether a course is done, inprogress or has prerequisites
 
             boolean isCourseAvailableForRegistration = false;
@@ -162,7 +151,6 @@ public class CourseClassLoader {
             }
 
 
-            int courseStatus = DatabaseWrapper.getClassStatus(courseLabels[i]);
             boolean done = sharedPrefDone.getBoolean(courseLabels[i], false);
             boolean inProgress = sharedPrefInProgress.getBoolean(courseLabels[i], false);
             boolean preReq = false;
@@ -175,36 +163,26 @@ public class CourseClassLoader {
                 } else {
                     title = courseLabels[i];
                 }
-                // FIXME: 7/12/2016 Hardcoding title, since value stored in sharedprefs does not exist as a course.
-               // title = "GEMATH";
 
 
                 String[] doubleClasses = {""};
                 if (title.equals(courseLabels[i])) {
-                    doubleClasses = DatabaseWrapper.getCoursesThatQualify(title);
+                    doubleClasses = wrapper.getCoursesThatQualify(title);
                 } else {
 
                     doubleClasses = new String[] {title};
+                    //Why did this break things
+                    isDoubleClass = false;
                 }
 
-                //fetches the prereq array for each course
-                String[] listOfPrereqs = DatabaseWrapper.getClassPrereqs(courseLabels[i]);
-                //String iCoursePrereq = coursePrereqs[i];
+                String iCoursePrereq = coursePrereqs[i];
                 //These lines check if the course has a listed prerequisite, and sets the corresponding flag.
-                if (listOfPrereqs.length != 0){preReq = true;}
+                if (!iCoursePrereq.equals("NONE")){preReq = true;}
 
                 //this complicated bit of logic asks if prerequisites have been done for a course that is not done nor in progress.
                 //I must mention, I don't follow the logic today, but I'm sure that it works... somehow.
-                if (courseStatus == 0){
+                if (!done&&!inProgress){
 
-                    isCourseAvailableForRegistration = true;
-                    for (int j = 0; j < listOfPrereqs.length; j++) {
-                        isCourseAvailableForRegistration = true;
-                        if (DatabaseWrapper.getClassStatus(listOfPrereqs[j]) != 2) {
-                            isCourseAvailableForRegistration = false;
-                        }
-                    }
-                    /*
                     for (int j =0; j<courseLabels.length-1; j++)
                     {
                         String courseString = title;
@@ -213,11 +191,9 @@ public class CourseClassLoader {
                             isCourseAvailableForRegistration = true;
                         }
                     }
-                    */
-                    // FIXME: 7/12/2016 I temp. disabled "canJump" for sanity
-                   // canJump = pathwayPermission.getBoolean("permission"+title,false);
-                  //  if (!isCourseAvailableForRegistration && classStatus == 0 && preReq && canJump){ isCourseAvailableForRegistration = true;}
-                  //  if (!isCourseAvailableForRegistration && classStatus == 0 &&!preReq){isCourseAvailableForRegistration = true;}
+                    canJump = pathwayPermission.getBoolean("permission"+title,false);
+                    if (!isCourseAvailableForRegistration && !done && !inProgress && preReq && canJump){ isCourseAvailableForRegistration = true;}
+                    if (!isCourseAvailableForRegistration && !done && !inProgress &&!preReq){isCourseAvailableForRegistration = true;}
                 }
 
 
@@ -225,7 +201,7 @@ public class CourseClassLoader {
                 boolean meet = false;
                 if (courseLabels[i].substring(0,2).equals("GE")){meet = true;}
 
-                String[] courseInfo = DatabaseWrapper.getClassInfo(title);
+                String[] courseInfo = wrapper.getClassInfo(title);
 
 
 
@@ -245,11 +221,11 @@ public class CourseClassLoader {
                         canJump,
                         isDoubleClass,
                         doubleClasses,
-                        courseStatus);
+                        -1);
                 hasBeenAdded = true;
             }
 
-/*Redundant?*/
+
             if(isDoublePrereq && !hasBeenAdded){
                 String[] iCoursePrereqArray = coursePrereqs[i].split(",");
                 for (int iterator = 0; i<iCoursePrereqArray.length; i++) {
@@ -299,29 +275,17 @@ public class CourseClassLoader {
                         canJump,
                         false,
                         new String[] {""},
-                        courseStatus);
+                        -1);
                 hasBeenAdded = true;
-            } else if(!hasBeenAdded) {
+            }
 
-                String[] listOfPrereqs = DatabaseWrapper.getClassPrereqs(courseLabels[i]);
-                if (listOfPrereqs.length != 0) {preReq = true;}
-
-                if (courseStatus ==0) {
-                    isCourseAvailableForRegistration = true;
-                    for (int j = 0; j < listOfPrereqs.length; j++) {
-                        isCourseAvailableForRegistration = true;
-                        if (DatabaseWrapper.getClassStatus(listOfPrereqs[j]) != 2) {
-                            isCourseAvailableForRegistration = false;
-                        }
-                    }
-                }
-                //String iCoursePrereq = coursePrereqs[i];
+            if(!hasBeenAdded) {
+                String iCoursePrereq = coursePrereqs[i];
                 //These lines check if the course has a listed prerequisite, and sets the corresponding flag.
-               // if (!iCoursePrereq.equals("NONE")){preReq = true;}
+                if (!iCoursePrereq.equals("NONE")){preReq = true;}
 
                 //this complicated bit of logic asks if prerequisites have been done for a course that is not done nor in progress.
                 //I must mention, I don't follow the logic today, but I'm sure that it works... somehow.
-                /*
                 if (!done&&!inProgress){
 
                     for (int j =0; j<courseLabels.length-1; j++)
@@ -336,7 +300,7 @@ public class CourseClassLoader {
                     if (!isCourseAvailableForRegistration && !done && !inProgress && preReq && canJump){ isCourseAvailableForRegistration = true;}
                     if (!isCourseAvailableForRegistration && !done && !inProgress &&!preReq){isCourseAvailableForRegistration = true;}
                 }
-*/
+
                 boolean meet = false;
                 if (courseLabels[i].substring(0,2).equals("GE")){meet = true;}
 
@@ -356,17 +320,17 @@ public class CourseClassLoader {
                         canJump,
                         false,
                         new String[] {""},
-                        courseStatus);
+                        -1);
             }
 
 
             //This section of code adds the course to the particular container, that is, done, inprogress, etc. container
             boolean added = false;
-            if (courseStatus == 2){
+            if (done){
                 courseDone.add(course);
                 added = true;
             }
-            if (courseStatus == 1 && !added){
+            if (inProgress && !added){
                 courseInProgress.add(course);
                 added = true;
             }
@@ -477,8 +441,7 @@ public class CourseClassLoader {
         boolean meet = false;
         if (courseID.substring(0,2).equals("GE")){meet = true;}
 
-        String[] courseInfo = DatabaseWrapper.getClassInfo(courseID);
-        int courseStatus = DatabaseWrapper.getClassStatus(courseID);
+        String[] courseInfo = wrapper.getClassInfo(courseID);
 
         //After setting all of the appropriate flags,  The course object itself is instantiated.
         course = new CourseClass(courseID,
@@ -494,7 +457,7 @@ public class CourseClassLoader {
                 canJump,
                 false,
                 new String[] {""},
-                courseStatus);
+                -1);
         return  course;
     }
 
@@ -525,9 +488,9 @@ public class CourseClassLoader {
 
     private String[] loadInTitles(String[] courses){
         String[] titles = new String[courses.length];
-
+        DatabaseWrapper wrapper = new DatabaseWrapper();
         for (int i = 0; i<courses.length; i++){
-            String[] cur = DatabaseWrapper.getClassInfo(courses[i]);
+            String[] cur = wrapper.getClassInfo(courses[i]);
 
 
             if (cur.length !=0)
