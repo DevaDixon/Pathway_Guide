@@ -3,6 +3,7 @@ package edu.ccbcmd.pathwayguide;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -151,7 +152,52 @@ public class DatabaseWrapper {
     }
 
     public static String[] getCoursesThatQualify(String classID){
-        String [] classesThatQualify = new String[]{"MATH125","MATH135"};
+        String genEdId;
+        switch (classID){
+            case "GENMATH":{
+                genEdId = "M";
+                break;
+            }
+            case "GENSOSC":{
+                genEdId = "S";
+                break;
+            }
+            case "GEBIOSC":{
+                genEdId="B";
+                break;
+            }
+            case "GENARTS":{
+                genEdId = "A";
+                break;
+            }
+            case "GENELAB":{
+                genEdId = "L";
+                break;
+            }
+            case "GENENGL":{
+                genEdId = "E";
+                break;
+            }
+            case "PRELECT":{
+                genEdId ="I";
+                break;
+            }
+            case "WELLNESS": {
+                genEdId = "W";
+                break;
+            }
+            default:{
+                genEdId = "M";
+                break;
+            }
+        }
+        String [] classesThatQualify = getGenEdClasses(genEdId);
+        if (classesThatQualify.length==0) {
+            Log.e("WHAT!", "NADA!" + genEdId);
+            classesThatQualify = new String[] {"MATH135","MATH165"};
+        }
+        else
+            Log.e("What",classesThatQualify[0]);
         return classesThatQualify;
     }
 

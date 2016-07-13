@@ -146,7 +146,7 @@ public class CourseClassLoader {
             //if (somecondition){ isDoublePrereq = true;}  //This stands to be the trigger if the class has either/or prereqs.
 
             boolean isDoubleClass = false;
-            if (courseLabels[i].substring(0,2).equals("GE")){
+            if (courseLabels[i].substring(0,2).equals("GE")||courseLabels[i].substring(0,2).equals("PR")){
                 isDoubleClass = true;
             }
 
@@ -202,6 +202,10 @@ public class CourseClassLoader {
                 if (courseLabels[i].substring(0,2).equals("GE")){meet = true;}
 
                 String[] courseInfo = wrapper.getClassInfo(title);
+                if (courseInfo.length == 0){
+                    Log.e("WEHAVEERROR",title);
+                    courseInfo = wrapper.getClassInfo("GENMATH");
+                }
 
 
 

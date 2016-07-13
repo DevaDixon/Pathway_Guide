@@ -45,7 +45,7 @@ public class splash extends AppCompatActivity
         } else { pathway = 0;}
 
 
-        // TODO: 7/11/2016 disabled in interests of debugging. 
+
         switch (pathway){
             case 0: {
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.health), 1000); //2130837595
