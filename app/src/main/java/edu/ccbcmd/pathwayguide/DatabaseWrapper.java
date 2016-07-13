@@ -56,6 +56,7 @@ public class DatabaseWrapper {
     // if the gen ed id is invalid, it returns an array of length 0
     public static String[] getGenEdClasses(String genedId) {
         Cursor c = db.query(true, "classes", new String[] {"id"}, "gened LIKE '%" + genedId + "%'", null, null, null, null, null);
+        Log.w("gen ed count", ((Integer)c.getCount()).toString());
         if (c.getCount() == 0) return new String[0];
         else {
             String[] result = new String[c.getCount()];
@@ -178,13 +179,16 @@ public class DatabaseWrapper {
                 genEdId = "E";
                 break;
             }
-            case "PRELECT":{
+            case "GENINFO":{
                 genEdId ="I";
                 break;
             }
-            case "WELLNESS": {
+            case "GENWELL": {
                 genEdId = "W";
                 break;
+            }
+            case "PRELECT": {
+                Log.e("invalid method", "for PRELECT, use getProgramElectives instead");
             }
             default:{
                 genEdId = "M";
