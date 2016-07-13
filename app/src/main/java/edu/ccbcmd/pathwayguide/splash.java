@@ -38,13 +38,13 @@ public class splash extends AppCompatActivity
         int pathway = -1;
         final AnimationDrawable animationDrawable = new AnimationDrawable();
         long time = 6000L;
-        /*
+
         if (pathwayPref.contains("PathwayChoice"))
         {
             pathway = pathwayPref.getInt("PathwayChoice", 100);
         } else { pathway = 0;}
-*/
-        pathway = 0;
+
+
         // TODO: 7/11/2016 disabled in interests of debugging. 
         switch (pathway){
             case 0: {

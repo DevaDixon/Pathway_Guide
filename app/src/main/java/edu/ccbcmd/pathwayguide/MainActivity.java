@@ -73,7 +73,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         checkAlarm(string);
 
 
-        if (value2 == -1 || subPathTitle.equals("null")) {
+        if (value2 == -1 ) {
             this.startActivity(new Intent(this, (Class)choosePathway.class));
             return;
         }
