@@ -196,12 +196,7 @@ public class DatabaseWrapper {
             }
         }
         String [] classesThatQualify = getGenEdClasses(genEdId);
-        if (classesThatQualify.length==0) {
-            Log.e("WHAT!", "NADA!" + genEdId);
-            classesThatQualify = new String[] {"MATH135","MATH165"};
-        }
-        else
-            Log.e("What",classesThatQualify[0]);
+
         return classesThatQualify;
     }
 

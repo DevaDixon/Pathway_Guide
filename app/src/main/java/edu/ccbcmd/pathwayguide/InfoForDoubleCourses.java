@@ -73,7 +73,7 @@ public class InfoForDoubleCourses extends AppCompatActivity
 
         if(course.getIsDoubleCourse()){
 
-            this.getSupportActionBar().setTitle("Select Course"); //Green
+            this.getSupportActionBar().setTitle("Select course for requirement"); //Green
 
             String[] coursesDouble = course.getDoubleCourse();
 

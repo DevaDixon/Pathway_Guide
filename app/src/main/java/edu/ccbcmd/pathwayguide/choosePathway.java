@@ -105,6 +105,19 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         this.setContentView(R.layout.activity_choose_pathway);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        //The fifth instance of sharedpreferences is to get the double class status
+        SharedPreferences pathwayDoubleCourse = getSharedPreferences("DoubleCourse",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pathwayDoubleCourse.edit();
+        DatabaseWrapper wrapper = new DatabaseWrapper();
+        String[] removeCourses = wrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
+        for (int i = 0; i< removeCourses.length;i++){
+            editor.remove("Double"+removeCourses[i]).apply();
+        }
+        removeCourses = wrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
+        for (int i = 0; i< removeCourses.length;i++){
+            editor.remove("Double"+removeCourses[i]).apply();
+        }
+
         this.getSupportActionBar().show();
         this.getSupportActionBar().setTitle("Choose Your Pathway");
 
