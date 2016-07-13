@@ -44,9 +44,8 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
 
         Log.w("subpath onclick", ((Button)view).getText().toString());
         editor.putString("SubPathTitle", ((Button)view).getText().toString());
-        final Intent intent = new Intent(this, (Class) chooseCompletedClasses.class);
-        this.startActivity(intent);
-        /*
+
+
         switch (pathwayPref.getInt("PathwayChoice",100)) {
             case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH: {
                 switch (view.getId()) {
@@ -167,12 +166,12 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
         }
         if (valid) {
 
-            final Intent intent = new Intent(this, (Class) chooseCompletedClasses.class);
-            this.startActivity(intent);
+            final Intent intentt = new Intent(this, (Class) chooseCompletedClasses.class);
+            this.startActivity(intentt);
             return;
         }
 
-*/
+
 
 
     }
@@ -198,7 +197,7 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
         //for the courses that are done.
         SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
 
-        //int pathway = pathwayPref.getInt("PathwayChoice",-1);
+        int pathway = pathwayPref.getInt("PathwayChoice",-1);
         String pathwayTitle = pathwayPref.getString("PathwayTitle", "null");
 
         //Initializing the database
@@ -209,9 +208,9 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
         String[] subPaths;
 
         // TODO: 7/11/2016 Should we catch exception here? (method returns empty array if error, which will cause out of bounds exception below.
-        subPaths = wrapper.getSubPathways(pathwayTitle);
+        //subPaths = wrapper.getSubPathways(pathwayTitle);
+        String [] subPath;
 
-        /*
         switch(pathway){
             case 100:{
                 //Databaseway
@@ -240,11 +239,11 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
 
             }
         }
-        */
-            for (int i = 0; i < subPaths.length; ++i) {
+
+            for (int i = 0; i < subPath.length; ++i) {
                 final Button button = new Button(this);
                 button.setOnClickListener(this);
-                button.setText(subPaths[i]);
+                button.setText(subPath[i]);
                 final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
                 layoutParams.setMargins(5, 5, 5, 5);
                 button.setLayoutParams(layoutParams);

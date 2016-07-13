@@ -51,19 +51,9 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
 
         boolean valid = false;
 
-        if (((Button)view).getText().toString().equals("Pre-Allied Health") || ((Button)view).getText().toString().equals("Technology, Science, & Math")) {
-            // TODO: 7/11/2016 Remove the above conditional once all paths are in the DB
-            editor.putString("PathwayTitle", ((Button)view).getText().toString());
-            editor.apply();
-            final Intent intent = new Intent(this, (Class) chooseSub_Pathway.class);
-            //intent.putExtra("arrayID", String.valueOf(view.getId()));
-            this.startActivity(intent);
-        }
-        else {
-            Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-        }
 
-/*
+
+
         switch (view.getId()){
             case 0: {
                 editor.putInt("PathwayChoice", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
@@ -105,7 +95,7 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
             intent.putExtra("arrayID", String.valueOf(view.getId()));
             this.startActivity(intent);
         }
-        */
+
 
     }
 
