@@ -192,7 +192,7 @@ public class DatabaseWrapper {
             }
             case "PRELECT": {
                 Log.e("invalid method", "for PRELECT, use getProgramElectives instead");
-                return getProgramElectives(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
+                return new String[] {"PRELECT"}; //getProgramElectives(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
             }
             default:{
                 genEdId = "M";
