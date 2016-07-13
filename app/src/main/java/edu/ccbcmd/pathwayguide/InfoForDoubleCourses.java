@@ -87,8 +87,6 @@ public class InfoForDoubleCourses extends AppCompatActivity
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    //TODO MUST FIX THIS! IT MUST FIND THE NAME OF THE course AND FIND THAT course TO PASS ON.
-
                     CourseClass newCourse = data[position];
                     runRest(newCourse);
                 }

@@ -38,15 +38,18 @@ public class DatabaseWrapper {
     // there may be fewer groups than PRELEC placeholders. just use the last group for all following placeholders in that case
     // if the subpathway is invalid, it returns a 2d array with no length and nothing in it
     // for a list of valid subpathway names, look in res/raw/pathwayvalues.txt
-    public static String[][] getProgramElectives(String subpathway) {
-        Cursor c = db.query(true, "subpathways", new String[] {"prelec"}, "name = ?", new String[] {subpathway}, null, null, null, null);
-        if (c.getCount() == 0) return new String[0][0];
-        else {
+    public static String[] getProgramElectives(String subpathway) {
+        Cursor c = db.query(true, "subpathways", new String[] {"prelect"}, "name = ?", new String[] {subpathway}, null, null, null, null);
+        Log.e("DbW",c.getColumnIndex("prelect")+"");
+        if (c.getCount() == 0) {
+            return new String[0];
+        } else {
             c.moveToNext();
-            String[] elecGroups = c.getString(c.getColumnIndex("prelec")).split(" ");
+            String[] elecGroups = c.getString(c.getColumnIndex("prelect")).split(" ");
+            Log.e("DBW", elecGroups.length+"");
             String[][] electives = new String[elecGroups.length][0];
             for (int i=0; i<elecGroups.length; i++) electives[i] = elecGroups[i].split(",");
-            return electives;
+            return electives[0];
         }
     }
 
@@ -189,6 +192,7 @@ public class DatabaseWrapper {
             }
             case "PRELECT": {
                 Log.e("invalid method", "for PRELECT, use getProgramElectives instead");
+                return getProgramElectives(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
             }
             default:{
                 genEdId = "M";
