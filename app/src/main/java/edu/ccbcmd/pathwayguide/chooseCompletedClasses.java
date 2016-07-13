@@ -110,7 +110,6 @@ public class chooseCompletedClasses extends AppCompatActivity
         DatabaseWrapper wrapper = new DatabaseWrapper();
         loader = new CourseClassLoader(getApplicationContext());
         length_of_courses = loader.howManyCourses();
-
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         this.prefs.edit().putBoolean("firstrun", false).commit();
 
@@ -129,7 +128,7 @@ public class chooseCompletedClasses extends AppCompatActivity
         for ( int i = 0; i < length_of_courses; ++i) {
 
             CourseClass course = loader.getXMLOrder(i);
-            Log.w("course loaded", course.getTitle().toString());
+
 
             if (true) { // TODO: 7/11/2016 put conditional back in?: took out because very confused. !course.getPreReqs(0).equals("PERMISSION"
 

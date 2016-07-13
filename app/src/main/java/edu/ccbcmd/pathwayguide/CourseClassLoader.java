@@ -56,18 +56,23 @@ public class CourseClassLoader {
         SharedPreferences pathwayDoubleCourse = context.getSharedPreferences("DoubleCourse",Context.MODE_PRIVATE);
 
         //Initializing the database
-        dataBase = new PathwaysDBHelper(context);
+        dataBase = new PathwaysDBHelper(context); //This line is useless
         DatabaseWrapper wrapper = new DatabaseWrapper();
 
 
         String pathway, subPathway;
+
+
         if (pathwayPref.contains("PathwayTitle") && pathwayPref.contains("SubPathTitle"))
         {
             pathway = pathwayPref.getString("PathwayTitle", null);
             subPathway = pathwayPref.getString("SubPathTitle", null);
         } else { pathway = "Pre-Allied Health"; subPathway = "Nursing";} // FIXME: 7/11/2016 should load choosePathway here if needed. -DD
 
-        courseLabels = wrapper.getSubPathwayClasses(pathway);
+        courseLabels = DatabaseWrapper.getSubPathwayClasses(subPathway);
+
+
+        courseURLs = courseLabels; // FIXME: 7/12/2016 useless assignment, urls should be removed from courseClass definition. (or dynamically created)
         pathwayText = subPathway;
         coursePrereqs = loadInPreReqs(courseLabels);
         courseFullTitles = loadInTitles(courseLabels);
@@ -170,6 +175,8 @@ public class CourseClassLoader {
                 } else {
                     title = courseLabels[i];
                 }
+                // FIXME: 7/12/2016 Hardcoding title, since value stored in sharedprefs does not exist as a course.
+               // title = "GEMATH";
 
 
                 String[] doubleClasses = {""};
@@ -242,7 +249,7 @@ public class CourseClassLoader {
                 hasBeenAdded = true;
             }
 
-
+/*Redundant?*/
             if(isDoublePrereq && !hasBeenAdded){
                 String[] iCoursePrereqArray = coursePrereqs[i].split(",");
                 for (int iterator = 0; i<iCoursePrereqArray.length; i++) {
@@ -518,9 +525,9 @@ public class CourseClassLoader {
 
     private String[] loadInTitles(String[] courses){
         String[] titles = new String[courses.length];
-        DatabaseWrapper wrapper = new DatabaseWrapper();
+
         for (int i = 0; i<courses.length; i++){
-            String[] cur = wrapper.getClassInfo(courses[i]);
+            String[] cur = DatabaseWrapper.getClassInfo(courses[i]);
 
 
             if (cur.length !=0)

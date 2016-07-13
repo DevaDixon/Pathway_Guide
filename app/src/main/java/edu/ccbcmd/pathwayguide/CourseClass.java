@@ -62,6 +62,7 @@ public class CourseClass {
         canTakeWOPrereq = false;
         isDoubleCourse = false;
         doubleCourses = null;
+        status = -1;
     }
     public CourseClass(String title,
                        String fullTitle,
