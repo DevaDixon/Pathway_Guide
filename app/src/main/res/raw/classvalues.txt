@@ -1,24 +1,24 @@
 ACDV101|Transitioning to College|This course may not be required for transfer students. Ask your adviser for more information.| | |
-ENGL101|College Composition I| | | |
+ENGL101|College Composition I| | |E|
 GENMATH|Gen. Ed. Math|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
-BIOL110|Biology I: Molecular and Cells| | | |
-PSYC101|Intro to Psychology| | | |
+BIOL110|Biology I: Molecular and Cells| | |BL|
+PSYC101|Intro to Psychology| | |S|
 BIOL220|Human Anatomy and Physiology I| |BIOL110| |
-PSYC103|Principles of Human Growth and Development| |PSYC101| |
-CMNS101|Fundamentals of Communication| | | |
-SOCL101|Introduction to Sociology| | | |
+PSYC103|Principles of Human Growth and Development| |PSYC101|S|
+CMNS101|Fundamentals of Communication| | |A|
+SOCL101|Introduction to Sociology| | |S|
 BIOL230|Microbiology| |BIOL110| |
-CSIT101|Technology and Info Sys| | | |
-CSIT111|Logic and OO Design| | | |
+CSIT101|Technology and Info Sys| | |I|
+CSIT111|Logic and OO Design| | |I|
 CSIT121|Web Standards| |CSIT101| |
 CSIT142|Intro to MIS| |CSIT101,OFAD114| |
 CSIT154|Database Concepts| |CSIT101| |
 CSIT210|Intro to Programming| |CSIT111| |
 CSIT211|Advanced Programming| |CSIT210| |
-MATH251|Calculus I| |MATH165| |
+MATH251|Calculus I| |MATH165|M|
 MATH252|Calculus II| |MATH251| |
-MATH243|Discrete Math| |MATH165| |
-MATH257|Linear Algebra| |MATH251| |
+MATH243|Discrete Math| |MATH165|M|
+MATH257|Linear Algebra| |MATH251|M|
 CSIT214|C++ Programming| |CSIT210| |
 GENSOSC|Gen. Ed. Social Sci.|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
 PRELECT|Program Elective|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
@@ -29,35 +29,35 @@ DCOM101|Intro to Data Communications| | | |
 DCOM142|Intro to Linux/UNIX| | | |
 GENARTS|Gen. Ed. Arts|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
 GENLAB|Gen. Ed. Science (w/Lab)|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
-MATH125|Finite Mathematics and Modeling| | | |
-MATH135|Applied Algebra and Trigonometry| | | |
-MATH163|College Algebra| | | |
-MATH165|Precalculus| |MATH163| |
-ENGL102|College Composition II| |ENGL101| |
-WMST101|Introduction to Women's Studies| |ENGL101| |
-HLTH101|Health and Wellness| | | |
+MATH125|Finite Mathematics and Modeling| | |M|
+MATH135|Applied Algebra and Trigonometry| | |M|
+MATH163|College Algebra| | |M|
+MATH165|Precalculus| |MATH163|M|
+ENGL102|College Composition II| |ENGL101|E|
+WMST101|Introduction to Women's Studies| |ENGL101|S|
+HLTH101|Health and Wellness| | |W|
 MNTH101|Introduction to Mental Health| | | |
 ACCT101|Principles of Accounting I| | | |
 MASS101|Introduction to Massage| | | |
-PHYS101|Fundamentals of Physics I| |MATH135,MATH165,MATH163| |
+PHYS101|Fundamentals of Physics I| |MATH135,MATH165,MATH163|BL|
 RTTT101|Orientation to Radiation Therapy I| | | |
 ALHL115|Medical Terminology| | | |
-BIOL160|Body Structure and Function| | | |
-BIOL107|Human Biology| | | |
-BIOL109|Human Anatomy and Physiology| | | |
-PSYC105|Multicultural Psychology| | | |
+BIOL160|Body Structure and Function| | |B|
+BIOL107|Human Biology| | |BL|
+BIOL109|Human Anatomy and Physiology| | |BL|
+PSYC105|Multicultural Psychology| | |S|
 MASS210|Level I - Massage| |BIOL109 MASS101 MASS110| |
 MASS110|Musculoskeletal System: Structure and Function| |MASS101 MASS210 BIOL109| |
 MASS220|Level II - Massage| |MASS110 MASS210| |
 MASS221|Massage Modalities| |MASS220| |
-CHEM107|Fundamentals of Chemistry| | | |
-CHEM108|Fundamentals of Chemistry Lab.| |CHEM107| |
-CSIT120|Diversity in a Technological Society| | | |
+CHEM107|Fundamentals of Chemistry| | |B|
+CHEM108|Fundamentals of Chemistry Lab.| |CHEM107|L|
+CSIT120|Diversity in a Technological Society| | |I|
 VETT106|Introduction to Veterinary Technology| | | |
 EMST105|Emergency Medical Technician Basic| | | |
-SOCL141|Racial and Cultural Minorities| | | |
+SOCL141|Racial and Cultural Minorities| | |S|
 OFAD114|IT Essentials| | | |
-MATH153|Intro to Statistical Methods| | | |
+MATH153|Intro to Statistical Methods| | |M|
 CSIT212|Visual Basic Programming| |CSIT111| |
 CSIT241|Applied Systems Analysis & Design| |CSIT111| |
 CSIT267|iOS Application Development| |CSIT210,CSIT212,CSIT214| |
