@@ -80,11 +80,12 @@ public class PathwaysDBHelper extends SQLiteOpenHelper {
                 ContentValues cv = new ContentValues();
 
                 // indices 0: name of major 1: degree type 2: pathway name 3: class sequence 4: program electives
+                Log.e("PDBH", ""+values.length);
                 cv.put("name", values[0]);
                 cv.put("degree", values[1]);
                 cv.put("pathway", values[2]);
                 cv.put("classes", values[3]);
-                cv.put("prelec", values[4]);
+                //cv.put("prelec", values[4]);
                 db.insert("subpathways", null, cv);
                 line = rd.readLine();
             }

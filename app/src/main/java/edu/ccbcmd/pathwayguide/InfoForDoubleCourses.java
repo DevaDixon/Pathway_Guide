@@ -202,7 +202,7 @@ public class InfoForDoubleCourses extends AppCompatActivity
             button2.setText("Class End Results");
         }
         else if (course.getIsOpenForRegistration()) {
-            button2.setText("I am currently taking this class");
+            button2.setText("I will use this course to satisfy my requirement");
         }
         else if (course.getAnyPreReqs()) {
             button2.setText("I have permission to take this class");

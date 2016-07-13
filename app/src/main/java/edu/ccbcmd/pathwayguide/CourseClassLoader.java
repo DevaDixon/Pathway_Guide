@@ -203,11 +203,9 @@ public class CourseClassLoader {
 
                 String[] courseInfo = wrapper.getClassInfo(title);
 
-
-
-
                 //After setting all of the appropriate flags,  The course object itself is instantiated.
 
+                Log.e("CCL",courseInfo.length+" " + title);
                 course = new CourseClass(title,
                         courseInfo[1],
                         courseInfo[2],
