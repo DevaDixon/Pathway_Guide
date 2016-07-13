@@ -141,12 +141,12 @@ public class InfoForDoubleCourses extends AppCompatActivity
     }
 
     public void runRest(final CourseClass course){
-        ((TextView)findViewById(R.id.textView)).setVisibility(View.VISIBLE);
-        ((Button)findViewById(R.id.button)).setVisibility(View.VISIBLE);
-        ((Button)findViewById(R.id.colorChange)).setVisibility(View.VISIBLE);
-        ((WebView)findViewById(R.id.descriptionwebview)).setVisibility(View.VISIBLE);
-        ((ProgressBar)findViewById(R.id.progressBar2)).setVisibility(View.INVISIBLE);
-        ((ListView)findViewById(R.id.listView)).setVisibility(View.INVISIBLE);
+        findViewById(R.id.textView).setVisibility(View.VISIBLE);
+        findViewById(R.id.button).setVisibility(View.VISIBLE);
+        findViewById(R.id.colorChange).setVisibility(View.VISIBLE);
+        findViewById(R.id.descriptionwebview).setVisibility(View.VISIBLE);
+        findViewById(R.id.progressBar2).setVisibility(View.INVISIBLE);
+        findViewById(R.id.listView).setVisibility(View.INVISIBLE);
 
         this.getSupportActionBar().setTitle(course.getTitle());
         ((TextView)this.findViewById(R.id.textView)).setText(course.getFullTitle());

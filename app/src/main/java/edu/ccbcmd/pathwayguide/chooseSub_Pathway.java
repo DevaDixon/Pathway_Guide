@@ -42,7 +42,6 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
         SharedPreferences.Editor editor = pathwayPref.edit();
         boolean valid = false;
 
-        Log.w("subpath onclick", ((Button)view).getText().toString());
         editor.putString("SubPathTitle", ((Button)view).getText().toString());
 
 
@@ -207,14 +206,14 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
         int length;
         String[] subPaths;
 
-        // TODO: 7/11/2016 Should we catch exception here? (method returns empty array if error, which will cause out of bounds exception below.
+
         //subPaths = wrapper.getSubPathways(pathwayTitle);
         String [] subPath;
 
         switch(pathway){
             case 100:{
                 //Databaseway
-                subPath = wrapper.getSubPathways(CourseContract.PRE_ALLIED_HEALTH.PRE_ALLIED_HEALTH_NAME);
+                subPath = DatabaseWrapper.getSubPathways(CourseContract.PRE_ALLIED_HEALTH.PRE_ALLIED_HEALTH_NAME);
                 length = subPath.length;
                 break;
                 //Old Way
@@ -222,7 +221,7 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
 
             }
             case 200:{
-                subPath = wrapper.getSubPathways(CourseContract.TSM.TSM_NAME);
+                subPath = DatabaseWrapper.getSubPathways(CourseContract.TSM.TSM_NAME);
                 length = subPath.length;
                 break;
                 //Old Way
@@ -231,7 +230,7 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
             }
             default:{
                 //Databaseway
-                subPath = wrapper.getSubPathways(CourseContract.PRE_ALLIED_HEALTH.PRE_ALLIED_HEALTH_NAME);
+                subPath = DatabaseWrapper.getSubPathways(CourseContract.PRE_ALLIED_HEALTH.PRE_ALLIED_HEALTH_NAME);
                 length = subPath.length;
                 break;
                 //Old Way

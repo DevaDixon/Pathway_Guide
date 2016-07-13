@@ -74,7 +74,7 @@ public class CourseClassLoader {
             case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH:
             {
                 //Database way
-                courseLabels = wrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
                 pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
                 coursePrereqs = loadInPreReqs(courseLabels);
                 courseFullTitles = loadInTitles(courseLabels);
@@ -89,7 +89,7 @@ public class CourseClassLoader {
             case CourseContract.TSM.TSM:
             {
                 //DataBase Way
-                courseLabels = wrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
                 pathwayText = CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME;
                 coursePrereqs = loadInPreReqs(courseLabels);
                 courseFullTitles = loadInTitles(courseLabels);
@@ -103,7 +103,7 @@ public class CourseClassLoader {
             default:
             {
                 //Database way
-                courseLabels = wrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
                 pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
                 coursePrereqs = loadInPreReqs(courseLabels);
                 courseFullTitles = loadInTitles(courseLabels);
@@ -167,7 +167,7 @@ public class CourseClassLoader {
 
                 String[] doubleClasses = {""};
                 if (title.equals(courseLabels[i])) {
-                    doubleClasses = wrapper.getCoursesThatQualify(title);
+                    doubleClasses = DatabaseWrapper.getCoursesThatQualify(title);
                 } else {
 
                     doubleClasses = new String[] {title};
@@ -201,10 +201,10 @@ public class CourseClassLoader {
                 boolean meet = false;
                 if (courseLabels[i].substring(0,2).equals("GE")){meet = true;}
 
-                String[] courseInfo = wrapper.getClassInfo(title);
+                String[] courseInfo = DatabaseWrapper.getClassInfo(title);
                 if (courseInfo.length == 0){
                     Log.e("WEHAVEERROR",title);
-                    courseInfo = wrapper.getClassInfo("GENMATH");
+                    courseInfo = DatabaseWrapper.getClassInfo("GENMATH");
                 }
 
 
@@ -393,8 +393,8 @@ public class CourseClassLoader {
         boolean canJump = false;
         boolean isCourseAvailableForRegistration = false;
         String iCoursePrereq;
-        if (wrapper.getClassPrereqs(courseID).length>0) {
-            iCoursePrereq = wrapper.getClassPrereqs(courseID)[0];
+        if (DatabaseWrapper.getClassPrereqs(courseID).length>0) {
+            iCoursePrereq = DatabaseWrapper.getClassPrereqs(courseID)[0];
         } else {
             iCoursePrereq ="NONE";
         }
@@ -445,7 +445,7 @@ public class CourseClassLoader {
         boolean meet = false;
         if (courseID.substring(0,2).equals("GE")){meet = true;}
 
-        String[] courseInfo = wrapper.getClassInfo(courseID);
+        String[] courseInfo = DatabaseWrapper.getClassInfo(courseID);
 
         //After setting all of the appropriate flags,  The course object itself is instantiated.
         course = new CourseClass(courseID,
@@ -482,8 +482,8 @@ public class CourseClassLoader {
         String[] preReq = new String[courses.length];
         DatabaseWrapper wrapper = new DatabaseWrapper();
         for ( int i = 0; i < courses.length; i++) {
-            if (wrapper.getClassPrereqs(courses[i]).length!=0)
-                preReq[i] = wrapper.getClassPrereqs(courses[i])[0];
+            if (DatabaseWrapper.getClassPrereqs(courses[i]).length!=0)
+                preReq[i] = DatabaseWrapper.getClassPrereqs(courses[i])[0];
             else
                 preReq[i] = "NONE";
         }
@@ -494,7 +494,7 @@ public class CourseClassLoader {
         String[] titles = new String[courses.length];
         DatabaseWrapper wrapper = new DatabaseWrapper();
         for (int i = 0; i<courses.length; i++){
-            String[] cur = wrapper.getClassInfo(courses[i]);
+            String[] cur = DatabaseWrapper.getClassInfo(courses[i]);
 
 
             if (cur.length !=0)

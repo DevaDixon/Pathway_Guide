@@ -65,7 +65,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         this.prefs.edit().putInt("zoom", 0).commit();
 
-        // TODO: 7/11/2016 check usages.
+
         Integer value = this.prefs.getInt("pathwayID", 0);
         Integer value2 = this.prefs.getInt("pathwaysubID", 0);
         String subPathTitle = this.prefs.getString("SubPathTitle", "null");
@@ -135,7 +135,7 @@ public class MainActivity extends Activity implements View.OnClickListener
             //Length is asking how many courses?  No idea why?  It seems this is a catch case so that
             //bad pathways don't crash the program.
             int length = 1;// choosePathway.coursePreRec[value][id].length;
-           // Log.w("Prereclangth:", String.valueOf(length));
+
 
             //This is loading what status the course is.
             int n10 = -1; //_loadArrayInt[id];
@@ -146,7 +146,7 @@ public class MainActivity extends Activity implements View.OnClickListener
 
 
             button.setTextColor(Color.parseColor("#ffffff"));
-           // Log.w("Status", String.valueOf(n10));
+
             if (curCourse.getDone()) {
                 button.setBackgroundColor(Color.parseColor("#159b8a")); //Green  DONE
             }
@@ -218,7 +218,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         super.onResume();
         if (this.getIntent().getIntExtra("intVariableName", 1) == 0) {
              int int1 = this.prefs.getInt("opencount", 1);
-            Log.w("counter", String.valueOf(int1));
+
             int n;
             if (int1 == 5) {
                 this.startActivity(new Intent(this, (Class)blackboardReminder.class));

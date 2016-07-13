@@ -55,33 +55,33 @@ public class Settings extends AppCompatActivity
 
 
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int n, final long n2) {
-            Log.w("item Clicked", String.valueOf(n));
+
 
                     switch (n) {
 
                         case 0: {
-                            Log.w("switch 0", String.valueOf(n));
+
                             Settings.this.startActivity(new Intent(Settings.this, (Class)internet_setting.class));
                             break;
                         }
                         case 1: {
-                            Log.w("switch 1", String.valueOf(n));
+
                             startActivity(new Intent(Settings.this, (Class)links.class));
                             break;
                         }
                         case 2: {
-                            Log.w("switch 2", String.valueOf(n));
+
                             startActivity(new Intent(Settings.this, (Class)NotificationActivity.class));
                             break;
                         }
                         case 3: {
-                            Log.w("switch 3", String.valueOf(n));
+
                             startActivity(new Intent(Settings.this, (Class)choosePathway.class));
                             break;
                         }
                         case 4: {
-                            Log.w("switch 4", String.valueOf(n));
-                            // TODO: 6/30/2016 fix the alert icon
+
+
                             new AlertDialog.Builder(new ContextThemeWrapper(Settings.this, R.style.SplashTheme))
                                     .setTitle("Confirm Progress Erase")
                                     .setMessage("This action will reset the app back to the very first time you installed it. Continuing with action will erase all saved information and your current pathway selection. This action cannot be undone. Are you sure you want to reset your progress?")
@@ -102,13 +102,13 @@ public class Settings extends AppCompatActivity
                             break;
                         }
                         case 5: {
-                            Log.w("switch 5", String.valueOf(n));
+
                             Settings.this.prefs.edit().putInt("demo", 1).commit();
                             Settings.this.startActivity(new Intent(Settings.this, (Class)demo_MainActivity.class));
                             break;
                         }
                         case 6: {
-                            Log.w("switch 6", String.valueOf(n));
+
                             final Settings this$0 = Settings.this;
                             final Intent intent = new Intent(Settings.this, (Class)openBlackboard.class);
                             final android.support.v4.app.TaskStackBuilder create = android.support.v4.app.TaskStackBuilder.create(this$0);
@@ -132,7 +132,7 @@ public class Settings extends AppCompatActivity
                             break;
                         }
                         case 7: {
-                            Log.w("switch 7", String.valueOf(n));
+
                             final Settings this$2 = Settings.this;
                             final Intent intent2 = new Intent(this$2, (Class)NotificationActivity.class);
                             final android.support.v4.app.TaskStackBuilder create2 = android.support.v4.app.TaskStackBuilder.create(this$2);
@@ -158,7 +158,7 @@ public class Settings extends AppCompatActivity
                         }
 
                         default: {
-                            Log.w("switch default", String.valueOf(n));
+
                             break;
                         }
                     }

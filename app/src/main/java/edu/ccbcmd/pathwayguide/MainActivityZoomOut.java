@@ -126,8 +126,7 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
                     textView6.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
                     textView6.setId(id6);
                     textView6.setOnClickListener(this);
-                    //     Log.w("Prereclangth:", String.valueOf(choosePathway.coursePreRec[id6].length));
-                    //     Log.w("Status", String.valueOf(loadArrayInt[id6]));
+
                     textView6.setBackgroundColor(Color.parseColor("#159b8a"));
                     linearLayout2.addView(textView6);
                     final LinearLayout.LayoutParams layoutParams12 = (LinearLayout.LayoutParams)textView6.getLayoutParams();
@@ -181,8 +180,7 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
                     textView2.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
                     textView2.setId(id2);
                     textView2.setOnClickListener(this);
-                    //  Log.w("Prereclangth:", String.valueOf(choosePathway.coursePreRec[id2].length));
-                    //   Log.w("Status", String.valueOf(loadArrayInt[id2]));
+
                     textView2.setBackgroundColor(Color.parseColor("#fcd054"));
                     textView2.setTextColor(Color.parseColor("#000000"));
                     linearLayout2.addView(textView2);
@@ -246,7 +244,6 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
         super.onResume();
         if (this.getIntent().getIntExtra("intVariableName", 1) == 0) {
             final int int1 = this.prefs.getInt("opencount", 1);
-            Log.w("counter", String.valueOf(int1));
             int n;
             if (int1 == 5) {
                 this.startActivity(new Intent(this, (Class)blackboardReminder.class));

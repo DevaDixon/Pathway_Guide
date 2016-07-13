@@ -40,7 +40,6 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
 
 
     public void onClick(final View view) {
-        Log.w("onclick", ((Button)view).getText().toString());
 
 
         //This shared preferences allows us to record the user choices. THIS shared preferences variable will be
@@ -109,11 +108,11 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         SharedPreferences pathwayDoubleCourse = getSharedPreferences("DoubleCourse",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pathwayDoubleCourse.edit();
         DatabaseWrapper wrapper = new DatabaseWrapper();
-        String[] removeCourses = wrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
+        String[] removeCourses = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
         for (int i = 0; i< removeCourses.length;i++){
             editor.remove("Double"+removeCourses[i]).apply();
         }
-        removeCourses = wrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
+        removeCourses = DatabaseWrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
         for (int i = 0; i< removeCourses.length;i++){
             editor.remove("Double"+removeCourses[i]).apply();
         }

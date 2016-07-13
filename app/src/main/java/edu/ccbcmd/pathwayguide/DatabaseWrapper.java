@@ -213,8 +213,7 @@ public class DatabaseWrapper {
         if (status < 0 || status > 2) throw new IllegalArgumentException("Not a valid class status");
         ContentValues cv = new ContentValues();
         cv.put("status", status);
-        if (db.update("classes", cv, "id = ?", new String[] {classID}) == 0) return false;
-        return true;
+        return db.update("classes", cv, "id = ?", new String[]{classID}) != 0;
     }
 
 }
