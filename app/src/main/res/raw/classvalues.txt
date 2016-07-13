@@ -21,7 +21,7 @@ MATH243|Discrete Math| |MATH165| |
 MATH257|Linear Algebra| |MATH251| |
 CSIT214|C++ Programming| |CSIT210| |
 GENSOSC|Gen. Ed. Social Sci.|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
-PRELEC|Program Elective|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
+PRELECT|Program Elective|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
 CSIT161|Intro to Information Assurance| |CSIT101| |
 CSIT166|Intro to Mobile| |CSIT111| |
 GEBIOSC|Gen. Ed. Bio. Sci.|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
@@ -73,3 +73,5 @@ CSIT256|Advanced Oracle| |CSIT156| |
 CSIT125|Intro to JavaScript| |CSIT121| |
 CSIT222|Emerging Web Technologies| |CSIT121 CSIT154| |
 CSIT224|Server-Side Scripting in PHP| |CSIT111,CSIT121,CSIT154| |
+HIST120|Ethnicity: American Dream| |ENGL101| |
+MNTH130|Intro to Principles of Psychiatric Rehabilitation| | | |
