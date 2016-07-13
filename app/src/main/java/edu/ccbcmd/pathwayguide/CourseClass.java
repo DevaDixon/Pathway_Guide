@@ -9,17 +9,23 @@ public class CourseClass {
 
     //This will store the full title of the course
     private String fullTitle;
+
     //This will store the url to the quick register link
     private String url;
+
     //This will store the status of whether this course has been completed
     private boolean done;
+
     //This will store the status of whether this course is in progress or not.
     private boolean inProgress;
+
     //This will store the fact that the course has a prerequisite or not.
     private boolean anyPreReqs;
+
     //This will store the boolean that determines whether this particular course is open for registration
     //This will be set by a calculation.
     private boolean isOpenForRegistration;
+
     //This will store the name of the prerequisite course (if there is one, else it will be "NONE")
     private String[] preReqs;
 
@@ -37,6 +43,8 @@ public class CourseClass {
 
     //This will store the choices the student can choose from
     private String[] doubleCourses;
+
+    private int status;
 
     public CourseClass()
     {
@@ -67,7 +75,8 @@ public class CourseClass {
                        boolean meet,
                        boolean jumpTheLine,
                        boolean doubleCourse,
-                       String[] doubleChoices){
+                       String[] doubleChoices,
+                       int status){
         super();
         //The proper constructor.
         this.title = title;
@@ -83,9 +92,11 @@ public class CourseClass {
         this.canTakeWOPrereq = jumpTheLine;
         this.isDoubleCourse = doubleCourse;
         this.doubleCourses = doubleChoices;
+        this.status = status;
     }
 
     //The getters and setters.
+    public int getStatus() {return status;}
     public String getTitle(){
         return title;
     }
