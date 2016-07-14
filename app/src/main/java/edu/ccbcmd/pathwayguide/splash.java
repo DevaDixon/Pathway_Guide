@@ -97,7 +97,9 @@ public class splash extends AppCompatActivity
         // set-up the database
         Thread th = new Thread() {
             public void run() {
+                long before = System.nanoTime();
                 DatabaseWrapper.db = new PathwaysDBHelper(splash.this).getWritableDatabase();
+                Log.w("time elapsed", ((Long) (System.nanoTime() - before)).toString() + "ns");
             }
         };
         th.start();
