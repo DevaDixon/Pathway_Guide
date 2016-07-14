@@ -79,7 +79,7 @@ public class InfoForDoubleCourses extends AppCompatActivity
 
             final CourseClass[] data = new CourseClass[coursesDouble.length];
             for(int i = 0; i < coursesDouble.length; i++){
-                data[i] = loader.getCourseByName(coursesDouble[i], c);
+                data[i] = loader.getCourseByName(coursesDouble[i],int3, c);
             }
             CourseAdapter adapter = new CourseAdapter(c, R.layout.list_view_header_row, data);
             ListView listView = (ListView) findViewById(R.id.listView);

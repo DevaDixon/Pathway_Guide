@@ -212,7 +212,7 @@ public class CourseClassLoader {
 
                 //After setting all of the appropriate flags,  The course object itself is instantiated.
 
-                course = new CourseClass(title,
+                course = new CourseClass(title.substring(0,7),
                         courseInfo[1],
                         courseInfo[2],
                         done,
@@ -266,7 +266,7 @@ public class CourseClassLoader {
 
 
                 //After setting all of the appropriate flags,  The course object itself is instantiated.
-                course = new CourseClass(courseLabels[i],
+                course = new CourseClass(courseLabels[i].substring(0,7),
                         courseFullTitles[i],
                         courseURLs[i],
                         done,
@@ -311,7 +311,7 @@ public class CourseClassLoader {
 
 
                 //After setting all of the appropriate flags,  The course object itself is instantiated.
-                course = new CourseClass(courseLabels[i],
+                course = new CourseClass(courseLabels[i].substring(0,7),
                         courseFullTitles[i],
                         courseURLs[i],
                         done,
@@ -448,7 +448,7 @@ public class CourseClassLoader {
         String[] courseInfo = DatabaseWrapper.getClassInfo(courseID);
 
         //After setting all of the appropriate flags,  The course object itself is instantiated.
-        course = new CourseClass(courseID,
+        course = new CourseClass(courseID.substring(0,7),
                 courseInfo[1],
                 courseInfo[2],
                 done,
@@ -465,7 +465,7 @@ public class CourseClassLoader {
         return  course;
     }
 
-    public CourseClass getCourseByName(String name, Context context){
+    public CourseClass getCourseByName(String name, int count, Context context){
         for (CourseClass course : sortedObject){
             if (course.getTitle().equals(name))
             {

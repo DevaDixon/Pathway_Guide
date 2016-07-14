@@ -18,6 +18,8 @@ public class DatabaseWrapper {
     public static final int IN_PROGRESS = 1;
     public static final int COMPLETED = 2;
 
+    private static int count = -1;
+
     // returns the classes (represented as class IDs) required for a subpathway as a string array
     // if the subpathway doesn't exist, it returns a string array of length 0
     // for a list of valid subpathway names, look in res/raw/pathwayvalues.txt
@@ -38,9 +40,8 @@ public class DatabaseWrapper {
     // there may be fewer groups than PRELEC placeholders. just use the last group for all following placeholders in that case
     // if the subpathway is invalid, it returns a 2d array with no length and nothing in it
     // for a list of valid subpathway names, look in res/raw/pathwayvalues.txt
-    public static String[] getProgramElectives(String subpathway) {
+    public static String[] getProgramElectives(String subpathway, int num) {
         Cursor c = db.query(true, "subpathways", new String[] {"prelect"}, "name = ?", new String[] {subpathway}, null, null, null, null);
-        Log.e("DbW",c.getColumnIndex("prelect")+"");
         if (c.getCount() == 0) {
             return new String[0];
         } else {
@@ -49,7 +50,8 @@ public class DatabaseWrapper {
             Log.e("DBW", elecGroups.length+"");
             String[][] electives = new String[elecGroups.length][0];
             for (int i=0; i<elecGroups.length; i++) electives[i] = elecGroups[i].split(",");
-            return electives[0];
+
+            return electives[num];
         }
     }
 
@@ -157,7 +159,7 @@ public class DatabaseWrapper {
 
     public static String[] getCoursesThatQualify(String classID){
         String genEdId;
-        switch (classID){
+        switch (classID.substring(0,7)){
             case "GENMATH":{
                 genEdId = "M";
                 break;
@@ -191,8 +193,9 @@ public class DatabaseWrapper {
                 break;
             }
             case "PRELECT": {
-                Log.e("invalid method", "for PRELECT, use getProgramElectives instead");
-                return new String[] {"PRELECT"}; //getProgramElectives(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
+                Log.e("invalid method", classID.substring(7,8));
+                int num = Integer.parseInt(classID.substring(7,8))-1;
+                return getProgramElectives(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME,num);
             }
             default:{
                 genEdId = "M";
