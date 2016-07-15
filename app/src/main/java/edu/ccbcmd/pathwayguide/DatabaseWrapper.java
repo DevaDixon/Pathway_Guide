@@ -193,7 +193,6 @@ public class DatabaseWrapper {
                 break;
             }
             case "PRELECT": {
-                Log.e("invalid method", classID.substring(7,8));
                 int num = Integer.parseInt(classID.substring(7,8))-1;
                 return getProgramElectives(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME,num);
             }

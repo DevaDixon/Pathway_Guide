@@ -202,7 +202,9 @@ public class CourseClassLoader {
                 if (courseLabels[i].substring(0,2).equals("GE")){meet = true;}
 
                 String[] courseInfo = DatabaseWrapper.getClassInfo(title);
-                if (courseInfo.length == 0){
+                if (title.substring(0,2).equals("PR")){
+                    courseInfo = DatabaseWrapper.getClassInfo("PRELECT");
+                } else if (courseInfo.length == 0){
                     Log.e("WEHAVEERROR",title);
                     courseInfo = DatabaseWrapper.getClassInfo("GENMATH");
                 }
@@ -387,7 +389,7 @@ public class CourseClassLoader {
         return null;
     }
 
-    public CourseClass instantiateNewCourse(String courseID, Context context){
+    public CourseClass instantiateNewCourse(String courseID, Context context, int count){
         CourseClass course = null;
         DatabaseWrapper wrapper = new DatabaseWrapper();
         boolean canJump = false;
@@ -456,7 +458,7 @@ public class CourseClassLoader {
                 preReq,
                 new String[] {iCoursePrereq},
                 isCourseAvailableForRegistration,
-                -1,  //TODO FOR THE LOVE OF ALL THAT IS HOLY FIX THIS!
+                count,
                 meet,
                 canJump,
                 false,
@@ -473,7 +475,7 @@ public class CourseClassLoader {
             }
         }
         //We must instantiate the course in question!
-        return instantiateNewCourse(name,context);
+        return instantiateNewCourse(name,context, count);
     }
 
     public String getPathway() {return pathwayText;}
