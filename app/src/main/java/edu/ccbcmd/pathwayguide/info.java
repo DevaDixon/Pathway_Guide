@@ -127,7 +127,7 @@ public class info extends AppCompatActivity
 
         final Button button = (Button) findViewById(R.id.button); //2131624037
         if (course.getAnyPreReqs()) {
-            button.setText("Meet with an Adviser"); //WHY IS THIS BUTTON MEET WITH AN ADVISOR? MAYBE I"M NOT FOLLOWING.
+            button.setText("Register"); //WHY IS THIS BUTTON MEET WITH AN ADVISOR? MAYBE I"M NOT FOLLOWING.
         }
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -136,10 +136,10 @@ public class info extends AppCompatActivity
                 final String replace = course.getTitle().replace(" ", "/");
 
                 if (course.getMeetWithAdvisor()) {
-                    info.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Academic-Advisement.aspx")));
+                    info.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://simon.ccbcmd.edu/pls/PROD/twbkwbis.P_WWWLogin")));
                     return;
                 }
-                info.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/" + replace)));
+               info.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://simon.ccbcmd.edu/pls/PROD/twbkwbis.P_WWWLogin")));
             }
         });
 

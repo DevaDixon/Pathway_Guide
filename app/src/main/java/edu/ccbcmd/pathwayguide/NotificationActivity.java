@@ -58,7 +58,7 @@ public class NotificationActivity extends AppCompatActivity
 
             public void onClick(final View view) {
 
-                NotificationActivity.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://ccbcmd-bb.blackboard.com")));
+                NotificationActivity.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://simon.ccbcmd.edu")));
             }
         });
         this.findViewById(R.id.cant).setOnClickListener(new View.OnClickListener() { //2131624055
