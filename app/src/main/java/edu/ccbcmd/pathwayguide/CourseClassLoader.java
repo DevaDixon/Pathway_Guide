@@ -205,7 +205,7 @@ public class CourseClassLoader {
 
                 String[] courseInfo = DatabaseWrapper.getClassInfo(title);
                 if (title.substring(0,2).equals("PR")){
-                    courseInfo = DatabaseWrapper.getClassInfo("PRELECT");
+                    courseInfo = DatabaseWrapper.getClassInfo("PRGELEC");
                 } else if (courseInfo.length == 0){
                     Log.e("WEHAVEERROR",title);
                     courseInfo = DatabaseWrapper.getClassInfo("GENMATH");

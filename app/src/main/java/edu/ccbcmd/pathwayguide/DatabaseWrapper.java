@@ -41,12 +41,12 @@ public class DatabaseWrapper {
     // if the subpathway is invalid, it returns a 2d array with no length and nothing in it
     // for a list of valid subpathway names, look in res/raw/pathwayvalues.txt
     public static String[] getProgramElectives(String subpathway, int num) {
-        Cursor c = db.query(true, "subpathways", new String[] {"prelect"}, "name = ?", new String[] {subpathway}, null, null, null, null);
+        Cursor c = db.query(true, "subpathways", new String[] {"prgelec"}, "name = ?", new String[] {subpathway}, null, null, null, null);
         if (c.getCount() == 0) {
             return new String[0];
         } else {
             c.moveToNext();
-            String[] elecGroups = c.getString(c.getColumnIndex("prelect")).split(" ");
+            String[] elecGroups = c.getString(c.getColumnIndex("prgelec")).split(" ");
             Log.e("DBW", elecGroups.length+"");
             String[][] electives = new String[elecGroups.length][0];
             for (int i=0; i<elecGroups.length; i++) electives[i] = elecGroups[i].split(",");
@@ -192,7 +192,7 @@ public class DatabaseWrapper {
                 genEdId = "W";
                 break;
             }
-            case "PRELECT": {
+            case "PRGELEC": {
                 int num = Integer.parseInt(classID.substring(7,8))-1;
                 return getProgramElectives(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME,num);
             }
