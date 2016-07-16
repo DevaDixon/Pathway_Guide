@@ -185,7 +185,9 @@ public class CourseClassLoader {
 
                     for (int j =0; j<courseLabels.length-1; j++)
                     {
+                        //assigns a string to value of title (i.e. courseLabels[i]?)
                         String courseString = title;
+                        //Searches the SharedPref hashmap for status of all courses in the path
                         boolean prereqDone = sharedPrefDone.getBoolean(courseLabels[j],false);
                         if (courseString.equals(iCoursePrereq)&&prereqDone){
                             isCourseAvailableForRegistration = true;

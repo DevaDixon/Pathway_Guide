@@ -24,7 +24,7 @@ CSIT210|Intro to Programming| |CSIT111| |
 CSIT211|Advanced Programming| |CSIT210| |
 CSIT212|Visual Basic Programming| |CSIT111| |
 CSIT214|C++ Programming| |CSIT210| |
-CSIT222|Emerging Web Technologies| |CSIT121 CSIT154| |
+CSIT222|Emerging Web Technologies| |CSIT121,CSIT154| |
 CSIT224|Server-Side Scripting in PHP| |CSIT111,CSIT121,CSIT154| |
 CSIT241|Applied Systems Analysis & Design| |CSIT111| |
 CSIT254|Emerging Database Design| |CSIT154,CSIT156| |
@@ -66,7 +66,7 @@ MNTH101|Introduction to Mental Health| | | |
 MNTH130|Intro to Principles of Psychiatric Rehabilitation| | | |
 OFAD114|IT Essentials| | | |
 PHYS101|Fundamentals of Physics I| |MATH135,MATH165,MATH163|BL|
-PRELECT|Program Elective|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
+PRGELEC|Program Elective|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| | |
 PSYC101|Intro to Psychology| | |S|
 PSYC103|Principles of Human Growth and Development| |PSYC101|S|
 PSYC105|Multicultural Psychology| | |S|
