@@ -35,7 +35,7 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
 
     public SharedPreferences prefs;
 
-
+    protected String[] pathwaysTop;
 
 
 
@@ -48,11 +48,21 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         //The editor so we can save those preferences.
         SharedPreferences.Editor editor = pathwayPref.edit();
 
+
+        // TODO: 7/18/2016 REMOVE BEFORE RELEASE: conditional intentionally limits to first 2 paths since DB not complete as of now.
+        if (view.getId() == 0 ||((Integer) view.getId()) == 1) {
+            editor.putString("PathTitle", pathwaysTop[view.getId()]);
+            final Intent intent = new Intent(this, (Class) chooseSub_Pathway.class);
+            intent.putExtra("arrayID", String.valueOf(view.getId()));
+            this.startActivity(intent);
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+        }
+
+
+        /*
         boolean valid = false;
-
-
-
-
         switch (view.getId()){
             case 0: {
                 editor.putInt("PathTitle", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
@@ -94,7 +104,7 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
             intent.putExtra("arrayID", String.valueOf(view.getId()));
             this.startActivity(intent);
         }
-
+*/
 
     }
 
@@ -133,14 +143,19 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         }
 
         final LinearLayout linearLayout = (LinearLayout) this.findViewById(R.id.linearLayout3);
-        String[] pathwaysTop = resources.getStringArray(R.array.PathwayCategory);
+
+
+        //Retrieves the pathway names from DB
+        pathwaysTop = DatabaseWrapper.getAllPathways();
+
         int length = pathwaysTop.length;
-        for (int i = 0; i < length; ++i) {
+
+        for (int i = 0; i < length; ++i) { // TODO: 7/18/2016 Is ++i intentional? does it make a difference in java?
             final Button button = new Button(this);
             button.setOnClickListener(this);
             button.setText(pathwaysTop[i]);
             final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
-            if (i != length) {
+            if (i != length) { // TODO: 7/18/2016 Why is index being compared to array length? will always be less.
                 layoutParams.setMargins(5, 5, 5, 5);
             } else {
                 layoutParams.setMargins(5, 25, 5, 5);

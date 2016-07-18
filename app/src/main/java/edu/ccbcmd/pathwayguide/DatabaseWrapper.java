@@ -84,6 +84,13 @@ public class DatabaseWrapper {
         }
     }
 
+    /**
+     * Returns the names of all distinct pathways listed in database.
+     *
+     * If no pathways are found, returns a string array of length 0.
+     * For list of pathway names, consult /res/raw/pathwayvallues.txt
+     * @return the unique values from column "pathways" as String[]
+     */
     public static String[] getAllPathways() {
         Cursor c = db.query(true, "subpathways", new String[] {"pathway"}, null, null, null, null, null, null);
         String[] pathways = new String[c.getCount()];

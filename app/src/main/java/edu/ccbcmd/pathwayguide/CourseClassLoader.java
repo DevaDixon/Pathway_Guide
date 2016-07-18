@@ -60,7 +60,7 @@ public class CourseClassLoader {
         DatabaseWrapper wrapper = new DatabaseWrapper();
 
 
-        int pathway = -1;
+        int pathway = -1; //What does -1 mean?
         if (pathwayPref.contains("PathwayChoice"))
         {
             pathway = pathwayPref.getInt("PathwayChoice", 100);
