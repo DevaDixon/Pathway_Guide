@@ -55,13 +55,13 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
 
         switch (view.getId()){
             case 0: {
-                editor.putInt("PathwayChoice", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
+                editor.putInt("PathTitle", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
                 editor.apply();
                 valid = true;
                 break;
             }
             case 1: {
-                editor.putInt("PathwayChoice", CourseContract.TSM.TSM);
+                editor.putInt("PathTitle", CourseContract.TSM.TSM);
                 editor.apply();
                 valid = true;
                 break;
@@ -107,7 +107,7 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         //The fifth instance of sharedpreferences is to get the double class status
         SharedPreferences pathwayDoubleCourse = getSharedPreferences("DoubleCourse",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pathwayDoubleCourse.edit();
-        DatabaseWrapper wrapper = new DatabaseWrapper();
+
         String[] removeCourses = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
         for (int i = 0; i< removeCourses.length;i++){
             editor.remove("Double"+removeCourses[i]).apply();

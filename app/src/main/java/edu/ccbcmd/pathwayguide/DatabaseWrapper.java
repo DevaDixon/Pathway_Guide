@@ -84,6 +84,16 @@ public class DatabaseWrapper {
         }
     }
 
+    public static String[] getAllPathways() {
+        Cursor c = db.query(true, "subpathways", new String[] {"pathway"}, null, null, null, null, null, null);
+        String[] pathways = new String[c.getCount()];
+        for (int i = 0; c.moveToNext(); i++) {
+            pathways[i] = c.getString(c.getColumnIndex("pathway"));
+        }
+        c.close();
+        return pathways;
+    }
+
     // returns the subpathways in a pathway as a string array
     // if the pathway doesn't exist, it returns a string array of length 0
     // for a list of valid pathway names, look in res/raw/pathwayvalues.txt
