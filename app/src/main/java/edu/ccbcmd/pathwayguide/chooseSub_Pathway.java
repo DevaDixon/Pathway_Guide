@@ -32,19 +32,27 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
     PathwaysDBHelper dataBase;
 
     public SharedPreferences prefs;
-
+    protected String[] subPaths;
     public void onClick(final View view) {
-
         //This shared preferences allows us to record the user choices. THIS shared preferences variable will be
         //for the courses that are done.
         SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
         //The editor so we can save those preferences.
         SharedPreferences.Editor editor = pathwayPref.edit();
-        boolean valid = false;
 
-        editor.putString("SubPathTitle", ((Button)view).getText().toString());
+        if (((Button)view).getText().toString().equals("Nursing") || ((Button)view).getText().toString().equals("Information Technology")) {
+            editor.putString("SubPathTitle", subPaths[view.getId()]);
+            final Intent intentt = new Intent(this, (Class) chooseCompletedClasses.class);
+            this.startActivity(intentt);
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+        }
 
 
+        //editor.putString("SubPathTitle", ((Button)view).getText().toString());
+
+/*
         switch (pathwayPref.getInt("PathwayChoice",100)) {
             case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH: {
                 switch (view.getId()) {
@@ -171,7 +179,7 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
         }
 
 
-
+*/
 
     }
 
@@ -201,13 +209,16 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
 
         //Initializing the database
         dataBase = new PathwaysDBHelper(getApplicationContext());
-        DatabaseWrapper wrapper = new DatabaseWrapper();
+        //DatabaseWrapper wrapper = new DatabaseWrapper();
 
         int length;
-        String[] subPaths;
 
 
-        //subPaths = wrapper.getSubPathways(pathwayTitle);
+        subPaths = DatabaseWrapper.getSubPathways(pathwayTitle);
+
+
+
+        /*
         String [] subPath;
 
         switch(pathway){
@@ -238,11 +249,12 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
 
             }
         }
+        */
 
-            for (int i = 0; i < subPath.length; ++i) {
+            for (int i = 0; i < subPaths.length; ++i) {
                 final Button button = new Button(this);
                 button.setOnClickListener(this);
-                button.setText(subPath[i]);
+                button.setText(subPaths[i]);
                 final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
                 layoutParams.setMargins(5, 5, 5, 5);
                 button.setLayoutParams(layoutParams);
