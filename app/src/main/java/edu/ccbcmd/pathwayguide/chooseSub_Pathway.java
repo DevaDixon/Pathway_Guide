@@ -28,9 +28,6 @@ import android.support.v7.app.AppCompatActivity;
 public class chooseSub_Pathway extends AppCompatActivity implements View.OnClickListener
 {
 
-    //This is the access to the database
-    PathwaysDBHelper dataBase;
-
     public SharedPreferences prefs;
     protected String[] subPaths;
     public void onClick(final View view) {
@@ -40,8 +37,9 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
         //The editor so we can save those preferences.
         SharedPreferences.Editor editor = pathwayPref.edit();
 
+        // TODO: 7/23/2016 Remove conditional when pathways are ready to be implemented
         if (((Button)view).getText().toString().equals("Nursing") || ((Button)view).getText().toString().equals("Information Technology")) {
-            editor.putString("SubPathTitle", subPaths[view.getId()]);
+            editor.putString("SubPathTitle", subPaths[view.getId()]).apply();
             final Intent intentt = new Intent(this, (Class) chooseCompletedClasses.class);
             this.startActivity(intentt);
         }
@@ -50,136 +48,6 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
         }
 
 
-        //editor.putString("SubPathTitle", ((Button)view).getText().toString());
-
-/*
-        switch (pathwayPref.getInt("PathwayChoice",100)) {
-            case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH: {
-                switch (view.getId()) {
-                    case 0: {
-                        editor.putInt("PathwaySubChoice", CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN);
-                        valid = true;
-                        break;
-                    }
-                    case 1: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 2: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 3: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 4: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 5: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 6: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 7: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 8: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 9: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 10: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 11: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    default: {
-                        editor.putInt("PathwaySubChoice", CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN);
-                        valid = true;
-                        break;
-                    }
-                }
-            }
-            case CourseContract.TSM.TSM:{
-                switch (view.getId()) {
-                    case 0: {
-                        editor.putInt("PathwaySubChoice", CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT);
-                        valid = true;
-                        break;
-                    }
-                    case 1: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 2: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 3: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 4: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 5: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 6: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 7: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 8: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 9: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 10: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    case 11: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                        break;
-                    }
-                    default:{
-                        editor.putInt("PathwaySubChoice", CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT);
-                        valid=true;
-                        break;
-                    }
-                }
-            }
-        }
-        if (valid) {
-
-            final Intent intentt = new Intent(this, (Class) chooseCompletedClasses.class);
-            this.startActivity(intentt);
-            return;
-        }
-
-
-*/
 
     }
 
@@ -204,52 +72,11 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
         //for the courses that are done.
         SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
 
-        int pathway = pathwayPref.getInt("PathwayChoice",-1);
-        String pathwayTitle = pathwayPref.getString("PathwayTitle", "null");
+        String pathTitle = pathwayPref.getString("PathTitle", "null");
 
-        //Initializing the database
-        dataBase = new PathwaysDBHelper(getApplicationContext());
-        //DatabaseWrapper wrapper = new DatabaseWrapper();
-
-        int length;
+        subPaths = DatabaseWrapper.getSubPathways(pathTitle);
 
 
-        subPaths = DatabaseWrapper.getSubPathways(pathwayTitle);
-
-
-
-        /*
-        String [] subPath;
-
-        switch(pathway){
-            case 100:{
-                //Databaseway
-                subPath = DatabaseWrapper.getSubPathways(CourseContract.PRE_ALLIED_HEALTH.PRE_ALLIED_HEALTH_NAME);
-                length = subPath.length;
-                break;
-                //Old Way
-                //subPath = getResources().getStringArray(R.array.PathwayCategoryPRE);
-
-            }
-            case 200:{
-                subPath = DatabaseWrapper.getSubPathways(CourseContract.TSM.TSM_NAME);
-                length = subPath.length;
-                break;
-                //Old Way
-                //subPath = getResources().getStringArray(R.array.PathwayCategoryTSM);
-
-            }
-            default:{
-                //Databaseway
-                subPath = DatabaseWrapper.getSubPathways(CourseContract.PRE_ALLIED_HEALTH.PRE_ALLIED_HEALTH_NAME);
-                length = subPath.length;
-                break;
-                //Old Way
-                //subPath = getResources().getStringArray(R.array.PathwayCategoryPRE);
-
-            }
-        }
-        */
 
             for (int i = 0; i < subPaths.length; ++i) {
                 final Button button = new Button(this);

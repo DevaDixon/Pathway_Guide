@@ -3,32 +3,22 @@ package edu.ccbcmd.pathwayguide;
 
 
 
-        import android.content.pm.ActivityInfo;
-        import android.content.res.Resources;
-        import android.preference.PreferenceManager;
-        import android.util.TypedValue;
-
-        import android.view.Gravity;
-        import android.widget.Button;
-        import android.widget.LinearLayout;
-        import android.graphics.drawable.BitmapDrawable;
-        import android.graphics.BitmapFactory;
-        import android.widget.Toast;
-        import android.util.Log;
-
-        import android.graphics.drawable.Drawable;
-
-        import android.content.Context;
-
-        import android.view.MenuItem;
-
-        import android.view.View;
-        import android.content.Intent;
-        import android.os.Bundle;
-
-        import android.content.SharedPreferences;
-
-        import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.content.res.Resources;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class choosePathway extends AppCompatActivity implements View.OnClickListener {
 
@@ -50,8 +40,9 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
 
 
         // TODO: 7/18/2016 REMOVE BEFORE RELEASE: conditional intentionally limits to first 2 paths since DB not complete as of now.
-        if (view.getId() == 0 ||((Integer) view.getId()) == 1) {
-            editor.putString("PathTitle", pathwaysTop[view.getId()]);
+        if (view.getId() == 0 ||((Integer)view.getId()) == 1) {
+            String pathText = pathwaysTop[view.getId()];
+            editor.putString("PathTitle", pathText).apply();
             final Intent intent = new Intent(this, (Class) chooseSub_Pathway.class);
             intent.putExtra("arrayID", String.valueOf(view.getId()));
             this.startActivity(intent);
@@ -59,52 +50,6 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         else {
             Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
         }
-
-
-        /*
-        boolean valid = false;
-        switch (view.getId()){
-            case 0: {
-                editor.putInt("PathTitle", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
-                editor.apply();
-                valid = true;
-                break;
-            }
-            case 1: {
-                editor.putInt("PathTitle", CourseContract.TSM.TSM);
-                editor.apply();
-                valid = true;
-                break;
-            }
-            case 2:
-            {
-                Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                break;
-            }
-            case 3:
-            {
-                Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                break;
-            }
-            case 4:{
-                Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-                break;
-            }
-            default: {
-                editor.putInt("PathwayChoice", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
-                editor.apply();
-                valid = true;
-                break;
-            }
-        }
-
-
-        if(valid) {
-            final Intent intent = new Intent(this, (Class) chooseSub_Pathway.class);
-            intent.putExtra("arrayID", String.valueOf(view.getId()));
-            this.startActivity(intent);
-        }
-*/
 
     }
 

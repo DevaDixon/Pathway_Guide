@@ -52,7 +52,7 @@ public class CourseClass {
         super();
         title = null;
         fullTitle = null;
-        url = null;
+        status = -1;
         done = false;
         inProgress = false;
         anyPreReqs = false;
@@ -62,13 +62,11 @@ public class CourseClass {
         canTakeWOPrereq = false;
         isDoubleCourse = false;
         doubleCourses = null;
-        status = -1;
+
     }
     public CourseClass(String title,
                        String fullTitle,
-                       String url,
-                       boolean done,
-                       boolean inProgress,
+                       int status,
                        boolean anyPreReqs,
                        String[] preReqs,
                        boolean isOpenForRegistration,
@@ -76,15 +74,13 @@ public class CourseClass {
                        boolean meet,
                        boolean jumpTheLine,
                        boolean doubleCourse,
-                       String[] doubleChoices,
-                       int status){
+                       String[] doubleChoices
+                       ){
         super();
         //The proper constructor.
         this.title = title;
         this.fullTitle = fullTitle;
-        this.url = url;
-        this.done = done;
-        this.inProgress = inProgress;
+        this.status = status;
         this.anyPreReqs = anyPreReqs;
         this.preReqs = preReqs;
         this.isOpenForRegistration = isOpenForRegistration;
@@ -93,7 +89,7 @@ public class CourseClass {
         this.canTakeWOPrereq = jumpTheLine;
         this.isDoubleCourse = doubleCourse;
         this.doubleCourses = doubleChoices;
-        this.status = status;
+
     }
 
     //The getters and setters.
@@ -101,9 +97,7 @@ public class CourseClass {
     public String getTitle(){
         return title;
     }
-    public String getUrl(){
-        return url;
-    }
+
     public boolean getDone(){
         return done;
     }

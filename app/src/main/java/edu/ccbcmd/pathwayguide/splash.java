@@ -113,13 +113,16 @@ public class splash extends AppCompatActivity
                 final SharedPreferences sharedPreferences = splash.this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
                 Log.w("First Run:", String.valueOf(sharedPreferences.getBoolean("firstrun", true)));
                 if (sharedPreferences.getBoolean("firstrun", true)) {
-                    splash.this.startActivity(new Intent(splash.this, (Class)demo_MainActivity.class));
+                    // TODO: 7/23/2016 Skips initial walkthrough. Remove before release.
+                    splash.this.startActivity(new Intent(splash.this, (Class)choosePathway.class));
+                    //splash.this.startActivity(new Intent(splash.this, (Class)demo_MainActivity.class));
                 }
                 else {
                     final Intent intent = new Intent(splash.this, (Class)MainActivity.class);
                     intent.putExtra("intVariableName", 0);
                     splash.this.startActivity(intent);
                 }
+
                 splash.this.finish();
             }
         }, time);
