@@ -49,8 +49,8 @@ public class chooseCompletedClasses extends AppCompatActivity
 
 
         //Getting a handle for the shared preference editor
-        SharedPreferences sharedPrefDone = getSharedPreferences("courses", Context.MODE_PRIVATE);
-        final SharedPreferences.Editor editor = sharedPrefDone.edit();
+       // SharedPreferences sharedPrefDone = getSharedPreferences("courses", Context.MODE_PRIVATE);
+        //final SharedPreferences.Editor editor = sharedPrefDone.edit();
 
 
         String[] courseLabels = loader.getCourseLabels();
@@ -59,26 +59,28 @@ public class chooseCompletedClasses extends AppCompatActivity
         for (int i = 0; i<viewGroup.getChildCount(); i++){
             checkBoxesDone.add((CheckBox) viewGroup.getChildAt(i));
         }
+        /*
         for (int i = 0; i< courseLabels.length; i++){
             editor.putBoolean(courseLabels[i], false);
             editor.apply();
         }
-
+*/
         int counter = 0;
         for (int i = 0; i < viewGroup.getChildCount(); i++) {
-
+            // TODO: 7/24/2016 analyze further, very un efficient.
             if (checkBoxesDone.size()>0&& checkBoxesDone.size()>counter) {
                 CheckBox box = checkBoxesDone.get(counter);
                 counter++;
 
                 if(box.isChecked() ) {
 
-                    editor.putBoolean(courseLabels[i], true);
-                    editor.commit();
-                } else {
-
-                    editor.putBoolean(courseLabels[i], false);
-                    editor.commit();
+                    DatabaseWrapper.writeClassStatus(courseLabels[i], 2);
+                }
+                else {
+                    int status = DatabaseWrapper.getClassStatus(courseLabels[i]);
+                    if (status == 2) {
+                        DatabaseWrapper.writeClassStatus(courseLabels[i], 0);
+                    }
                 }
             }
         }
@@ -106,8 +108,8 @@ public class chooseCompletedClasses extends AppCompatActivity
         this.getSupportActionBar().setHomeButtonEnabled(true);
 
         //Initializing the database
-        dataBase = new PathwaysDBHelper(getApplicationContext());
-        DatabaseWrapper wrapper = new DatabaseWrapper();
+        //dataBase = new PathwaysDBHelper(getApplicationContext());
+       // DatabaseWrapper wrapper = new DatabaseWrapper();
         loader = new CourseClassLoader(getApplicationContext());
         length_of_courses = loader.howManyCourses();
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
@@ -120,6 +122,7 @@ public class chooseCompletedClasses extends AppCompatActivity
         SharedPreferences pathwayPermission = getApplicationContext().getSharedPreferences("permission",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pathwayPermission.edit();
         String[] courseNames = loader.getCourseLabels();
+        // TODO: 7/24/2016 Review
         for (int i = 0; i< length_of_courses; i++){
             editor.putBoolean("permission"+courseNames[i],false);
             editor.apply();
@@ -137,7 +140,7 @@ public class chooseCompletedClasses extends AppCompatActivity
                 checkBox.setText((course.getTitle() + ": " + course.getFullTitle()));
                 checkBox.setId(id);
 
-                if (course.getDone()){
+                if (course.getStatus() == 2){
                     checkBox.setChecked(true);
                 }
                 if (Build.VERSION.SDK_INT >= 16) {

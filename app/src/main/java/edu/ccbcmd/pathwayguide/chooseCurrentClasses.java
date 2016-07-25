@@ -1,32 +1,24 @@
 package edu.ccbcmd.pathwayguide;
 
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.content.res.Resources;
-
-import android.os.Build;
-import android.util.Log;
-import android.widget.Button;
-import android.graphics.Color;
-
 import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.BitmapFactory;
-import android.widget.CheckBox;
-import android.support.v4.content.ContextCompat;
-
-import android.content.Context;
-
-import android.view.View;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.ViewGroup;
-
-import android.content.SharedPreferences;
-
-import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,22 +52,26 @@ public class chooseCurrentClasses extends AppCompatActivity
         SharedPreferences.Editor editorIP = sharedPrefInProgress.edit();
 
         //To ensure no stragglers have it set to true without permission.
+        /*
         for (int i = 0; i < loader.howManyCourses(); i++)
         {
             editorIP.putBoolean(courseLabels[i], false);
             editorIP.apply();
         }
+*/
 
         //Here's where we actually set up the checkboxes
         for (int i = 0; i < checkBoxesInProgress.size(); i++) {
-
+// TODO: 7/24/2016 Review efficiency. should be an easier way to do this.
                 CheckBox box = checkBoxesInProgress.get(i);
                 int id = box.getId();
 
                 if (box.isChecked()) {
-                    editorIP.putBoolean(courseLabels[id], true);
-
-                    editorIP.apply();
+                    DatabaseWrapper.writeClassStatus(courseLabels[id], 1);
+                }
+                //if a checkbox was deselected, sets course from "IN_PROGRESS" to "NOT_COMPLETED"
+            else if (DatabaseWrapper.getClassStatus(courseLabels[id]) == 1) {
+                    DatabaseWrapper.writeClassStatus((courseLabels[id]), 0);
                 }
         }
 
@@ -111,10 +107,10 @@ public class chooseCurrentClasses extends AppCompatActivity
         for (int i = 0; i < length; ++i) {
             CourseClass course = courseList.get(i);
 
-            if (!course.getDone() && !course.getPreReqs(0).equals("PERMISSION")) {
+            if (course.getStatus() != 2 && !course.getPreReqs(0).equals("PERMISSION")) {
                 final CheckBox checkBox = new CheckBox(this);
                 checkBox.setText((course.getTitle() + ": " + course.getFullTitle()));
-                if (course.getInProgress()){
+                if (course.getStatus() == 1){
                     checkBox.setChecked(true);
                 }
                 checkBox.setId(course.getPosition());
