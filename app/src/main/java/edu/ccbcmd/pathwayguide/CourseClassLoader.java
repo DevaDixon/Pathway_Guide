@@ -32,9 +32,6 @@ public class CourseClassLoader {
     String[] courseURLs;
 
     //This will store the pathway name
-    String pathwayText;
-
-
     String subPathText;
 
     CourseClassLoader(Context context){
@@ -65,7 +62,7 @@ public class CourseClassLoader {
         {
             subPathText = pathwayPref.getString("SubPathTitle", null);
         } else {
-            // TODO: 7/23/2016 Implement try/catch or other way to launch choosePathway.class
+            // TODO: 7/23/2016 Implement try/catch or other way to launch choosePathway.class if null
          subPathText = "Nursing";
         }
 
@@ -109,9 +106,6 @@ public class CourseClassLoader {
 
             int status = DatabaseWrapper.getClassStatus(courseLabels[i]);
 
-            if (status == 2) {
-
-            }
            // boolean done = sharedPrefDone.getBoolean(courseLabels[i], false);
            // boolean inProgress = sharedPrefInProgress.getBoolean(courseLabels[i], false);
             boolean preReq = false;
@@ -287,7 +281,7 @@ public class CourseClassLoader {
 
             //This section of code adds the course to the particular container, that is, done, inprogress, etc. container
             boolean added = false;
-            if (status == 0){
+            if (status == 2){
                 courseDone.add(course);
                 added = true;
             }
@@ -430,7 +424,7 @@ public class CourseClassLoader {
         return instantiateNewCourse(name,context, count);
     }
 
-    public String getPathway() {return pathwayText;}
+    public String getPathway() {return subPathText;}
 
     private String[] loadInPreReqs(String[] courses){
         String[] preReq = new String[courses.length];

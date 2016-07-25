@@ -66,14 +66,14 @@ public class MainActivity extends Activity implements View.OnClickListener
         this.prefs.edit().putInt("zoom", 0).commit();
 
 
-        Integer value = this.prefs.getInt("pathwayID", 0);
-        Integer value2 = this.prefs.getInt("pathwaysubID", 0);
+
+        //Integer value2 = this.prefs.getInt("pathwaysubID", 0);
         String subPathTitle = this.prefs.getString("SubPathTitle", "null");
         String string = this.prefs.getString("notifydate", "00/00/0000");
         checkAlarm(string);
 
 
-        if (value2 == -1 ) {
+        if (subPathTitle == null) {
             this.startActivity(new Intent(this, (Class)choosePathway.class));
             return;
         }
@@ -109,7 +109,7 @@ public class MainActivity extends Activity implements View.OnClickListener
              Button button = new Button(this);
 
             //id seems to serve as which one we are talking about in the list.
-             int id = i; //choosePathway.subpathwayCoursePath[0][value2][i - 1];
+             int id = i;
             button.setText(curCourse.getTitle());
 
              LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
@@ -119,7 +119,8 @@ public class MainActivity extends Activity implements View.OnClickListener
             button.setGravity(17);
             button.setTextSize(1, 14.0f);
             button.setTypeface(null, 1);
-            if (i != n7) {
+
+            if (i != n7) { //What does this do?
                 layoutParams.setMargins(n9, n9, n9, n9);
             }
             else {
@@ -138,30 +139,33 @@ public class MainActivity extends Activity implements View.OnClickListener
 
 
             //This is loading what status the course is.
+            /*
             int n10 = -1; //_loadArrayInt[id];
             if (curCourse.getDone()){ n10 = 0;}
             if (curCourse.getIsOpenForRegistration()){n10 = 3;}
             if (curCourse.getInProgress()){n10 = 4;}
-
+            */
 
 
             button.setTextColor(Color.parseColor("#ffffff"));
 
-            if (curCourse.getDone()) {
+            if (curCourse.getStatus() == 2) {
                 button.setBackgroundColor(Color.parseColor("#159b8a")); //Green  DONE
             }
-            else if (curCourse.getInProgress()) {
+            else if (curCourse.getStatus() == 1) {
                 button.setBackgroundColor(Color.parseColor("#644181"));  //purple Currently taking
             }
             else if (curCourse.getIsOpenForRegistration()) {
                 button.setTextColor(Color.parseColor("#000000"));
                 button.setBackgroundColor(Color.parseColor("#fcd054"));  //YelloW!  Available for register
             }
+            /* Length is always 1, this seems pointless.
             else if (length == 0) {
                 button.setTextColor(Color.parseColor("#000000"));
                 button.setBackgroundColor(Color.parseColor("#fcd054"));
             //    Log.w("if/else", "=0");
             }
+            */
             else {
 
                     button.setBackgroundColor(Color.parseColor("#893f4e"));  //RED  NEED PERMISSION

@@ -36,6 +36,8 @@ public class alert extends Activity
 
             public void onClick(final View view) {
                 Context context = getApplicationContext();
+                course.setStatus(2);
+                /*
                 //We need to load in three separate instances of the sharedpreferences as each of the first two instances only contains one vector
                 //Each vector of data stores booleans.  These booleans indicate whether a course is done or inprogress.
                 SharedPreferences sharedPrefDone = context.getSharedPreferences("courses", Context.MODE_PRIVATE);
@@ -46,7 +48,7 @@ public class alert extends Activity
                 SharedPreferences.Editor editorIP = sharedPrefInProgress.edit();
                 editorIP.putBoolean(MainActivity.courseClassLoader.getCourseLabels()[int3],false);
                 editorIP.apply();
-
+                */
 
 
                 alert.this.startActivity(new Intent(alert.this, (Class)MainActivity.class));
@@ -60,6 +62,11 @@ public class alert extends Activity
             public void onClick(final View view) {
 
                 Context context = getApplicationContext();
+
+
+                course.setStatus(0);
+
+                /*
                 //We need to load in three separate instances of the sharedpreferences as each of the first two instances only contains one vector
                 //Each vector of data stores booleans.  These booleans indicate whether a course is done or inprogress.
                 SharedPreferences sharedPrefDone = context.getSharedPreferences("courses", Context.MODE_PRIVATE);
@@ -70,6 +77,7 @@ public class alert extends Activity
                 SharedPreferences.Editor editorIP = sharedPrefInProgress.edit();
                 editorIP.putBoolean(MainActivity.courseClassLoader.getCourseLabels()[int3], false);
                 editorIP.apply();
+                */
 
                 alert.this.startActivity(new Intent(alert.this, (Class)MainActivity.class));
             }

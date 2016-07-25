@@ -104,11 +104,13 @@ public class info extends AppCompatActivity
         ((TextView)this.findViewById(R.id.textView)).setText(course.getFullTitle()); //2131624036
         this.getSupportActionBar().setTitle(course.getTitle());
 
-        if (course.getDone()) {
+        final int status = course.getStatus();
+
+        if (status == 2) {
             this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#159b8a"))); //Green
 
         }
-        else if (course.getInProgress()) {
+        else if (status == 1) {
             this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#644181"))); //Purple
 
         }
@@ -145,11 +147,11 @@ public class info extends AppCompatActivity
 
 
         final Button button2 = (Button)this.findViewById(R.id.colorChange); //2131624038
-        if (course.getDone()) {
+        if (status == 2) {
             button.setVisibility(View.INVISIBLE); //4
             button2.setText("I have not successfully completed this class");
         }
-        else if (course.getInProgress()) {
+        else if (status == 1) {
             button2.setText("Class End Results");
         }
         else if (course.getIsOpenForRegistration()) {
@@ -170,14 +172,14 @@ public class info extends AppCompatActivity
 
             public void onClick(final View view) {
 
-                if (course.getDone()) {
-                    editorDone.putBoolean(courseLabels[int3], false);
-                    editorDone.apply();
+
+                if (status == 2) {
+                    course.setStatus(0);
                     info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
                     return;
                 }
 
-                if (course.getInProgress()) {
+                if (status == 1) {
                     info.this.startActivity(new Intent(info.this, (Class)alert.class));
                     return;
                 }
@@ -185,9 +187,10 @@ public class info extends AppCompatActivity
 
 
 
+
                 if (course.getIsOpenForRegistration()) {
-                    editorIP.putBoolean(courseLabels[int3],true);
-                    editorIP.apply();
+                    course.setStatus(1);
+
                     info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
                     return;
                 }
