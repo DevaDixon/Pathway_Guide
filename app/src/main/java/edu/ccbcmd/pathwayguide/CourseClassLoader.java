@@ -50,12 +50,6 @@ public class CourseClassLoader {
         //The fifth instance of sharedpreferences is to get the double class status
         SharedPreferences pathwayDoubleCourse = context.getSharedPreferences("DoubleCourse",Context.MODE_PRIVATE);
 
-        //Initializing the database
-
-
-
-
-
 
 
         if (pathwayPref.contains("SubPathTitle"))
@@ -68,7 +62,7 @@ public class CourseClassLoader {
 
         courseLabels = DatabaseWrapper.getSubPathwayClasses(subPathText);
 
-        // TODO: 7/23/2016 See if these can be optimized
+
         coursePrereqs = loadInPreReqs(courseLabels);
         courseFullTitles = loadInTitles(courseLabels);
 
@@ -148,7 +142,7 @@ public class CourseClassLoader {
 
                     }
                     canJump = pathwayPermission.getBoolean("permission"+title,false);
-                    // FIXME: 7/23/2016 should be able to simplify
+
                     if (!isCourseAvailableForRegistration && (status == 0) && preReq && canJump){ isCourseAvailableForRegistration = true;}
                     if (!isCourseAvailableForRegistration && (status == 0) &&!preReq){isCourseAvailableForRegistration = true;}
                 }

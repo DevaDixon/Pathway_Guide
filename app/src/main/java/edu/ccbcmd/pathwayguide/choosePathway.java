@@ -95,7 +95,7 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
 
         int length = pathwaysTop.length;
 
-        for (int i = 0; i < length; ++i) { // TODO: 7/18/2016 Is ++i intentional? does it make a difference in java?
+        for (int i = 0; i < length; i++) {
             final Button button = new Button(this);
             button.setOnClickListener(this);
             button.setText(pathwaysTop[i]);

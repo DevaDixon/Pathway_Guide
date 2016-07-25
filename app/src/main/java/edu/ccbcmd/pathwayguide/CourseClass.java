@@ -99,10 +99,16 @@ public class CourseClass {
     }
 
     public boolean getDone(){
-        return done;
+        if(status ==2)
+            return true;
+        else
+            return false;
     }
     public boolean getInProgress(){
-        return inProgress;
+        if(status ==1)
+            return true;
+        else
+            return false;
     }
     public boolean getAnyPreReqs(){
         return anyPreReqs;

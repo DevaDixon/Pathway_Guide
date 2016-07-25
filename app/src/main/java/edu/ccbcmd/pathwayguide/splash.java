@@ -35,19 +35,19 @@ public class splash extends AppCompatActivity
         //The third instance of sharedpreferences is the particular pathway chosen.
         SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
 
-        int pathway = -1;
+        String pathway = "";
         final AnimationDrawable animationDrawable = new AnimationDrawable();
         long time = 6000L;
 
-        if (pathwayPref.contains("PathwayChoice"))
+        if (pathwayPref.contains("PathTitle"))
         {
-            pathway = pathwayPref.getInt("PathwayChoice", 100);
-        } else { pathway = 0;}
+            pathway = pathwayPref.getString("PathTitle", "Nursing");
+        } else { pathway = "Nursing";}
 
 
 
         switch (pathway){
-            case 0: {
+            default: {
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.health), 1000); //2130837595
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.tech), 1000); //2130837602
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.business), 1000); //2130837583
@@ -56,16 +56,17 @@ public class splash extends AppCompatActivity
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.splash), 1000); //2130837601
                 break;
             }
-            case 100: {
+            case CourseContract.PRE_ALLIED_HEALTH.PRE_ALLIED_HEALTH_NAME: {
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.health), 1000); //2130837595
                 time = 1000L;
                 break;
             }
-            case 200: {
+            case CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME: {
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.tech), 1000); //2130837602
                 time = 1000L;
                 break;
             }
+            /*
             case 300: {
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.business), 1000); //2130837602
                 time = 1000L;
@@ -80,7 +81,7 @@ public class splash extends AppCompatActivity
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.arts), 1000); //2130837602
                 time = 1000L;
                 break;
-            }
+            }*/
         }
 
 

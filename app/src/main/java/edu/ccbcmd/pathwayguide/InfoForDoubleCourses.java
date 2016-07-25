@@ -225,6 +225,7 @@ public class InfoForDoubleCourses extends AppCompatActivity
                     editorDblClass.apply();
                     editorDone.putBoolean(course.getTitle(), false);
                     editorDone.apply();
+                    course.setStatus(0);
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)MainActivity.class));
                     return;
                 }
@@ -244,6 +245,8 @@ public class InfoForDoubleCourses extends AppCompatActivity
                     editorDblClass.apply();
                     editorIP.putBoolean(course.getTitle(),true);
                     editorIP.apply();
+                    Log.e("Wonderful Error", course.getTitle());
+                    course.setStatus(0);
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)MainActivity.class));
                     return;
                 }

@@ -138,13 +138,7 @@ public class MainActivity extends Activity implements View.OnClickListener
             int length = 1;// choosePathway.coursePreRec[value][id].length;
 
 
-            //This is loading what status the course is.
-            /*
-            int n10 = -1; //_loadArrayInt[id];
-            if (curCourse.getDone()){ n10 = 0;}
-            if (curCourse.getIsOpenForRegistration()){n10 = 3;}
-            if (curCourse.getInProgress()){n10 = 4;}
-            */
+
 
 
             button.setTextColor(Color.parseColor("#ffffff"));
