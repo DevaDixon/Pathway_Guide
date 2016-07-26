@@ -225,6 +225,8 @@ public class InfoForDoubleCourses extends AppCompatActivity
                     editorDblClass.apply();
                     editorDone.putBoolean(course.getTitle(), false);
                     editorDone.apply();
+                    DatabaseWrapper.writeClassStatus(course.getTitle(),0);
+
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)MainActivity.class));
                     return;
                 }
@@ -232,6 +234,8 @@ public class InfoForDoubleCourses extends AppCompatActivity
                 if (course.getInProgress()) {
                     editorDblClass.putString(("Double"+"GENMATH"),course.getTitle());
                     editorDblClass.apply();
+                    DatabaseWrapper.writeClassStatus(course.getTitle(),2);
+
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)alert.class));
                     return;
                 }
@@ -244,6 +248,9 @@ public class InfoForDoubleCourses extends AppCompatActivity
                     editorDblClass.apply();
                     editorIP.putBoolean(course.getTitle(),true);
                     editorIP.apply();
+                    DatabaseWrapper.writeClassStatus("GENMATH",1);
+                    DatabaseWrapper.writeClassStatus(course.getTitle(),1);
+
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)MainActivity.class));
                     return;
                 }
@@ -253,6 +260,7 @@ public class InfoForDoubleCourses extends AppCompatActivity
                     SharedPreferences.Editor editor = pathwayPermission.edit();
                     editor.putBoolean("permission"+course.getTitle(),true);
                     editor.apply();
+                    DatabaseWrapper.writeClassStatus(course.getTitle(),1);
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)MainActivity.class));
                     return;
                 }

@@ -72,11 +72,11 @@ public class chooseCompletedClasses extends AppCompatActivity
                 counter++;
 
                 if(box.isChecked() ) {
-
+                    DatabaseWrapper.writeClassStatus(courseLabels[i],2);
                     editor.putBoolean(courseLabels[i], true);
                     editor.commit();
                 } else {
-
+                    DatabaseWrapper.writeClassStatus(courseLabels[i],0);
                     editor.putBoolean(courseLabels[i], false);
                     editor.commit();
                 }

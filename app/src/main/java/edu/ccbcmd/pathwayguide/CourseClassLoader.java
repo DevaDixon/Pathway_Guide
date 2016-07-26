@@ -60,7 +60,7 @@ public class CourseClassLoader {
         DatabaseWrapper wrapper = new DatabaseWrapper();
 
 
-        int pathway = -1;
+        int pathway;
         if (pathwayPref.contains("PathwayChoice"))
         {
             pathway = pathwayPref.getInt("PathwayChoice", 100);
@@ -150,9 +150,18 @@ public class CourseClassLoader {
                 isDoubleClass = true;
             }
 
+            int courseStatus = DatabaseWrapper.getClassStatus(courseLabels[i]);
 
-            boolean done = sharedPrefDone.getBoolean(courseLabels[i], false);
-            boolean inProgress = sharedPrefInProgress.getBoolean(courseLabels[i], false);
+            boolean done =false;
+            if (courseStatus ==2){
+                done = true;
+            }
+            //done = sharedPrefDone.getBoolean(courseLabels[i], false);
+            boolean inProgress=false;
+            if (courseStatus == 1){
+                inProgress = true;
+            }
+            //inProgress= sharedPrefInProgress.getBoolean(courseLabels[i], false);
             boolean preReq = false;
 
 

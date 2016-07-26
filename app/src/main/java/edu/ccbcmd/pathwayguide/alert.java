@@ -46,6 +46,7 @@ public class alert extends Activity
                 SharedPreferences.Editor editorIP = sharedPrefInProgress.edit();
                 editorIP.putBoolean(MainActivity.courseClassLoader.getCourseLabels()[int3],false);
                 editorIP.apply();
+                DatabaseWrapper.writeClassStatus(CourseClassLoader.courseLabels[int3],2);
 
 
 
@@ -70,6 +71,7 @@ public class alert extends Activity
                 SharedPreferences.Editor editorIP = sharedPrefInProgress.edit();
                 editorIP.putBoolean(MainActivity.courseClassLoader.getCourseLabels()[int3], false);
                 editorIP.apply();
+                DatabaseWrapper.writeClassStatus(CourseClassLoader.courseLabels[int3],0);
 
                 alert.this.startActivity(new Intent(alert.this, (Class)MainActivity.class));
             }

@@ -73,8 +73,8 @@ public class chooseCurrentClasses extends AppCompatActivity
                 int id = box.getId();
 
                 if (box.isChecked()) {
+                    DatabaseWrapper.writeClassStatus(courseLabels[i],1);
                     editorIP.putBoolean(courseLabels[id], true);
-
                     editorIP.apply();
                 }
         }

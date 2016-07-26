@@ -125,15 +125,13 @@ public class info extends AppCompatActivity
         this.getSupportActionBar().setHomeButtonEnabled(true);
 
 
-        final Button button = (Button) findViewById(R.id.button); //2131624037
+        final Button button = (Button) findViewById(R.id.button);
         if (course.getAnyPreReqs()) {
-            button.setText("Register"); //WHY IS THIS BUTTON MEET WITH AN ADVISOR? MAYBE I"M NOT FOLLOWING.
+            button.setText("Register");
         }
         button.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(final View view) {
-
-                final String replace = course.getTitle().replace(" ", "/");
 
                 if (course.getMeetWithAdvisor()) {
                     info.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://simon.ccbcmd.edu/pls/PROD/twbkwbis.P_WWWLogin")));
@@ -173,6 +171,7 @@ public class info extends AppCompatActivity
                 if (course.getDone()) {
                     editorDone.putBoolean(courseLabels[int3], false);
                     editorDone.apply();
+                    DatabaseWrapper.writeClassStatus(courseLabels[int3],0);
                     info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
                     return;
                 }
@@ -188,6 +187,7 @@ public class info extends AppCompatActivity
                 if (course.getIsOpenForRegistration()) {
                     editorIP.putBoolean(courseLabels[int3],true);
                     editorIP.apply();
+                    DatabaseWrapper.writeClassStatus(courseLabels[int3],1);
                     info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
                     return;
                 }

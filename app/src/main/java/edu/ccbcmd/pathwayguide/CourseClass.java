@@ -129,7 +129,6 @@ public class CourseClass {
         this.title = title;
     }
     public boolean setStatus(int status) {
-        this.status = status;
         boolean success = DatabaseWrapper.writeClassStatus(this.title, status);
         return success;
     }
