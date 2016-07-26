@@ -42,10 +42,7 @@ public class CourseClassLoader {
     CourseClassLoader(Context context){
         super();
 
-        //We need to load in three separate instances of the sharedpreferences as each of the first two instances only contains one vector
-        //Each vector of data stores booleans.  These booleans indicate whether a course is done or inprogress.
-        SharedPreferences sharedPrefDone = context.getSharedPreferences("courses", Context.MODE_PRIVATE);
-        SharedPreferences sharedPrefInProgress = context.getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
+
         //The third instance of sharedpreferences is the particular pathway chosen.
         SharedPreferences pathwayPref = context.getSharedPreferences("pathway", Context.MODE_PRIVATE);
 
@@ -156,12 +153,12 @@ public class CourseClassLoader {
             if (courseStatus ==2){
                 done = true;
             }
-            //done = sharedPrefDone.getBoolean(courseLabels[i], false);
+
             boolean inProgress=false;
             if (courseStatus == 1){
                 inProgress = true;
             }
-            //inProgress= sharedPrefInProgress.getBoolean(courseLabels[i], false);
+
             boolean preReq = false;
 
 
@@ -195,7 +192,11 @@ public class CourseClassLoader {
                     for (int j =0; j<courseLabels.length-1; j++)
                     {
                         String courseString = title;
-                        boolean prereqDone = sharedPrefDone.getBoolean(courseLabels[j],false);
+                        int preRecStatus = DatabaseWrapper.getClassStatus(courseLabels[j]);
+                        boolean prereqDone = false;
+                        if (preRecStatus==2){
+                            prereqDone =true;
+                        }
                         if (courseString.equals(iCoursePrereq)&&prereqDone){
                             isCourseAvailableForRegistration = true;
                         }
@@ -236,7 +237,7 @@ public class CourseClassLoader {
                         canJump,
                         isDoubleClass,
                         doubleClasses,
-                        -1);
+                        courseStatus);
                 hasBeenAdded = true;
             }
 
@@ -256,7 +257,11 @@ public class CourseClassLoader {
 
                         for (int j = 0; j < courseLabels.length - 1; j++) {
                             String courseString = courseLabels[j];
-                            boolean prereqDone = sharedPrefDone.getBoolean(courseLabels[j], false);
+                            int preRecStatus = DatabaseWrapper.getClassStatus(courseLabels[j]);
+                            boolean prereqDone = false;
+                            if (preRecStatus==2){
+                                prereqDone =true;
+                            }
                             if (courseString.equals(iCoursePrereq) && prereqDone) {
                                 isCourseAvailableForRegistration = true;
                             }
@@ -290,7 +295,7 @@ public class CourseClassLoader {
                         canJump,
                         false,
                         new String[] {""},
-                        -1);
+                        courseStatus);
                 hasBeenAdded = true;
             }
 
@@ -306,7 +311,11 @@ public class CourseClassLoader {
                     for (int j =0; j<courseLabels.length-1; j++)
                     {
                         String courseString = courseLabels[j];
-                        boolean prereqDone = sharedPrefDone.getBoolean(courseLabels[j],false);
+                        int preRecStatus = DatabaseWrapper.getClassStatus(courseLabels[j]);
+                        boolean prereqDone = false;
+                        if (preRecStatus==2){
+                            prereqDone =true;
+                        }
                         if (courseString.equals(iCoursePrereq)&&prereqDone){
                             isCourseAvailableForRegistration = true;
                         }
@@ -335,7 +344,7 @@ public class CourseClassLoader {
                         canJump,
                         false,
                         new String[] {""},
-                        -1);
+                        courseStatus);
             }
 
 
@@ -400,7 +409,7 @@ public class CourseClassLoader {
 
     public CourseClass instantiateNewCourse(String courseID, Context context, int count){
         CourseClass course = null;
-        DatabaseWrapper wrapper = new DatabaseWrapper();
+
         boolean canJump = false;
         boolean isCourseAvailableForRegistration = false;
         String iCoursePrereq;
@@ -417,18 +426,23 @@ public class CourseClassLoader {
         if (courseID.substring(0,2).equals("GE")){
             isDoubleClass = true;
         }
-        //We need to load in three separate instances of the sharedpreferences as each of the first two instances only contains one vector
-        //Each vector of data stores booleans.  These booleans indicate whether a course is done or inprogress.
-        SharedPreferences sharedPrefDone = context.getSharedPreferences("courses", Context.MODE_PRIVATE);
-        SharedPreferences sharedPrefInProgress = context.getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
+
         //The fourth instance of sharedpreferences is to get the permission of a course
         SharedPreferences pathwayPermission = context.getSharedPreferences("permission",Context.MODE_PRIVATE);
 
         //The fifth instance of sharedpreferences is to get the double class status
         SharedPreferences pathwayDoubleCourse = context.getSharedPreferences("DoubleCourse",Context.MODE_PRIVATE);
 
-        boolean done = sharedPrefDone.getBoolean(courseID, false);
-        boolean inProgress = sharedPrefInProgress.getBoolean(courseID, false);
+        int courseStatus = DatabaseWrapper.getClassStatus(courseID);
+        boolean done =false;
+        if (courseStatus ==2){
+            done = true;
+        }
+
+        boolean inProgress=false;
+        if (courseStatus == 1){
+            inProgress = true;
+        }
         boolean preReq = false;
         //This Loop determines what category each of the courses is in.
         //Assume the courses don't have extra prereqs.  Don't want to hurt my head here.
@@ -443,7 +457,11 @@ public class CourseClassLoader {
             for (int j =0; j<courseLabels.length-1; j++)
             {
                 String courseString = courseLabels[j];
-                boolean prereqDone = sharedPrefDone.getBoolean(courseLabels[j],false);
+                int preRecStatus = DatabaseWrapper.getClassStatus(courseLabels[j]);
+                boolean prereqDone = false;
+                if (preRecStatus==2){
+                    prereqDone =true;
+                }
                 if (courseString.equals(iCoursePrereq)&&prereqDone){
                     isCourseAvailableForRegistration = true;
                 }
@@ -472,7 +490,7 @@ public class CourseClassLoader {
                 canJump,
                 false,
                 new String[] {""},
-                -1);
+                courseStatus);
         return  course;
     }
 

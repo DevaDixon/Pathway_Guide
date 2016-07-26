@@ -56,16 +56,6 @@ public class chooseCurrentClasses extends AppCompatActivity
             checkBoxesInProgress.add((CheckBox) viewGroup.getChildAt(i));
         }
 
-        SharedPreferences sharedPrefInProgress = getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editorIP = sharedPrefInProgress.edit();
-
-        //To ensure no stragglers have it set to true without permission.
-        for (int i = 0; i < loader.howManyCourses(); i++)
-        {
-            editorIP.putBoolean(courseLabels[i], false);
-            editorIP.apply();
-        }
-
         //Here's where we actually set up the checkboxes
         for (int i = 0; i < checkBoxesInProgress.size(); i++) {
 
@@ -73,9 +63,7 @@ public class chooseCurrentClasses extends AppCompatActivity
                 int id = box.getId();
 
                 if (box.isChecked()) {
-                    DatabaseWrapper.writeClassStatus(courseLabels[i],1);
-                    editorIP.putBoolean(courseLabels[id], true);
-                    editorIP.apply();
+                    DatabaseWrapper.writeClassStatus(courseLabels[id],1);
                 }
         }
 

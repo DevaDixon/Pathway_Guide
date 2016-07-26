@@ -206,13 +206,10 @@ public class InfoForDoubleCourses extends AppCompatActivity
             button2.setText("I have permission to take this class");
         }
 
-        //Getting a handle for the shared preference editor
-        SharedPreferences sharedPrefDone = getSharedPreferences("courses", Context.MODE_PRIVATE);
-        SharedPreferences sharedPrefIP = getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
+
         //The fifth instance of sharedpreferences is to get the double class status
         SharedPreferences pathwayDoubleCourse = getSharedPreferences("DoubleCourse",Context.MODE_PRIVATE);
-        final SharedPreferences.Editor editorDone = sharedPrefDone.edit();
-        final SharedPreferences.Editor editorIP = sharedPrefIP.edit();
+
         final SharedPreferences.Editor editorDblClass = pathwayDoubleCourse.edit();
 
 
@@ -223,8 +220,7 @@ public class InfoForDoubleCourses extends AppCompatActivity
                 if (course.getDone()) {
                     editorDblClass.putString(("Double"+"GENMATH"),course.getTitle());
                     editorDblClass.apply();
-                    editorDone.putBoolean(course.getTitle(), false);
-                    editorDone.apply();
+
                     DatabaseWrapper.writeClassStatus(course.getTitle(),0);
 
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)MainActivity.class));
@@ -246,8 +242,7 @@ public class InfoForDoubleCourses extends AppCompatActivity
                 if (course.getIsOpenForRegistration()) {
                     editorDblClass.putString(("Double"+"GENMATH"),course.getTitle());
                     editorDblClass.apply();
-                    editorIP.putBoolean(course.getTitle(),true);
-                    editorIP.apply();
+
                     DatabaseWrapper.writeClassStatus("GENMATH",1);
                     DatabaseWrapper.writeClassStatus(course.getTitle(),1);
 

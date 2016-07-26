@@ -35,21 +35,7 @@ public class alert extends Activity
         this.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() { //2131624022
 
             public void onClick(final View view) {
-                Context context = getApplicationContext();
-                //We need to load in three separate instances of the sharedpreferences as each of the first two instances only contains one vector
-                //Each vector of data stores booleans.  These booleans indicate whether a course is done or inprogress.
-                SharedPreferences sharedPrefDone = context.getSharedPreferences("courses", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editorDone = sharedPrefDone.edit();
-                editorDone.putBoolean(MainActivity.courseClassLoader.getCourseLabels()[int3], true);
-                editorDone.apply();
-                SharedPreferences sharedPrefInProgress = context.getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editorIP = sharedPrefInProgress.edit();
-                editorIP.putBoolean(MainActivity.courseClassLoader.getCourseLabels()[int3],false);
-                editorIP.apply();
                 DatabaseWrapper.writeClassStatus(CourseClassLoader.courseLabels[int3],2);
-
-
-
                 alert.this.startActivity(new Intent(alert.this, (Class)MainActivity.class));
             }
         });
@@ -61,16 +47,7 @@ public class alert extends Activity
             public void onClick(final View view) {
 
                 Context context = getApplicationContext();
-                //We need to load in three separate instances of the sharedpreferences as each of the first two instances only contains one vector
-                //Each vector of data stores booleans.  These booleans indicate whether a course is done or inprogress.
-                SharedPreferences sharedPrefDone = context.getSharedPreferences("courses", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editorDone = sharedPrefDone.edit();
-                editorDone.putBoolean(MainActivity.courseClassLoader.getCourseLabels()[int3], false);
-                editorDone.apply();
-                SharedPreferences sharedPrefInProgress = context.getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editorIP = sharedPrefInProgress.edit();
-                editorIP.putBoolean(MainActivity.courseClassLoader.getCourseLabels()[int3], false);
-                editorIP.apply();
+
                 DatabaseWrapper.writeClassStatus(CourseClassLoader.courseLabels[int3],0);
 
                 alert.this.startActivity(new Intent(alert.this, (Class)MainActivity.class));
