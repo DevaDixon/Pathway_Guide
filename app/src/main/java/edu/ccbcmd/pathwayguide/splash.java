@@ -47,7 +47,7 @@ public class splash extends AppCompatActivity
 
 
         switch (pathway){
-            case 0: {
+            default: {
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.health), 1000); //2130837595
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.tech), 1000); //2130837602
                 animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.business), 1000); //2130837583

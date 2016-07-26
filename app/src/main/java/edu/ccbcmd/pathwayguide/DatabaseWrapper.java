@@ -192,7 +192,7 @@ public class DatabaseWrapper {
                 genEdId = "W";
                 break;
             }
-            case "PRELECT": {
+            case "PRGELEC": {
                 int num = Integer.parseInt(classID.substring(7,8))-1;
                 return getProgramElectives(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME,num);
             }

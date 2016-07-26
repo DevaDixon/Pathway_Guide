@@ -1,6 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-
 public class CourseClass {
 
     //These are the different types of information used by the course class.
@@ -62,7 +61,7 @@ public class CourseClass {
         canTakeWOPrereq = false;
         isDoubleCourse = false;
         doubleCourses = null;
-        status = -1;
+        status = -2;
     }
     public CourseClass(String title,
                        String fullTitle,
@@ -128,6 +127,11 @@ public class CourseClass {
 
     public void setTitle(String title){
         this.title = title;
+    }
+    public boolean setStatus(int status) {
+        this.status = status;
+        boolean success = DatabaseWrapper.writeClassStatus(this.title, status);
+        return success;
     }
 
 
