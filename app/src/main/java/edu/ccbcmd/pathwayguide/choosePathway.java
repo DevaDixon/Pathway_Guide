@@ -29,12 +29,7 @@ package edu.ccbcmd.pathwayguide;
 
 public class choosePathway extends AppCompatActivity implements View.OnClickListener {
 
-
     public SharedPreferences prefs;
-
-
-
-
 
     public void onClick(final View view) {
 
@@ -54,12 +49,15 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
             case 0: {
                 editor.putInt("PathwayChoice", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
                 editor.apply();
+                boolean truth = DatabaseWrapper.setSettingsPathway(CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
+                Log.e("WEHE?", truth + "");
                 valid = true;
                 break;
             }
             case 1: {
                 editor.putInt("PathwayChoice", CourseContract.TSM.TSM);
                 editor.apply();
+                DatabaseWrapper.setSettingsPathway(CourseContract.TSM.TSM);
                 valid = true;
                 break;
             }
@@ -80,6 +78,7 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
             default: {
                 editor.putInt("PathwayChoice", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
                 editor.apply();
+                DatabaseWrapper.setSettingsPathway(CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
                 valid = true;
                 break;
             }

@@ -42,7 +42,7 @@ public class Settings extends AppCompatActivity
         this.findViewById(R.id.settings).setVisibility(View.INVISIBLE);
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
 
-        final ArrayAdapter adapter = new ArrayAdapter(this, R.layout.activity_settings, R.id.settings, new String[] { "Internet Setting", "Helpful Links", "Register For Courses", "Change Pathways", "Erase all progress", "Walkthrough", "Demo Blackboard Notification", "Demo Register Reminder" }); //2130968621, 2131624052
+        final ArrayAdapter adapter = new ArrayAdapter(this, R.layout.activity_settings, R.id.settings, new String[] { "Internet Setting", "Helpful Links", "Register For Courses", "Change Pathways", "Erase all progress", "Walkthrough"}); //"Demo Blackboard Notification", "Demo Register Reminder" });
         final ListView listView = (ListView)this.findViewById(R.id.settingslist);
         listView.setAdapter(adapter);
         listView.setClickable(true);
@@ -96,8 +96,8 @@ public class Settings extends AppCompatActivity
                         }
                         case 5: {
 
-                            //Settings.this.prefs.edit().putInt("demo", 1).commit();
-                            //Settings.this.startActivity(new Intent(Settings.this, (Class)demo_MainActivity.class));
+                            Settings.this.prefs.edit().putInt("demo", 1).commit();
+                            Settings.this.startActivity(new Intent(Settings.this, (Class)demo_MainActivity.class));
                             break;
                         }
                         case 6: {

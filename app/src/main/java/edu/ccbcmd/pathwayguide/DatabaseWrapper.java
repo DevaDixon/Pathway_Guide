@@ -218,4 +218,16 @@ public class DatabaseWrapper {
         return db.update("classes", cv, "id = ?", new String[]{classID}) != 0;
     }
 
+    public static int getSettingsPathway(){
+        Cursor c = db.query(true,"settings", new String[]{"pathway"},null,null,null,null,null,null);
+        if (c.getCount()==0){ return -1;}
+        c.moveToNext();
+        return c.getInt(c.getColumnIndex("pathway"));
+    }
+
+    public static boolean setSettingsPathway(int pathway){
+        ContentValues cv = new ContentValues();
+        cv.put("pathway",pathway);
+        return db.update("settings", cv, "pathway = ?", null)!=0;
+    }
 }
