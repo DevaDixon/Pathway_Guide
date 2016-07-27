@@ -12,8 +12,6 @@ import android.content.SharedPreferences;
 
 import android.app.Activity;
 
-
-
 public class alert extends Activity
 {
 

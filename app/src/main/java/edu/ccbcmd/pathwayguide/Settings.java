@@ -1,10 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-/**
- * Created by dixo8 on 6/24/2016.
- */
-
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -35,7 +30,7 @@ public class Settings extends AppCompatActivity
     public void onCreate(final Bundle bundle) {
 
         super.onCreate(bundle);
-        this.setContentView(R.layout.activity_settings); //2130968621
+        this.setContentView(R.layout.activity_settings);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.getSupportActionBar().show();
@@ -44,18 +39,16 @@ public class Settings extends AppCompatActivity
         this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, R.drawable.header)));
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setHomeButtonEnabled(true);
-        this.findViewById(R.id.settings).setVisibility(View.INVISIBLE); //2131624052, 4
+        this.findViewById(R.id.settings).setVisibility(View.INVISIBLE);
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
 
         final ArrayAdapter adapter = new ArrayAdapter(this, R.layout.activity_settings, R.id.settings, new String[] { "Internet Setting", "Helpful Links", "Register For Courses", "Change Pathways", "Erase all progress", "Walkthrough", "Demo Blackboard Notification", "Demo Register Reminder" }); //2130968621, 2131624052
-        final ListView listView = (ListView)this.findViewById(R.id.settingslist); //2131624050
+        final ListView listView = (ListView)this.findViewById(R.id.settingslist);
         listView.setAdapter(adapter);
         listView.setClickable(true);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int n, final long n2) {
-
 
                     switch (n) {
 
@@ -103,12 +96,12 @@ public class Settings extends AppCompatActivity
                         }
                         case 5: {
 
-                            Settings.this.prefs.edit().putInt("demo", 1).commit();
-                            Settings.this.startActivity(new Intent(Settings.this, (Class)demo_MainActivity.class));
+                            //Settings.this.prefs.edit().putInt("demo", 1).commit();
+                            //Settings.this.startActivity(new Intent(Settings.this, (Class)demo_MainActivity.class));
                             break;
                         }
                         case 6: {
-
+/*
                             final Settings this$0 = Settings.this;
                             final Intent intent = new Intent(Settings.this, (Class)openBlackboard.class);
                             final android.support.v4.app.TaskStackBuilder create = android.support.v4.app.TaskStackBuilder.create(this$0);
@@ -128,11 +121,12 @@ public class Settings extends AppCompatActivity
                             if (value == 1) {
                                 Settings.this.startActivity(new Intent(Settings.this, (Class)MainActivityZoomOut.class));
                                 return;
-                            }
+                            }*/
                             break;
                         }
-                        case 7: {
 
+                        case 7: {
+/*
                             final Settings this$2 = Settings.this;
                             final Intent intent2 = new Intent(this$2, (Class)NotificationActivity.class);
                             final android.support.v4.app.TaskStackBuilder create2 = android.support.v4.app.TaskStackBuilder.create(this$2);
@@ -153,7 +147,7 @@ public class Settings extends AppCompatActivity
                             if (value2 == 1) {
                                 Settings.this.startActivity(new Intent(Settings.this, (Class)MainActivityZoomOut.class));
                                 return;
-                            }
+                            }*/
                             break;
                         }
 

@@ -1,6 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlarmManager;

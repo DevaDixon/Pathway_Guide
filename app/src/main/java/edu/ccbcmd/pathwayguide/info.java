@@ -1,6 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-
 import java.net.InetAddress;
 
 import android.content.pm.ActivityInfo;
@@ -45,7 +44,6 @@ import android.content.DialogInterface;
         import android.content.Context;
 
         import android.support.v7.app.AppCompatActivity;
-
 
 public class info extends AppCompatActivity
 {

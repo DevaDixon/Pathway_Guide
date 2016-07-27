@@ -1,11 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-/**
- * Created by dixo8 on 6/24/2016.
- */
-
-
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -23,7 +17,6 @@ public class welcome extends AppCompatActivity
 
     public SharedPreferences prefs;
 
-
     public void onCreate(final Bundle bundle) {
 
         super.onCreate(bundle);
@@ -35,9 +28,9 @@ public class welcome extends AppCompatActivity
         final Resources resources = this.getResources();
         this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, 2130837594)));
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
-        final Button button = (Button)this.findViewById(R.id.button4); //2131624064
-        final Button button2 = (Button)this.findViewById(R.id.button5); //2131624065
-        final Button button3 = (Button)this.findViewById(R.id.button6); //2131624066
+        final Button button = (Button)this.findViewById(R.id.button4);
+        final Button button2 = (Button)this.findViewById(R.id.button5);
+        final Button button3 = (Button)this.findViewById(R.id.button6);
         button.setOnClickListener(new View.OnClickListener() {
 
 

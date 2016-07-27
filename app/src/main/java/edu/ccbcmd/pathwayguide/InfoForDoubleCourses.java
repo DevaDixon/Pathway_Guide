@@ -1,6 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-
 import android.app.Activity;
 import android.app.Application;
 import android.app.ListActivity;

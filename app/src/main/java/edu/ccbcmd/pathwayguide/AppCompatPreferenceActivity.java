@@ -1,7 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-
-
 import android.support.annotation.Nullable;
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.ActionBar;

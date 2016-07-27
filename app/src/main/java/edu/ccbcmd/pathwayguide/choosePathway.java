@@ -1,8 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-
-
-
         import android.content.pm.ActivityInfo;
         import android.content.res.Resources;
         import android.preference.PreferenceManager;
