@@ -43,13 +43,13 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
         boolean valid = false;
 
         editor.putString("SubPathTitle", ((Button)view).getText().toString());
+        int pathway = DatabaseWrapper.getSettingsPathway();
 
-
-        switch (pathwayPref.getInt("PathwayChoice",100)) {
+        switch (pathway) {
             case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH: {
                 switch (view.getId()) {
                     case 0: {
-                        editor.putInt("PathwaySubChoice", CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN);
+                        DatabaseWrapper.setSettingsSubPathway(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN);
                         valid = true;
                         break;
                     }
@@ -98,7 +98,7 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
                         break;
                     }
                     default: {
-                        editor.putInt("PathwaySubChoice", CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN);
+                        DatabaseWrapper.setSettingsSubPathway(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN);
                         valid = true;
                         break;
                     }
@@ -107,7 +107,7 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
             case CourseContract.TSM.TSM:{
                 switch (view.getId()) {
                     case 0: {
-                        editor.putInt("PathwaySubChoice", CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT);
+                        DatabaseWrapper.setSettingsSubPathway(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT);
                         valid = true;
                         break;
                     }
@@ -196,19 +196,12 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
         //for the courses that are done.
         SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
 
-        int pathway = pathwayPref.getInt("PathwayChoice",-1);
-        String pathwayTitle = pathwayPref.getString("PathwayTitle", "null");
-
-        //Initializing the database
-        dataBase = new PathwaysDBHelper(getApplicationContext());
-        DatabaseWrapper wrapper = new DatabaseWrapper();
-
-        int length;
-        String[] subPaths;
+        int pathway = DatabaseWrapper.getSettingsPathway();
 
 
         //subPaths = wrapper.getSubPathways(pathwayTitle);
         String [] subPath;
+        int length;
 
         switch(pathway){
             case 100:{

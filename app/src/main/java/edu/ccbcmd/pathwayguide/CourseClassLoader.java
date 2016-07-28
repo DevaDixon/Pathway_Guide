@@ -43,8 +43,6 @@ public class CourseClassLoader {
         super();
 
 
-        //The third instance of sharedpreferences is the particular pathway chosen.
-        SharedPreferences pathwayPref = context.getSharedPreferences("pathway", Context.MODE_PRIVATE);
 
         //The fourth instance of sharedpreferences is to get the permission of a course
         SharedPreferences pathwayPermission = context.getSharedPreferences("permission",Context.MODE_PRIVATE);
@@ -57,11 +55,8 @@ public class CourseClassLoader {
         DatabaseWrapper wrapper = new DatabaseWrapper();
 
 
-        int pathway;
-        if (pathwayPref.contains("PathwayChoice"))
-        {
-            pathway = pathwayPref.getInt("PathwayChoice", 100);
-        } else { pathway = 100;}
+        int pathway =DatabaseWrapper.getSettingsPathway();
+        if (pathway == -1){pathway = 100;}
 
         //Once the pathway choice is memorialized as an integer, the switch case statement here will load in the appropriate
         // vectors into the courseLabels and coursePrereqs and courseURLs variables.
@@ -75,12 +70,7 @@ public class CourseClassLoader {
                 pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
                 coursePrereqs = loadInPreReqs(courseLabels);
                 courseFullTitles = loadInTitles(courseLabels);
-
-                //Old Way
-                //courseLabels = context.getResources().getStringArray(R.array.AlliedHealthPathway);
-                //courseFullTitles = new String[courseLabels.length]; //context.getResources().getStringArray(R.array.AlliedHealthPathwayFullTitles);
-                //coursePrereqs = context.getResources().getStringArray(R.array.AlliedHealthPrereqs);
-                courseURLs = new String[courseLabels.length]; //context.getResources().getStringArray(R.array.AlliedHealthURLS);
+                courseURLs = new String[courseLabels.length];
                 break;
             }
             case CourseContract.TSM.TSM:
@@ -90,11 +80,7 @@ public class CourseClassLoader {
                 pathwayText = CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME;
                 coursePrereqs = loadInPreReqs(courseLabels);
                 courseFullTitles = loadInTitles(courseLabels);
-                //OldWay
-                //courseLabels = context.getResources().getStringArray(R.array.TSMPathway);
-                //courseFullTitles = new String[courseLabels.length]; //context.getResources().getStringArray(R.array.TSMPathwayFullTitles);
-                //coursePrereqs =  loadInPreReqs(courseLabels); //context.getResources().getStringArray(R.array.TSMPrereqs);
-                courseURLs = new String[courseLabels.length]; //context.getResources().getStringArray(R.array.TSMURLS);
+                courseURLs = new String[courseLabels.length];
                 break;
             }
             default:
@@ -104,13 +90,7 @@ public class CourseClassLoader {
                 pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
                 coursePrereqs = loadInPreReqs(courseLabels);
                 courseFullTitles = loadInTitles(courseLabels);
-
-
-                //Old Way
-                //courseLabels = context.getResources().getStringArray(R.array.AlliedHealthPathway);
-                //courseFullTitles = new String[courseLabels.length]; //context.getResources().getStringArray(R.array.AlliedHealthPathwayFullTitles);
-                //coursePrereqs = context.getResources().getStringArray(R.array.AlliedHealthPrereqs);
-                courseURLs = new String[courseLabels.length]; //context.getResources().getStringArray(R.array.AlliedHealthURLS);
+                courseURLs = new String[courseLabels.length];
                 break;
             }
         }
@@ -213,7 +193,7 @@ public class CourseClassLoader {
 
                 String[] courseInfo = DatabaseWrapper.getClassInfo(title);
                 if (title.substring(0,2).equals("PR")){
-                    courseInfo = DatabaseWrapper.getClassInfo("PRELECT");
+                    courseInfo = DatabaseWrapper.getClassInfo("PRGELEC");
                 } else if (courseInfo.length == 0){
                     Log.e("WEHAVEERROR",title);
                     courseInfo = DatabaseWrapper.getClassInfo("GENMATH");

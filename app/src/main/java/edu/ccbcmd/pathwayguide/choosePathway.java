@@ -33,31 +33,17 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
 
     public void onClick(final View view) {
 
-
-        //This shared preferences allows us to record the user choices. THIS shared preferences variable will be
-        //for the courses that are done.
-        SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
-        //The editor so we can save those preferences.
-        SharedPreferences.Editor editor = pathwayPref.edit();
-
         boolean valid = false;
-
-
-
 
         switch (view.getId()){
             case 0: {
-                editor.putInt("PathwayChoice", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
-                editor.apply();
-                boolean truth = DatabaseWrapper.setSettingsPathway(CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
-                Log.e("WEHE?", truth + "");
+                DatabaseWrapper.setSettingsPathway(CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
                 valid = true;
                 break;
             }
             case 1: {
-                editor.putInt("PathwayChoice", CourseContract.TSM.TSM);
-                editor.apply();
-                DatabaseWrapper.setSettingsPathway(CourseContract.TSM.TSM);
+                boolean truth =DatabaseWrapper.setSettingsPathway(CourseContract.TSM.TSM);
+                Log.e("WOAH",truth+"");
                 valid = true;
                 break;
             }
@@ -76,8 +62,6 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
                 break;
             }
             default: {
-                editor.putInt("PathwayChoice", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
-                editor.apply();
                 DatabaseWrapper.setSettingsPathway(CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
                 valid = true;
                 break;
@@ -129,7 +113,7 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         }
 
         final LinearLayout linearLayout = (LinearLayout) this.findViewById(R.id.linearLayout3);
-        String[] pathwaysTop = resources.getStringArray(R.array.PathwayCategory);
+        String[] pathwaysTop = DatabaseWrapper.getAllPathways();// resources.getStringArray(R.array.PathwayCategory);
         int length = pathwaysTop.length;
         for (int i = 0; i < length; ++i) {
             final Button button = new Button(this);
