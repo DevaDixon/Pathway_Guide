@@ -90,7 +90,7 @@ public class chooseCurrentClasses extends AppCompatActivity
         this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, R.drawable.header))); //2130837594
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setHomeButtonEnabled(true);
-        this.getResources();
+
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
 
         new RelativeLayout(this);

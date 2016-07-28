@@ -43,9 +43,6 @@ public class alert extends Activity
 
 
             public void onClick(final View view) {
-
-                Context context = getApplicationContext();
-
                 DatabaseWrapper.writeClassStatus(CourseClassLoader.courseLabels[int3],0);
 
                 alert.this.startActivity(new Intent(alert.this, (Class)MainActivity.class));

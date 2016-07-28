@@ -67,14 +67,12 @@ public class MainActivity extends Activity implements View.OnClickListener
         this.prefs.edit().putInt("zoom", 0).commit();
 
 
-        Integer value = this.prefs.getInt("pathwayID", 0);
-        Integer value2 = this.prefs.getInt("pathwaysubID", 0);
-        String subPathTitle = this.prefs.getString("SubPathTitle", "null");
+
         String string = this.prefs.getString("notifydate", "00/00/0000");
         checkAlarm(string);
 
 
-        if (value2 == -1 ) {
+        if (DatabaseWrapper.getSettingsPathway() == -1 ) {
             this.startActivity(new Intent(this, (Class)choosePathway.class));
             return;
         }
@@ -110,7 +108,7 @@ public class MainActivity extends Activity implements View.OnClickListener
              Button button = new Button(this);
 
             //id seems to serve as which one we are talking about in the list.
-             int id = i; //choosePathway.subpathwayCoursePath[0][value2][i - 1];
+             int id = i;
             button.setText(curCourse.getTitle());
 
              LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
@@ -135,16 +133,7 @@ public class MainActivity extends Activity implements View.OnClickListener
 
             //Length is asking how many courses?  No idea why?  It seems this is a catch case so that
             //bad pathways don't crash the program.
-            int length = 1;// choosePathway.coursePreRec[value][id].length;
-
-
-            //This is loading what status the course is.
-            int n10 = -1; //_loadArrayInt[id];
-            if (curCourse.getDone()){ n10 = 0;}
-            if (curCourse.getIsOpenForRegistration()){n10 = 3;}
-            if (curCourse.getInProgress()){n10 = 4;}
-
-
+            int length = 1;
 
             button.setTextColor(Color.parseColor("#ffffff"));
 
