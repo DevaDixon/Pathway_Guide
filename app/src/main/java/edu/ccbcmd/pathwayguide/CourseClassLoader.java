@@ -22,9 +22,6 @@ public class CourseClassLoader {
     //This list allows the courses to be sorted according to their status as done, inprogress, available, and not able to take
     private List<CourseClass> sortedObject;
 
-    //This is the access to the database
-    PathwaysDBHelper dataBase;
-
     //This variable will loaded from the vector of course labels the appropriate labels for the pathway
     public  static String[] courseLabels;
     //This variable will load in the vector of course full labels.
@@ -37,23 +34,14 @@ public class CourseClassLoader {
     //This will store the pathway name
     String pathwayText;
 
-
-
     CourseClassLoader(Context context){
         super();
-
-
 
         //The fourth instance of sharedpreferences is to get the permission of a course
         SharedPreferences pathwayPermission = context.getSharedPreferences("permission",Context.MODE_PRIVATE);
 
         //The fifth instance of sharedpreferences is to get the double class status
         SharedPreferences pathwayDoubleCourse = context.getSharedPreferences("DoubleCourse",Context.MODE_PRIVATE);
-
-        //Initializing the database
-        dataBase = new PathwaysDBHelper(context);
-        DatabaseWrapper wrapper = new DatabaseWrapper();
-
 
         int pathway =DatabaseWrapper.getSettingsPathway();
         if (pathway == -1){pathway = 100;}
@@ -119,8 +107,7 @@ public class CourseClassLoader {
             boolean isCourseAvailableForRegistration = false;
 
             boolean isDoublePrereq = false;
-            //TODO FIGURE OUT WHAT THIS IS TRIGGERED BY? DATABASE CALL?
-            //if (somecondition){ isDoublePrereq = true;}  //This stands to be the trigger if the class has either/or prereqs.
+            if (coursePrereqs[i].split(",").length>1){isDoublePrereq = true;}  //This stands to be the trigger if the class has either/or prereqs.
 
             boolean isDoubleClass = false;
             if (courseLabels[i].substring(0,2).equals("GE")||courseLabels[i].substring(0,2).equals("PR")){
@@ -223,8 +210,9 @@ public class CourseClassLoader {
 
 
             if(isDoublePrereq && !hasBeenAdded){
+                Log.e("CCL",i+"");
                 String[] iCoursePrereqArray = coursePrereqs[i].split(",");
-                for (int iterator = 0; i<iCoursePrereqArray.length; i++) {
+                for (int iterator = 0; iterator<iCoursePrereqArray.length; iterator++) {
                     String iCoursePrereq = iCoursePrereqArray[iterator];
                     //These lines check if the course has a listed prerequisite, and sets the corresponding flag.
                     if (!iCoursePrereq.equals("NONE")) {
@@ -489,13 +477,15 @@ public class CourseClassLoader {
 
     private String[] loadInPreReqs(String[] courses){
         String[] preReq = new String[courses.length];
-        DatabaseWrapper wrapper = new DatabaseWrapper();
         for ( int i = 0; i < courses.length; i++) {
             if (DatabaseWrapper.getClassPrereqs(courses[i]).length!=0)
                 preReq[i] = DatabaseWrapper.getClassPrereqs(courses[i])[0];
             else
                 preReq[i] = "NONE";
+            Log.e("loadInPreReqs",preReq[i]);
         }
+
+
         return preReq;
     }
 

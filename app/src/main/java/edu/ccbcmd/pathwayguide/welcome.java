@@ -26,7 +26,7 @@ public class welcome extends AppCompatActivity
         this.getSupportActionBar().show();
         this.getSupportActionBar().setTitle("Welcome");
         final Resources resources = this.getResources();
-        //this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, 2130837594)));
+        this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, R.drawable.header)));
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         final Button button = (Button)this.findViewById(R.id.button4);
         final Button button2 = (Button)this.findViewById(R.id.button5);
