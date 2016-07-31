@@ -255,6 +255,7 @@ public class CourseClassLoader {
 
 
             if(isDoublePrereq && !hasBeenAdded){
+                Log.e("CCL",i+"");
                 String[] iCoursePrereqArray = coursePrereqs[i].split(",");
                 for (int iterator = 0; iterator<iCoursePrereqArray.length; iterator++) {
                     String iCoursePrereq = iCoursePrereqArray[iterator];
@@ -541,6 +542,7 @@ public class CourseClassLoader {
                 preReq[i] = DatabaseWrapper.getClassPrereqs(courses[i])[0];
             else
                 preReq[i] = "NONE";
+            Log.e("loadInPreReqs",preReq[i]);
         }
 
 
