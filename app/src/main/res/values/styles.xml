@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+    <style name="ShowcaseButton">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">96.0dip</item>
+    </style>
+    <style name="ShowcaseView">
+        <item name="sv_backgroundColor">#3333b5e5</item>
+        <item name="sv_buttonText">@android:string/ok</item>
+        <item name="sv_detailTextAppearance">@style/TextAppearance.ShowcaseView.Detail</item>
+        <item name="sv_titleTextAppearance">@style/TextAppearance.ShowcaseView.Title</item>
+    </style>
+    <style name="ShowcaseView.Light" parent="@style/ShowcaseView">
+        <item name="sv_backgroundColor">#3333b5e5</item>
+        <item name="sv_buttonText">@android:string/ok</item>
+        <item name="sv_detailTextAppearance">@style/TextAppearance.ShowcaseView.Detail.Light</item>
+        <item name="sv_titleTextAppearance">@style/TextAppearance.ShowcaseView.Title</item>
+    </style>
+    <style name="SplashTheme" parent="@style/Theme.AppCompat.NoActionBar" />
+
+    <style name="TextAppearance.ShowcaseView.Detail" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#ffffffff</item>
+    </style>
+    <style name="TextAppearance.ShowcaseView.Detail.Light" parent="@style/TextAppearance.ShowcaseView.Detail">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:shadowColor">#ffff0000</item>
+        <item name="android:shadowRadius">0.0</item>
+    </style>
+    <style name="TextAppearance.ShowcaseView.Title" parent="@android:style/TextAppearance.Large">
+        <item name="android:textColor">#ff33b5e5</item>
+    </style>
+    <style name="TextAppearance.ShowcaseView.Title.Light" parent="@style/TextAppearance.ShowcaseView.Title">
+        <item name="android:shadowRadius">0.0</item>
+    </style>
+
+
+</resources>

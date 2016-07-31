@@ -1,0 +1,68 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="edu.ccbcmd.pathwayguide">
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+<uses-permission android:name="android.permission.VIBRATE"/>
+<application android:allowBackup="true"  android:icon="@drawable/appicon" android:label="@string/app_name" android:supportsRtl="true" android:theme="@style/AppTheme">
+    <activity android:name="edu.ccbcmd.pathwayguide.MainActivity" android:screenOrientation="portrait"/>
+    <activity android:name="edu.ccbcmd.pathwayguide.info" android:parentActivityName="edu.ccbcmd.pathwayguide.MainActivity" android:screenOrientation="portrait">
+        <meta-data android:name="android.support.PARENT_ACTIVITY" android:screenOrientation="portrait" android:value=".MainActivity"/>
+    </activity>
+    <activity android:name="edu.ccbcmd.pathwayguide.InfoForDoubleCourses" android:parentActivityName="edu.ccbcmd.pathwayguide.MainActivity" android:screenOrientation="portrait">
+        <meta-data android:name="android.support.PARENT_ACTIVITY" android:screenOrientation="portrait" android:value=".MainActivity"/>
+    </activity>
+    <activity android:name="edu.ccbcmd.pathwayguide.choosePathway" android:parentActivityName="edu.ccbcmd.pathwayguide.MainActivity" android:screenOrientation="portrait">
+        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".MainActivity"/>
+    </activity>
+    <activity android:name="edu.ccbcmd.pathwayguide.webView" android:parentActivityName="edu.ccbcmd.pathwayguide.info" android:screenOrientation="portrait">
+        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".info"/>
+    </activity>
+    <activity android:name="edu.ccbcmd.pathwayguide.chooseSub_Pathway" android:parentActivityName="edu.ccbcmd.pathwayguide.choosePathway" android:screenOrientation="portrait">
+        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".choosePathway"/>
+    </activity>
+    <receiver android:name="edu.ccbcmd.pathwayguide.AlarmReceiver">
+        <intent-filter>
+            <action android:name="android.media.action.DISPLAY_NOTIFICATION"/>
+            <category android:name="android.intent.category.DEFAULT"/>
+        </intent-filter>
+    </receiver>
+    <receiver android:name="edu.ccbcmd.pathwayguide.BlackBoardAlarmReceiver">
+        <intent-filter>
+            <action android:name="android.media.action.DISPLAY_Blackboard_NOTIFICATION"/>
+            <category android:name="android.intent.category.DEFAULT_Blackboard"/>
+        </intent-filter>
+    </receiver>
+    <activity android:name="edu.ccbcmd.pathwayguide.NotificationActivity" android:screenOrientation="portrait">
+        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".MainActivity"/>
+    </activity> &gt;
+    <activity android:name="edu.ccbcmd.pathwayguide.alert" android:parentActivityName="edu.ccbcmd.pathwayguide.MainActivity" android:screenOrientation="portrait" android:theme="@android:style/Theme.Holo.Dialog.NoActionBar">
+        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".MainActivity"/>
+    </activity>
+    <activity android:name="edu.ccbcmd.pathwayguide.splash" android:screenOrientation="portrait">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN"/>
+            <category android:name="android.intent.category.LAUNCHER"/>
+        </intent-filter>
+    </activity>
+    <activity android:name="edu.ccbcmd.pathwayguide.blackboardReminder" android:parentActivityName="edu.ccbcmd.pathwayguide.MainActivity" android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.Dialog">
+        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".MainActivity"/>
+    </activity>
+    <activity android:name="edu.ccbcmd.pathwayguide.cantRegister">
+        <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".NotificationActivity"/>
+    </activity>
+    <activity android:name="edu.ccbcmd.pathwayguide.MainActivityZoomOut" android:screenOrientation="portrait"/>
+    <activity android:name="edu.ccbcmd.pathwayguide.Settings" android:parentActivityName="edu.ccbcmd.pathwayguide.MainActivity"/>
+    <activity android:name="edu.ccbcmd.pathwayguide.links" android:parentActivityName="edu.ccbcmd.pathwayguide.Settings"/>
+    <activity android:name="edu.ccbcmd.pathwayguide.demo_MainActivity"/>
+    <activity android:name="edu.ccbcmd.pathwayguide.demo_info"/>
+    <activity android:name="edu.ccbcmd.pathwayguide.demo_alert" android:screenOrientation="portrait" android:theme="@android:style/Theme.Holo.Dialog.NoActionBar"/>
+    <activity android:name="edu.ccbcmd.pathwayguide.demo_mainActivity_2"/>
+    <activity android:name="edu.ccbcmd.pathwayguide.demo_info_2"/>
+    <activity android:name="edu.ccbcmd.pathwayguide.demo_mainActivity_3"/>
+    <activity android:name="edu.ccbcmd.pathwayguide.welcome"/>
+    <activity android:name="edu.ccbcmd.pathwayguide.chooseCompletedClasses" android:parentActivityName="edu.ccbcmd.pathwayguide.chooseSub_Pathway"/>
+    <activity android:name="edu.ccbcmd.pathwayguide.chooseCurrentClasses" android:parentActivityName="edu.ccbcmd.pathwayguide.chooseCompletedClasses"/>
+    <activity android:name="edu.ccbcmd.pathwayguide.openBlackboard"/>
+    <activity android:name="edu.ccbcmd.pathwayguide.internet_setting" android:parentActivityName="edu.ccbcmd.pathwayguide.Settings"/>
+</application>
+</manifest>

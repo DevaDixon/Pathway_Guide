@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:drawable="@color/grey" />
+    <item android:drawable="@android:color/white" />
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:drawable="@android:color/white" />
+        </shape>
+    </item>
+    <item android:right="5.0dip">
+        <shape android:shape="rectangle">
+            <solid android:color="#ff000000" />
+        </shape>
+    </item>
+    <shape android:shape="rectangle">
+        <gradient android:startColor="#ff000000" android:angle="180.0" android:centerX="0.01" android:centerColor="@android:color/transparent" />
+    </shape>
+</selector>

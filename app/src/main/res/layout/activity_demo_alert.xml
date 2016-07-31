@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center_horizontal"
+    android:background="#ff1ba9d8"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="2.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:textSize="30.0dip"
+        android:textStyle="bold"
+        android:textColor="#ffffffff"
+        android:textColorHighlight="#ff211f1f"
+        android:gravity="fill_vertical|center"
+        android:id="@+id/textView3"
+        android:background="@drawable/header"
+        android:layout_width="wrap_content"
+        android:layout_height="80.0dip"
+        android:text="Class Result"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textIsSelectable="true" />
+
+    <TextView
+        android:textSize="28.0dip"
+        android:textStyle="bold"
+        android:textColor="#ffffffff"
+        android:gravity="center"
+        android:id="@id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How did you finish this class?"
+        android:layout_below="@id/textView3"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout android:gravity="center"
+        android:orientation="horizontal"
+        android:background="#ffffffff"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView4"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <Button
+            android:textColor="#ff1ba9d8"
+            android:id="@id/buttonCollect"
+            android:background="@drawable/toggle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0.0dip"
+            android:text="I Failed"
+            android:layout_weight="1.0"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true" />
+
+        <Button
+            android:textColor="#ff1ba9d8"
+            android:id="@id/button2"
+            android:background="@drawable/toggle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0.0dip"
+            android:text="I Passed"
+            android:layout_weight="1.0"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true" />
+    </LinearLayout>
+</RelativeLayout>

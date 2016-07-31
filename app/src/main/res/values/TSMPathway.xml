@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="TSMPathway">
+        <item>MATH 251</item>
+        <item>ACDV 101</item>
+        <item>ENGL 101</item>
+        <item>BIOL 110</item>
+        <item>PSYC 101</item>
+        <item>SOCL 101</item>
+        <item>CMNS 101</item>
+        <item>PSYC 103</item>
+        <item>BIOL 210</item>
+        <item>BIOL 230</item>
+        <item>TSM S01</item>
+        <item>TSM S02</item>
+        <item>TSM S03</item>
+        <item>TSM S04</item>
+    </string-array>
+
+    <string-array name="TSMPathwayFullTitles">
+        <item>MATH 251</item>
+        <item>ACDV 101</item>
+        <item>ENGL 101</item>
+        <item>BIOL 110</item>
+        <item>PSYC 101</item>
+        <item>SOCL 101</item>
+        <item>CMNS 101</item>
+        <item>PSYC 103</item>
+        <item>BIOL 210</item>
+        <item>BIOL 230</item>
+        <item>TSM S01</item>
+        <item>TSM S02</item>
+        <item>TSM S03</item>
+        <item>TSM S04</item>
+    </string-array>
+
+    <string-array name="TSMPrereqs">
+        <item>NONE</item>
+        <item>NONE</item>
+        <item>NONE</item>
+        <item>NONE</item>
+        <item>NONE</item>
+        <item>NONE</item>
+        <item>NONE</item>
+        <item>PSYC 101</item>
+        <item>BIOL 110</item>
+        <item>BIOL 210</item>
+        <item>PERMISSION</item>
+        <item>PERMISSION</item>
+        <item>PERMISSION</item>
+        <item>PERMISSION</item>
+    </string-array>
+
+    <string-array name="TSMURLS">
+        <item>http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/math/083</item>
+        <item>http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/ACDV/101</item>
+        <item>http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/engl/101</item>
+        <item>http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/biol/110</item>
+        <item>http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/psyc/101</item>
+        <item>http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/socl/101</item>
+        <item>http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/cmns/101</item>
+        <item>http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/psyc/103</item>
+        <item>http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/biol/210</item>
+        <item>http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/biol/230</item>
+        <item>http://www.ccbcmd.edu/Programs-and-Courses-Finder/program/registered-nursing-program</item>
+        <item>http://www.ccbcmd.edu/Programs-and-Courses-Finder/program/registered-nursing-program</item>
+        <item>http://www.ccbcmd.edu/Programs-and-Courses-Finder/program/registered-nursing-program</item>
+        <item>http://www.ccbcmd.edu/Programs-and-Courses-Finder/program/registered-nursing-program</item>
+    </string-array>
+</resources>
