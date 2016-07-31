@@ -47,6 +47,10 @@ public class DatabaseWrapper {
         } else {
             c.moveToNext();
             String[] elecGroups = c.getString(c.getColumnIndex("prgelec")).split(" ");
+<<<<<<< HEAD
+            Log.e("DBW", elecGroups.length+"");
+=======
+>>>>>>> refs/remotes/origin/master
             String[][] electives = new String[elecGroups.length][0];
             for (int i=0; i<elecGroups.length; i++) electives[i] = elecGroups[i].split(",");
 
@@ -80,6 +84,23 @@ public class DatabaseWrapper {
             c.close();
             return name;
         }
+    }
+
+    /**
+     * Returns the names of all distinct pathways listed in database.
+     *
+     * If no pathways are found, returns a string array of length 0.
+     * For list of pathway names, consult /res/raw/pathwayvallues.txt
+     * @return the unique values from column "pathways" as String[]
+     */
+    public static String[] getAllPathways() {
+        Cursor c = db.query(true, "subpathways", new String[] {"pathway"}, null, null, null, null, null, null);
+        String[] pathways = new String[c.getCount()];
+        for (int i = 0; c.moveToNext(); i++) {
+            pathways[i] = c.getString(c.getColumnIndex("pathway"));
+        }
+        c.close();
+        return pathways;
     }
 
     // returns the subpathways in a pathway as a string array
