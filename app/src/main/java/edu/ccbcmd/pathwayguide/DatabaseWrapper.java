@@ -47,7 +47,6 @@ public class DatabaseWrapper {
         } else {
             c.moveToNext();
             String[] elecGroups = c.getString(c.getColumnIndex("prgelec")).split(" ");
-            Log.e("DBW", elecGroups.length+"");
             String[][] electives = new String[elecGroups.length][0];
             for (int i=0; i<elecGroups.length; i++) electives[i] = elecGroups[i].split(",");
 
@@ -61,7 +60,6 @@ public class DatabaseWrapper {
     // if the gen ed id is invalid, it returns an array of length 0
     public static String[] getGenEdClasses(String genedId) {
         Cursor c = db.query(true, "classes", new String[] {"id"}, "gened LIKE '%" + genedId + "%'", null, null, null, null, null);
-        Log.w("gen ed count", ((Integer)c.getCount()).toString());
         if (c.getCount() == 0) return new String[0];
         else {
             String[] result = new String[c.getCount()];

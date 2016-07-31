@@ -452,7 +452,7 @@ public class MainActivity extends Activity implements View.OnClickListener
             instance4.set(Calendar.SECOND, 0);
 
 
-
+            Log.e("Alarm", "Notify date: "+instance4.toString());
             Intent intent2 = new Intent("android.media.action.DISPLAY_NOTIFICATION");
             intent2.addCategory("android.intent.category.DEFAULT");
             PendingIntent broadcast2 = PendingIntent.getBroadcast(this, 100, intent2, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
@@ -536,7 +536,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         instance5.set(Calendar.YEAR, value6);
         instance5.set(Calendar.MINUTE, 0);
         instance5.set(Calendar.SECOND, 0);
-
+        Log.e("Alarm2", "Notify date: "+instance5.toString());
         Intent intent3 = new Intent("android.media.action.DISPLAY_Blackboard_NOTIFICATION");
         intent3.addCategory("android.intent.category.DEFAULT_Blackboard");
         PendingIntent broadcast3 = PendingIntent.getBroadcast(this, 100, intent3, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
