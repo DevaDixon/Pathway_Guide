@@ -49,9 +49,13 @@ public class DatabaseWrapper {
             String[] elecGroups = c.getString(c.getColumnIndex("prgelec")).split(" ");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             Log.e("DBW", elecGroups.length+"");
 =======
 >>>>>>> refs/remotes/origin/master
+=======
+            Log.e("DBW", elecGroups.length+"");
+>>>>>>> parent of 02ba37f... Nothing really
 =======
             Log.e("DBW", elecGroups.length+"");
 >>>>>>> parent of 02ba37f... Nothing really
