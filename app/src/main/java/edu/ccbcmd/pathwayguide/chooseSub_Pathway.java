@@ -28,18 +28,16 @@ import android.support.v7.app.AppCompatActivity;
 public class chooseSub_Pathway extends AppCompatActivity implements View.OnClickListener
 {
 
-    //This is the access to the database
-    PathwaysDBHelper dataBase;
-
     public SharedPreferences prefs;
-
+    protected String[] subPaths;
     public void onClick(final View view) {
-
         //This shared preferences allows us to record the user choices. THIS shared preferences variable will be
         //for the courses that are done.
         SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
         //The editor so we can save those preferences.
         SharedPreferences.Editor editor = pathwayPref.edit();
+<<<<<<< HEAD
+=======
         boolean valid = false;
 
         editor.putString("SubPathTitle", ((Button)view).getText().toString());
@@ -164,12 +162,17 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
             }
         }
         if (valid) {
+>>>>>>> refs/remotes/origin/master
 
+        // TODO: 7/23/2016 Remove conditional when pathways are ready to be implemented
+        if (((Button)view).getText().toString().equals("Nursing") || ((Button)view).getText().toString().equals("Information Technology")) {
+            editor.putString("SubPathTitle", subPaths[view.getId()]).apply();
             final Intent intentt = new Intent(this, (Class) chooseCompletedClasses.class);
             this.startActivity(intentt);
-            return;
         }
-
+        else {
+            Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+        }
 
 
 
@@ -196,46 +199,25 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
         //for the courses that are done.
         SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
 
+<<<<<<< HEAD
+        String pathTitle = pathwayPref.getString("PathTitle", "null");
+=======
         int pathway = DatabaseWrapper.getSettingsPathway();
 
 
         //subPaths = wrapper.getSubPathways(pathwayTitle);
         String [] subPath;
         int length;
+>>>>>>> refs/remotes/origin/master
 
-        switch(pathway){
-            case 100:{
-                //Databaseway
-                subPath = DatabaseWrapper.getSubPathways(CourseContract.PRE_ALLIED_HEALTH.PRE_ALLIED_HEALTH_NAME);
-                length = subPath.length;
-                break;
-                //Old Way
-                //subPath = getResources().getStringArray(R.array.PathwayCategoryPRE);
+        subPaths = DatabaseWrapper.getSubPathways(pathTitle);
 
-            }
-            case 200:{
-                subPath = DatabaseWrapper.getSubPathways(CourseContract.TSM.TSM_NAME);
-                length = subPath.length;
-                break;
-                //Old Way
-                //subPath = getResources().getStringArray(R.array.PathwayCategoryTSM);
 
-            }
-            default:{
-                //Databaseway
-                subPath = DatabaseWrapper.getSubPathways(CourseContract.PRE_ALLIED_HEALTH.PRE_ALLIED_HEALTH_NAME);
-                length = subPath.length;
-                break;
-                //Old Way
-                //subPath = getResources().getStringArray(R.array.PathwayCategoryPRE);
 
-            }
-        }
-
-            for (int i = 0; i < subPath.length; ++i) {
+            for (int i = 0; i < subPaths.length; ++i) {
                 final Button button = new Button(this);
                 button.setOnClickListener(this);
-                button.setText(subPath[i]);
+                button.setText(subPaths[i]);
                 final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
                 layoutParams.setMargins(5, 5, 5, 5);
                 button.setLayoutParams(layoutParams);

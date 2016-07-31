@@ -47,6 +47,14 @@ public class DatabaseWrapper {
         } else {
             c.moveToNext();
             String[] elecGroups = c.getString(c.getColumnIndex("prgelec")).split(" ");
+<<<<<<< HEAD
+            Log.e("DBW", elecGroups.length+"");
+=======
+<<<<<<< HEAD
+            Log.e("DBW", elecGroups.length+"");
+=======
+>>>>>>> refs/remotes/origin/master
+>>>>>>> parent of 4e1924c... Revert "Nothing really"
             String[][] electives = new String[elecGroups.length][0];
             for (int i=0; i<elecGroups.length; i++) electives[i] = elecGroups[i].split(",");
 

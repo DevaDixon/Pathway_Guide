@@ -68,11 +68,20 @@ public class MainActivity extends Activity implements View.OnClickListener
 
 
 
+<<<<<<< HEAD
+        //Integer value2 = this.prefs.getInt("pathwaysubID", 0);
+        String subPathTitle = this.prefs.getString("SubPathTitle", "null");
+=======
+>>>>>>> refs/remotes/origin/master
         String string = this.prefs.getString("notifydate", "00/00/0000");
         checkAlarm(string);
 
 
+<<<<<<< HEAD
+        if (subPathTitle == null) {
+=======
         if (DatabaseWrapper.getSettingsPathway() == -1 ) {
+>>>>>>> refs/remotes/origin/master
             this.startActivity(new Intent(this, (Class)choosePathway.class));
             return;
         }
@@ -118,7 +127,8 @@ public class MainActivity extends Activity implements View.OnClickListener
             button.setGravity(17);
             button.setTextSize(1, 14.0f);
             button.setTypeface(null, 1);
-            if (i != n7) {
+
+            if (i != n7) { //What does this do?
                 layoutParams.setMargins(n9, n9, n9, n9);
             }
             else {
@@ -133,25 +143,35 @@ public class MainActivity extends Activity implements View.OnClickListener
 
             //Length is asking how many courses?  No idea why?  It seems this is a catch case so that
             //bad pathways don't crash the program.
+<<<<<<< HEAD
+            int length = 1;// choosePathway.coursePreRec[value][id].length;
+
+
+
+
+=======
             int length = 1;
+>>>>>>> refs/remotes/origin/master
 
             button.setTextColor(Color.parseColor("#ffffff"));
 
-            if (curCourse.getDone()) {
+            if (curCourse.getStatus() == 2) {
                 button.setBackgroundColor(Color.parseColor("#159b8a")); //Green  DONE
             }
-            else if (curCourse.getInProgress()) {
+            else if (curCourse.getStatus() == 1) {
                 button.setBackgroundColor(Color.parseColor("#644181"));  //purple Currently taking
             }
             else if (curCourse.getIsOpenForRegistration()) {
                 button.setTextColor(Color.parseColor("#000000"));
                 button.setBackgroundColor(Color.parseColor("#fcd054"));  //YelloW!  Available for register
             }
+            /* Length is always 1, this seems pointless.
             else if (length == 0) {
                 button.setTextColor(Color.parseColor("#000000"));
                 button.setBackgroundColor(Color.parseColor("#fcd054"));
             //    Log.w("if/else", "=0");
             }
+            */
             else {
 
                     button.setBackgroundColor(Color.parseColor("#893f4e"));  //RED  NEED PERMISSION
