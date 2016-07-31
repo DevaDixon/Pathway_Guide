@@ -48,6 +48,7 @@ public class chooseCurrentClasses extends AppCompatActivity
             checkBoxesInProgress.add((CheckBox) viewGroup.getChildAt(i));
         }
 
+<<<<<<< HEAD
         SharedPreferences sharedPrefInProgress = getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
         SharedPreferences.Editor editorIP = sharedPrefInProgress.edit();
 
@@ -60,6 +61,8 @@ public class chooseCurrentClasses extends AppCompatActivity
         }
 */
 
+=======
+>>>>>>> refs/remotes/origin/master
         //Here's where we actually set up the checkboxes
         for (int i = 0; i < checkBoxesInProgress.size(); i++) {
 // TODO: 7/24/2016 Review efficiency. should be an easier way to do this.
@@ -67,11 +70,15 @@ public class chooseCurrentClasses extends AppCompatActivity
                 int id = box.getId();
 
                 if (box.isChecked()) {
+<<<<<<< HEAD
                     DatabaseWrapper.writeClassStatus(courseLabels[id], 1);
                 }
                 //if a checkbox was deselected, sets course from "IN_PROGRESS" to "NOT_COMPLETED"
             else if (DatabaseWrapper.getClassStatus(courseLabels[id]) == 1) {
                     DatabaseWrapper.writeClassStatus((courseLabels[id]), 0);
+=======
+                    DatabaseWrapper.writeClassStatus(courseLabels[id],1);
+>>>>>>> refs/remotes/origin/master
                 }
         }
 
@@ -98,7 +105,7 @@ public class chooseCurrentClasses extends AppCompatActivity
         this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, R.drawable.header))); //2130837594
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setHomeButtonEnabled(true);
-        this.getResources();
+
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
 
         new RelativeLayout(this);

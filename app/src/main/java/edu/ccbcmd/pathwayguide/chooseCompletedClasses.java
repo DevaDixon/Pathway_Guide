@@ -73,6 +73,7 @@ public class chooseCompletedClasses extends AppCompatActivity
                 counter++;
 
                 if(box.isChecked() ) {
+<<<<<<< HEAD
 
                     DatabaseWrapper.writeClassStatus(courseLabels[i], 2);
                 }
@@ -81,6 +82,11 @@ public class chooseCompletedClasses extends AppCompatActivity
                     if (status == 2) {
                         DatabaseWrapper.writeClassStatus(courseLabels[i], 0);
                     }
+=======
+                    DatabaseWrapper.writeClassStatus(courseLabels[i],2);
+                } else {
+                    DatabaseWrapper.writeClassStatus(courseLabels[i],0);
+>>>>>>> refs/remotes/origin/master
                 }
             }
         }

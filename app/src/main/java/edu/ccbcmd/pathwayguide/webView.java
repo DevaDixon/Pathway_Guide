@@ -1,11 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-/**
- * Created by dixo8 on 6/24/2016.
- */
-
-
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.ActivityInfo;

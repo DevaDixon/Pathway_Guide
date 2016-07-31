@@ -19,9 +19,6 @@ public class CourseClassLoader {
     //This list allows the courses to be sorted according to their status as done, inprogress, available, and not able to take
     private List<CourseClass> sortedObject;
 
-    //This is the access to the database
-    PathwaysDBHelper dataBase;
-
     //This variable will loaded from the vector of course labels the appropriate labels for the pathway
     public  static String[] courseLabels;
     //This variable will load in the vector of course full labels.
@@ -32,11 +29,16 @@ public class CourseClassLoader {
     String[] courseURLs;
 
     //This will store the pathway name
+<<<<<<< HEAD
     String subPathText;
+=======
+    String pathwayText;
+>>>>>>> refs/remotes/origin/master
 
     CourseClassLoader(Context context){
         super();
 
+<<<<<<< HEAD
         //We need to load in three separate instances of the sharedpreferences as each of the first two instances only contains one vector
         //Each vector of data stores booleans.  These booleans indicate whether a course is done or inprogress.
         SharedPreferences sharedPrefDone = context.getSharedPreferences("courses", Context.MODE_PRIVATE);
@@ -44,12 +46,15 @@ public class CourseClassLoader {
         //The third instance of sharedpreferences is the particular pathway chosen.
         SharedPreferences pathwayPref = context.getSharedPreferences("pathway", Context.MODE_PRIVATE);
 
+=======
+>>>>>>> refs/remotes/origin/master
         //The fourth instance of sharedpreferences is to get the permission of a course
         SharedPreferences pathwayPermission = context.getSharedPreferences("permission",Context.MODE_PRIVATE);
 
         //The fifth instance of sharedpreferences is to get the double class status
         SharedPreferences pathwayDoubleCourse = context.getSharedPreferences("DoubleCourse",Context.MODE_PRIVATE);
 
+<<<<<<< HEAD
 
 
         if (pathwayPref.contains("SubPathTitle"))
@@ -58,6 +63,46 @@ public class CourseClassLoader {
         } else {
             // TODO: 7/23/2016 Implement try/catch or other way to launch choosePathway.class if null
          subPathText = "Nursing";
+=======
+        int pathway =DatabaseWrapper.getSettingsPathway();
+        if (pathway == -1){pathway = 100;}
+
+        //Once the pathway choice is memorialized as an integer, the switch case statement here will load in the appropriate
+        // vectors into the courseLabels and coursePrereqs and courseURLs variables.
+        //TODO: FIX THIS SWITCH STATEMENT TO ENCOMPASS ALL OF THE PATHWAYS.
+        //TODO: INCLUDE THE SUBPATHWAY STATMENTS AS WELL!
+        switch (pathway){
+            case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH:
+            {
+                //Database way
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
+                pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
+                coursePrereqs = loadInPreReqs(courseLabels);
+                courseFullTitles = loadInTitles(courseLabels);
+                courseURLs = new String[courseLabels.length];
+                break;
+            }
+            case CourseContract.TSM.TSM:
+            {
+                //DataBase Way
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
+                pathwayText = CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME;
+                coursePrereqs = loadInPreReqs(courseLabels);
+                courseFullTitles = loadInTitles(courseLabels);
+                courseURLs = new String[courseLabels.length];
+                break;
+            }
+            default:
+            {
+                //Database way
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
+                pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
+                coursePrereqs = loadInPreReqs(courseLabels);
+                courseFullTitles = loadInTitles(courseLabels);
+                courseURLs = new String[courseLabels.length];
+                break;
+            }
+>>>>>>> refs/remotes/origin/master
         }
 
         courseLabels = DatabaseWrapper.getSubPathwayClasses(subPathText);
@@ -89,19 +134,32 @@ public class CourseClassLoader {
             boolean isCourseAvailableForRegistration = false;
 
             boolean isDoublePrereq = false;
-            //TODO FIGURE OUT WHAT THIS IS TRIGGERED BY? DATABASE CALL?
-            //if (somecondition){ isDoublePrereq = true;}  //This stands to be the trigger if the class has either/or prereqs.
+            if (coursePrereqs[i].split(",").length>1){isDoublePrereq = true;}  //This stands to be the trigger if the class has either/or prereqs.
 
             boolean isDoubleClass = false;
             if (courseLabels[i].substring(0,2).equals("GE")||courseLabels[i].substring(0,2).equals("PR")){
                 isDoubleClass = true;
             }
 
+            int courseStatus = DatabaseWrapper.getClassStatus(courseLabels[i]);
 
+            boolean done =false;
+            if (courseStatus ==2){
+                done = true;
+            }
+
+            boolean inProgress=false;
+            if (courseStatus == 1){
+                inProgress = true;
+            }
+
+<<<<<<< HEAD
             int status = DatabaseWrapper.getClassStatus(courseLabels[i]);
 
            // boolean done = sharedPrefDone.getBoolean(courseLabels[i], false);
            // boolean inProgress = sharedPrefInProgress.getBoolean(courseLabels[i], false);
+=======
+>>>>>>> refs/remotes/origin/master
             boolean preReq = false;
 
 
@@ -134,9 +192,19 @@ public class CourseClassLoader {
 
                     for (int j =0; j<courseLabels.length-1; j++)
                     {
+<<<<<<< HEAD
 
                         //Checks all courses to see if they match prereq, if so checks if that course is complete
                         if (courseLabels[j].equals(iCoursePrereq) && (DatabaseWrapper.getClassStatus(courseLabels[j]) == 2)) {
+=======
+                        String courseString = title;
+                        int preRecStatus = DatabaseWrapper.getClassStatus(courseLabels[j]);
+                        boolean prereqDone = false;
+                        if (preRecStatus==2){
+                            prereqDone =true;
+                        }
+                        if (courseString.equals(iCoursePrereq)&&prereqDone){
+>>>>>>> refs/remotes/origin/master
                             isCourseAvailableForRegistration = true;
                         }
 
@@ -175,15 +243,20 @@ public class CourseClassLoader {
                         meet,
                         canJump,
                         isDoubleClass,
+<<<<<<< HEAD
                         doubleClasses);
 
+=======
+                        doubleClasses,
+                        courseStatus);
+>>>>>>> refs/remotes/origin/master
                 hasBeenAdded = true;
             }
 
 
             if(isDoublePrereq && !hasBeenAdded){
                 String[] iCoursePrereqArray = coursePrereqs[i].split(",");
-                for (int iterator = 0; i<iCoursePrereqArray.length; i++) {
+                for (int iterator = 0; iterator<iCoursePrereqArray.length; iterator++) {
                     String iCoursePrereq = iCoursePrereqArray[iterator];
                     //These lines check if the course has a listed prerequisite, and sets the corresponding flag.
                     if (!iCoursePrereq.equals("NONE")) {
@@ -196,7 +269,11 @@ public class CourseClassLoader {
 
                         for (int j = 0; j < courseLabels.length - 1; j++) {
                             String courseString = courseLabels[j];
-                            boolean prereqDone = sharedPrefDone.getBoolean(courseLabels[j], false);
+                            int preRecStatus = DatabaseWrapper.getClassStatus(courseLabels[j]);
+                            boolean prereqDone = false;
+                            if (preRecStatus==2){
+                                prereqDone =true;
+                            }
                             if (courseString.equals(iCoursePrereq) && prereqDone) {
                                 isCourseAvailableForRegistration = true;
                             }
@@ -227,7 +304,12 @@ public class CourseClassLoader {
                         meet,
                         canJump,
                         false,
+<<<<<<< HEAD
                         new String[] {""});
+=======
+                        new String[] {""},
+                        courseStatus);
+>>>>>>> refs/remotes/origin/master
                 hasBeenAdded = true;
             }
 
@@ -243,7 +325,11 @@ public class CourseClassLoader {
                     for (int j =0; j<courseLabels.length-1; j++)
                     {
                         String courseString = courseLabels[j];
-                        boolean prereqDone = sharedPrefDone.getBoolean(courseLabels[j],false);
+                        int preRecStatus = DatabaseWrapper.getClassStatus(courseLabels[j]);
+                        boolean prereqDone = false;
+                        if (preRecStatus==2){
+                            prereqDone =true;
+                        }
                         if (courseString.equals(iCoursePrereq)&&prereqDone){
                             isCourseAvailableForRegistration = true;
                         }
@@ -269,7 +355,12 @@ public class CourseClassLoader {
                         meet,
                         canJump,
                         false,
+<<<<<<< HEAD
                         new String[] {""});
+=======
+                        new String[] {""},
+                        courseStatus);
+>>>>>>> refs/remotes/origin/master
             }
 
 
@@ -334,7 +425,7 @@ public class CourseClassLoader {
 
     public CourseClass instantiateNewCourse(String courseID, Context context, int count){
         CourseClass course = null;
-        DatabaseWrapper wrapper = new DatabaseWrapper();
+
         boolean canJump = false;
         boolean isCourseAvailableForRegistration = false;
         String iCoursePrereq;
@@ -351,18 +442,28 @@ public class CourseClassLoader {
         if (courseID.substring(0,2).equals("GE")){
             isDoubleClass = true;
         }
-        //We need to load in three separate instances of the sharedpreferences as each of the first two instances only contains one vector
-        //Each vector of data stores booleans.  These booleans indicate whether a course is done or inprogress.
-        SharedPreferences sharedPrefDone = context.getSharedPreferences("courses", Context.MODE_PRIVATE);
-        SharedPreferences sharedPrefInProgress = context.getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
+
         //The fourth instance of sharedpreferences is to get the permission of a course
         SharedPreferences pathwayPermission = context.getSharedPreferences("permission",Context.MODE_PRIVATE);
 
         //The fifth instance of sharedpreferences is to get the double class status
         SharedPreferences pathwayDoubleCourse = context.getSharedPreferences("DoubleCourse",Context.MODE_PRIVATE);
 
+<<<<<<< HEAD
         int status = DatabaseWrapper.getClassStatus(courseID);
 
+=======
+        int courseStatus = DatabaseWrapper.getClassStatus(courseID);
+        boolean done =false;
+        if (courseStatus ==2){
+            done = true;
+        }
+
+        boolean inProgress=false;
+        if (courseStatus == 1){
+            inProgress = true;
+        }
+>>>>>>> refs/remotes/origin/master
         boolean preReq = false;
         //This Loop determines what category each of the courses is in.
         //Assume the courses don't have extra prereqs.  Don't want to hurt my head here.
@@ -377,7 +478,11 @@ public class CourseClassLoader {
             for (int j =0; j<courseLabels.length-1; j++)
             {
                 String courseString = courseLabels[j];
-                boolean prereqDone = sharedPrefDone.getBoolean(courseLabels[j],false);
+                int preRecStatus = DatabaseWrapper.getClassStatus(courseLabels[j]);
+                boolean prereqDone = false;
+                if (preRecStatus==2){
+                    prereqDone =true;
+                }
                 if (courseString.equals(iCoursePrereq)&&prereqDone){
                     isCourseAvailableForRegistration = true;
                 }
@@ -403,7 +508,12 @@ public class CourseClassLoader {
                 meet,
                 canJump,
                 false,
+<<<<<<< HEAD
                 new String[] {""});
+=======
+                new String[] {""},
+                courseStatus);
+>>>>>>> refs/remotes/origin/master
         return  course;
     }
 
@@ -422,13 +532,18 @@ public class CourseClassLoader {
 
     private String[] loadInPreReqs(String[] courses){
         String[] preReq = new String[courses.length];
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
         for ( int i = 0; i < courses.length; i++) {
             if (DatabaseWrapper.getClassPrereqs(courses[i]).length!=0)
                 preReq[i] = DatabaseWrapper.getClassPrereqs(courses[i])[0];
             else
                 preReq[i] = "NONE";
         }
+
+
         return preReq;
     }
 

@@ -12,8 +12,6 @@ import android.content.SharedPreferences;
 
 import android.app.Activity;
 
-
-
 public class alert extends Activity
 {
 
@@ -35,6 +33,7 @@ public class alert extends Activity
         this.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() { //2131624022
 
             public void onClick(final View view) {
+<<<<<<< HEAD
                 Context context = getApplicationContext();
                 course.setStatus(2);
                 /*
@@ -51,6 +50,9 @@ public class alert extends Activity
                 */
 
 
+=======
+                DatabaseWrapper.writeClassStatus(CourseClassLoader.courseLabels[int3],2);
+>>>>>>> refs/remotes/origin/master
                 alert.this.startActivity(new Intent(alert.this, (Class)MainActivity.class));
             }
         });
@@ -60,6 +62,7 @@ public class alert extends Activity
 
 
             public void onClick(final View view) {
+<<<<<<< HEAD
 
                 Context context = getApplicationContext();
 
@@ -78,6 +81,9 @@ public class alert extends Activity
                 editorIP.putBoolean(MainActivity.courseClassLoader.getCourseLabels()[int3], false);
                 editorIP.apply();
                 */
+=======
+                DatabaseWrapper.writeClassStatus(CourseClassLoader.courseLabels[int3],0);
+>>>>>>> refs/remotes/origin/master
 
                 alert.this.startActivity(new Intent(alert.this, (Class)MainActivity.class));
             }

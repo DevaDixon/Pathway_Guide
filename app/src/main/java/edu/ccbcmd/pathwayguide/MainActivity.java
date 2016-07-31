@@ -1,6 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -58,6 +57,8 @@ public class MainActivity extends Activity implements View.OnClickListener
         this.setContentView(R.layout.activity_main); //2130968616
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        Log.e("DatabaseQuery",DatabaseWrapper.getSettingsPathway()+"");
+
         courseClassLoader = new CourseClassLoader(getApplicationContext());
 
         coursesList = courseClassLoader.loadClassObjects();
@@ -67,13 +68,20 @@ public class MainActivity extends Activity implements View.OnClickListener
 
 
 
+<<<<<<< HEAD
         //Integer value2 = this.prefs.getInt("pathwaysubID", 0);
         String subPathTitle = this.prefs.getString("SubPathTitle", "null");
+=======
+>>>>>>> refs/remotes/origin/master
         String string = this.prefs.getString("notifydate", "00/00/0000");
         checkAlarm(string);
 
 
+<<<<<<< HEAD
         if (subPathTitle == null) {
+=======
+        if (DatabaseWrapper.getSettingsPathway() == -1 ) {
+>>>>>>> refs/remotes/origin/master
             this.startActivity(new Intent(this, (Class)choosePathway.class));
             return;
         }
@@ -135,11 +143,15 @@ public class MainActivity extends Activity implements View.OnClickListener
 
             //Length is asking how many courses?  No idea why?  It seems this is a catch case so that
             //bad pathways don't crash the program.
+<<<<<<< HEAD
             int length = 1;// choosePathway.coursePreRec[value][id].length;
 
 
 
 
+=======
+            int length = 1;
+>>>>>>> refs/remotes/origin/master
 
             button.setTextColor(Color.parseColor("#ffffff"));
 
@@ -460,7 +472,7 @@ public class MainActivity extends Activity implements View.OnClickListener
             instance4.set(Calendar.SECOND, 0);
 
 
-
+            Log.e("Alarm", "Notify date: "+instance4.toString());
             Intent intent2 = new Intent("android.media.action.DISPLAY_NOTIFICATION");
             intent2.addCategory("android.intent.category.DEFAULT");
             PendingIntent broadcast2 = PendingIntent.getBroadcast(this, 100, intent2, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
@@ -544,7 +556,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         instance5.set(Calendar.YEAR, value6);
         instance5.set(Calendar.MINUTE, 0);
         instance5.set(Calendar.SECOND, 0);
-
+        Log.e("Alarm2", "Notify date: "+instance5.toString());
         Intent intent3 = new Intent("android.media.action.DISPLAY_Blackboard_NOTIFICATION");
         intent3.addCategory("android.intent.category.DEFAULT_Blackboard");
         PendingIntent broadcast3 = PendingIntent.getBroadcast(this, 100, intent3, PendingIntent.FLAG_UPDATE_CURRENT); //134217728

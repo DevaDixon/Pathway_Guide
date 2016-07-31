@@ -1,11 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-/**
- * Created by dixo8 on 6/24/2016.
- */
-
-
-
         import android.app.Notification;
         import android.app.PendingIntent;
         import android.app.NotificationManager;

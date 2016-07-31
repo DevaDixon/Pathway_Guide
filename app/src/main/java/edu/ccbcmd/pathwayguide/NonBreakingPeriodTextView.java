@@ -1,11 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-/**
- * Created by dixo8 on 6/24/2016.
- */
-
-
-
         import android.text.TextPaint;
         import android.text.Editable;
         import android.util.Log;

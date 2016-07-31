@@ -47,7 +47,10 @@ public class DatabaseWrapper {
         } else {
             c.moveToNext();
             String[] elecGroups = c.getString(c.getColumnIndex("prgelec")).split(" ");
+<<<<<<< HEAD
             Log.e("DBW", elecGroups.length+"");
+=======
+>>>>>>> refs/remotes/origin/master
             String[][] electives = new String[elecGroups.length][0];
             for (int i=0; i<elecGroups.length; i++) electives[i] = elecGroups[i].split(",");
 
@@ -61,7 +64,6 @@ public class DatabaseWrapper {
     // if the gen ed id is invalid, it returns an array of length 0
     public static String[] getGenEdClasses(String genedId) {
         Cursor c = db.query(true, "classes", new String[] {"id"}, "gened LIKE '%" + genedId + "%'", null, null, null, null, null);
-        Log.w("gen ed count", ((Integer)c.getCount()).toString());
         if (c.getCount() == 0) return new String[0];
         else {
             String[] result = new String[c.getCount()];
@@ -235,4 +237,45 @@ public class DatabaseWrapper {
         return db.update("classes", cv, "id = ?", new String[]{classID}) != 0;
     }
 
+    public static int getSettingsPathway(){
+        Cursor c = db.query(true,"settings", new String[]{"pathway"},null,null,null,null,null,null);
+        if (c.getCount()==0){ return -1;}
+        c.moveToNext();
+        return c.getInt(c.getColumnIndex("pathway"));
+    }
+    public static int getSettingsSubPathway(){
+        Cursor c = db.query(true,"settings", new String[]{"subpathway"},null,null,null,null,null,null);
+        if (c.getCount()==0){ return -1;}
+        c.moveToNext();
+        return c.getInt(c.getColumnIndex("subpathway"));
+    }
+
+    public static boolean setSettingsPathway(int pathway){
+        ContentValues cv = new ContentValues();
+        cv.put("pathway",pathway);
+        return db.update("settings", cv, null, null)!=0;
+    }
+    public static boolean setSettingsSubPathway(int pathway){
+        ContentValues cv = new ContentValues();
+        cv.put("subpathway",pathway);
+        return db.update("settings", cv, null, null)!=0;
+    }
+
+
+    /**
+          * Returns the names of all distinct pathways listed in database.
+          *
+          * If no pathways are found, returns a string array of length 0.
+          * For list of pathway names, consult /res/raw/pathwayvallues.txt
+          * @return the unique values from column "pathways" as String[]
+          */
+        public static String[] getAllPathways() {
+                Cursor c = db.query(true, "subpathways", new String[] {"pathway"}, null, null, null, null, null, null);
+                String[] pathways = new String[c.getCount()];
+                for (int i = 0; c.moveToNext(); i++) {
+                        pathways[i] = c.getString(c.getColumnIndex("pathway"));
+                    }
+                c.close();
+                return pathways;
+            }
 }

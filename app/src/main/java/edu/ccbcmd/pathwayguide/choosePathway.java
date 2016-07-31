@@ -1,5 +1,6 @@
 package edu.ccbcmd.pathwayguide;
 
+<<<<<<< HEAD
 
 
 
@@ -19,12 +20,40 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+=======
+        import android.content.pm.ActivityInfo;
+        import android.content.res.Resources;
+        import android.preference.PreferenceManager;
+        import android.util.TypedValue;
+
+        import android.view.Gravity;
+        import android.widget.Button;
+        import android.widget.LinearLayout;
+        import android.graphics.drawable.BitmapDrawable;
+        import android.graphics.BitmapFactory;
+        import android.widget.Toast;
+        import android.util.Log;
+
+        import android.graphics.drawable.Drawable;
+
+        import android.content.Context;
+
+        import android.view.MenuItem;
+
+        import android.view.View;
+        import android.content.Intent;
+        import android.os.Bundle;
+
+        import android.content.SharedPreferences;
+
+        import android.support.v7.app.AppCompatActivity;
+>>>>>>> refs/remotes/origin/master
 
 public class choosePathway extends AppCompatActivity implements View.OnClickListener {
 
-
     public SharedPreferences prefs;
 
+<<<<<<< HEAD
     protected String[] pathwaysTop;
 
 
@@ -37,6 +66,44 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
         //The editor so we can save those preferences.
         SharedPreferences.Editor editor = pathwayPref.edit();
+=======
+    public void onClick(final View view) {
+
+        boolean valid = false;
+
+        switch (view.getId()){
+            case 0: {
+                DatabaseWrapper.setSettingsPathway(CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
+                valid = true;
+                break;
+            }
+            case 1: {
+                boolean truth =DatabaseWrapper.setSettingsPathway(CourseContract.TSM.TSM);
+                Log.e("WOAH",truth+"");
+                valid = true;
+                break;
+            }
+            case 2:
+            {
+                Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                break;
+            }
+            case 3:
+            {
+                Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                break;
+            }
+            case 4:{
+                Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                break;
+            }
+            default: {
+                DatabaseWrapper.setSettingsPathway(CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
+                valid = true;
+                break;
+            }
+        }
+>>>>>>> refs/remotes/origin/master
 
 
         // TODO: 7/18/2016 REMOVE BEFORE RELEASE: conditional intentionally limits to first 2 paths since DB not complete as of now.
@@ -88,11 +155,15 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         }
 
         final LinearLayout linearLayout = (LinearLayout) this.findViewById(R.id.linearLayout3);
+<<<<<<< HEAD
 
 
         //Retrieves the pathway names from DB
         pathwaysTop = DatabaseWrapper.getAllPathways();
 
+=======
+        String[] pathwaysTop = DatabaseWrapper.getAllPathways();// resources.getStringArray(R.array.PathwayCategory);
+>>>>>>> refs/remotes/origin/master
         int length = pathwaysTop.length;
 
         for (int i = 0; i < length; i++) {

@@ -1,6 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-
 import android.app.Activity;
 import android.app.Application;
 import android.app.ListActivity;
@@ -206,13 +205,10 @@ public class InfoForDoubleCourses extends AppCompatActivity
             button2.setText("I have permission to take this class");
         }
 
-        //Getting a handle for the shared preference editor
-        SharedPreferences sharedPrefDone = getSharedPreferences("courses", Context.MODE_PRIVATE);
-        SharedPreferences sharedPrefIP = getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
+
         //The fifth instance of sharedpreferences is to get the double class status
         SharedPreferences pathwayDoubleCourse = getSharedPreferences("DoubleCourse",Context.MODE_PRIVATE);
-        final SharedPreferences.Editor editorDone = sharedPrefDone.edit();
-        final SharedPreferences.Editor editorIP = sharedPrefIP.edit();
+
         final SharedPreferences.Editor editorDblClass = pathwayDoubleCourse.edit();
 
 
@@ -223,9 +219,15 @@ public class InfoForDoubleCourses extends AppCompatActivity
                 if (course.getDone()) {
                     editorDblClass.putString(("Double"+"GENMATH"),course.getTitle());
                     editorDblClass.apply();
+<<<<<<< HEAD
                     editorDone.putBoolean(course.getTitle(), false);
                     editorDone.apply();
                     course.setStatus(0);
+=======
+
+                    DatabaseWrapper.writeClassStatus(course.getTitle(),0);
+
+>>>>>>> refs/remotes/origin/master
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)MainActivity.class));
                     return;
                 }
@@ -233,6 +235,8 @@ public class InfoForDoubleCourses extends AppCompatActivity
                 if (course.getInProgress()) {
                     editorDblClass.putString(("Double"+"GENMATH"),course.getTitle());
                     editorDblClass.apply();
+                    DatabaseWrapper.writeClassStatus(course.getTitle(),2);
+
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)alert.class));
                     return;
                 }
@@ -243,10 +247,17 @@ public class InfoForDoubleCourses extends AppCompatActivity
                 if (course.getIsOpenForRegistration()) {
                     editorDblClass.putString(("Double"+"GENMATH"),course.getTitle());
                     editorDblClass.apply();
+<<<<<<< HEAD
                     editorIP.putBoolean(course.getTitle(),true);
                     editorIP.apply();
                     Log.e("Wonderful Error", course.getTitle());
                     course.setStatus(0);
+=======
+
+                    DatabaseWrapper.writeClassStatus("GENMATH",1);
+                    DatabaseWrapper.writeClassStatus(course.getTitle(),1);
+
+>>>>>>> refs/remotes/origin/master
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)MainActivity.class));
                     return;
                 }
@@ -256,6 +267,7 @@ public class InfoForDoubleCourses extends AppCompatActivity
                     SharedPreferences.Editor editor = pathwayPermission.edit();
                     editor.putBoolean("permission"+course.getTitle(),true);
                     editor.apply();
+                    DatabaseWrapper.writeClassStatus(course.getTitle(),1);
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)MainActivity.class));
                     return;
                 }

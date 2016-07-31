@@ -36,6 +36,133 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
         SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
         //The editor so we can save those preferences.
         SharedPreferences.Editor editor = pathwayPref.edit();
+<<<<<<< HEAD
+=======
+        boolean valid = false;
+
+        editor.putString("SubPathTitle", ((Button)view).getText().toString());
+        int pathway = DatabaseWrapper.getSettingsPathway();
+
+        switch (pathway) {
+            case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH: {
+                switch (view.getId()) {
+                    case 0: {
+                        DatabaseWrapper.setSettingsSubPathway(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN);
+                        valid = true;
+                        break;
+                    }
+                    case 1: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 2: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 3: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 4: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 5: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 6: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 7: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 8: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 9: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 10: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 11: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    default: {
+                        DatabaseWrapper.setSettingsSubPathway(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN);
+                        valid = true;
+                        break;
+                    }
+                }
+            }
+            case CourseContract.TSM.TSM:{
+                switch (view.getId()) {
+                    case 0: {
+                        DatabaseWrapper.setSettingsSubPathway(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT);
+                        valid = true;
+                        break;
+                    }
+                    case 1: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 2: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 3: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 4: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 5: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 6: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 7: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 8: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 9: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 10: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case 11: {
+                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    default:{
+                        editor.putInt("PathwaySubChoice", CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT);
+                        valid=true;
+                        break;
+                    }
+                }
+            }
+        }
+        if (valid) {
+>>>>>>> refs/remotes/origin/master
 
         // TODO: 7/23/2016 Remove conditional when pathways are ready to be implemented
         if (((Button)view).getText().toString().equals("Nursing") || ((Button)view).getText().toString().equals("Information Technology")) {
@@ -72,7 +199,16 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
         //for the courses that are done.
         SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
 
+<<<<<<< HEAD
         String pathTitle = pathwayPref.getString("PathTitle", "null");
+=======
+        int pathway = DatabaseWrapper.getSettingsPathway();
+
+
+        //subPaths = wrapper.getSubPathways(pathwayTitle);
+        String [] subPath;
+        int length;
+>>>>>>> refs/remotes/origin/master
 
         subPaths = DatabaseWrapper.getSubPathways(pathTitle);
 
