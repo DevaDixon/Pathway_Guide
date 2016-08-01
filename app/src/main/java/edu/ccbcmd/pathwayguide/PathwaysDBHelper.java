@@ -46,7 +46,7 @@ public class PathwaysDBHelper extends SQLiteOpenHelper {
         // create tables
         db.execSQL("create table classes (id text primary key, name text, description text, prereqs text, gened text, status int)");
         db.execSQL("create table subpathways  (name text, degree text, pathway text, classes text, prgelec text)");
-        db.execSQL("create table settings (pathway integer, subpathway integer)");
+        db.execSQL("create table settings (pathway integer, subpathway text)");
 
         // populate all the classes from file
             BufferedReader rd = new BufferedReader(new InputStreamReader(classes));
@@ -89,7 +89,7 @@ public class PathwaysDBHelper extends SQLiteOpenHelper {
                 }
                 ContentValues cv = new ContentValues();
                 cv.put("pathway", -1);
-                cv.put("subpathway",-1);
+                cv.put("subpathway", "null");
                 db.insert("settings", null, cv);
 
         } catch (IOException e) {

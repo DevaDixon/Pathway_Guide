@@ -35,10 +35,6 @@ public class splash extends AppCompatActivity
         final ImageView imageView = (ImageView)this.findViewById(R.id.imageView);
         imageView.setImageDrawable(getResources().getDrawable(R.drawable.health));
 
-        //The third instance of sharedpreferences is the particular pathway chosen.
-        SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
-
-
         // set-up the database
         Runnable runnable = new Runnable() {
             @Override
@@ -54,7 +50,7 @@ public class splash extends AppCompatActivity
 
 
 
-        handler.post(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 int pathway = DatabaseWrapper.getSettingsPathway();
@@ -105,7 +101,7 @@ public class splash extends AppCompatActivity
                 }
                 animationDrawable.start();
             }
-        });
+        }, 200);
 
         handler.postDelayed( new Runnable() {
 

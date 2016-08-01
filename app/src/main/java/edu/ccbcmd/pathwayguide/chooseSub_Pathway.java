@@ -4,7 +4,6 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.util.Log;
 import android.util.TypedValue;
-
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,17 +11,11 @@ import android.widget.LinearLayout;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.BitmapFactory;
 import android.widget.Toast;
-
-import android.graphics.drawable.Drawable;
-
 import android.content.Context;
-
 import android.view.View;
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.content.SharedPreferences;
-
 import android.support.v7.app.AppCompatActivity;
 
 public class chooseSub_Pathway extends AppCompatActivity implements View.OnClickListener
@@ -47,9 +40,10 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
 
         switch (pathway) {
             case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH: {
+
                 switch (view.getId()) {
                     case 0: {
-                        DatabaseWrapper.setSettingsSubPathway(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN);
+                        DatabaseWrapper.setSettingsSubPathway(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
                         valid = true;
                         break;
                     }
@@ -98,16 +92,17 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
                         break;
                     }
                     default: {
-                        DatabaseWrapper.setSettingsSubPathway(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN);
+                        DatabaseWrapper.setSettingsSubPathway(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
                         valid = true;
                         break;
                     }
                 }
+                break;
             }
             case CourseContract.TSM.TSM:{
                 switch (view.getId()) {
                     case 0: {
-                        DatabaseWrapper.setSettingsSubPathway(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT);
+                        DatabaseWrapper.setSettingsSubPathway(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
                         valid = true;
                         break;
                     }
@@ -161,6 +156,7 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
                         break;
                     }
                 }
+                break;
             }
         }
         if (valid) {
@@ -198,27 +194,19 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
 
         int pathway = DatabaseWrapper.getSettingsPathway();
 
-
-        //subPaths = wrapper.getSubPathways(pathwayTitle);
         String [] subPath;
         int length;
 
         switch(pathway){
             case 100:{
-                //Databaseway
                 subPath = DatabaseWrapper.getSubPathways(CourseContract.PRE_ALLIED_HEALTH.PRE_ALLIED_HEALTH_NAME);
-                length = subPath.length;
                 break;
-                //Old Way
-                //subPath = getResources().getStringArray(R.array.PathwayCategoryPRE);
 
             }
             case 200:{
                 subPath = DatabaseWrapper.getSubPathways(CourseContract.TSM.TSM_NAME);
                 length = subPath.length;
                 break;
-                //Old Way
-                //subPath = getResources().getStringArray(R.array.PathwayCategoryTSM);
 
             }
             default:{

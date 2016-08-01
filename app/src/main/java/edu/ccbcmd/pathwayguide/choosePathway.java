@@ -42,8 +42,7 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
                 break;
             }
             case 1: {
-                boolean truth =DatabaseWrapper.setSettingsPathway(CourseContract.TSM.TSM);
-                Log.e("WOAH",truth+"");
+                DatabaseWrapper.setSettingsPathway(CourseContract.TSM.TSM);
                 valid = true;
                 break;
             }

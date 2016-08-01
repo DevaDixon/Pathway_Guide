@@ -45,6 +45,8 @@ public class CourseClassLoader {
 
         int pathway =DatabaseWrapper.getSettingsPathway();
         if (pathway == -1){pathway = 100;}
+        String subpathway = DatabaseWrapper.getSettingsSubPathway();
+        if (subpathway == "null") { subpathway = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;}
 
         //Once the pathway choice is memorialized as an integer, the switch case statement here will load in the appropriate
         // vectors into the courseLabels and coursePrereqs and courseURLs variables.
@@ -53,22 +55,48 @@ public class CourseClassLoader {
         switch (pathway){
             case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH:
             {
-                //Database way
-                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
-                pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
-                coursePrereqs = loadInPreReqs(courseLabels);
-                courseFullTitles = loadInTitles(courseLabels);
-                courseURLs = new String[courseLabels.length];
+                switch (subpathway) {
+                    case CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME: {
+                        courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
+                        pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
+                        coursePrereqs = loadInPreReqs(courseLabels);
+                        courseFullTitles = loadInTitles(courseLabels);
+                        courseURLs = new String[courseLabels.length];
+                        break;
+                    }
+                    default:{
+                        Log.e("CCL", "You loaded default!");
+                        courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
+                        pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
+                        coursePrereqs = loadInPreReqs(courseLabels);
+                        courseFullTitles = loadInTitles(courseLabels);
+                        courseURLs = new String[courseLabels.length];
+                        break;
+                    }
+                }
                 break;
             }
             case CourseContract.TSM.TSM:
             {
-                //DataBase Way
-                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
-                pathwayText = CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME;
-                coursePrereqs = loadInPreReqs(courseLabels);
-                courseFullTitles = loadInTitles(courseLabels);
-                courseURLs = new String[courseLabels.length];
+                switch (subpathway) {
+                    case CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME: {
+                        courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
+                        pathwayText = CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME;
+                        coursePrereqs = loadInPreReqs(courseLabels);
+                        courseFullTitles = loadInTitles(courseLabels);
+                        courseURLs = new String[courseLabels.length];
+                        break;
+                    }
+                    default:{
+                        Log.e("CCL", "You loaded default!");
+                        courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
+                        pathwayText = CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME;
+                        coursePrereqs = loadInPreReqs(courseLabels);
+                        courseFullTitles = loadInTitles(courseLabels);
+                        courseURLs = new String[courseLabels.length];
+                        break;
+                    }
+                }
                 break;
             }
             default:

@@ -222,11 +222,11 @@ public class DatabaseWrapper {
         c.moveToNext();
         return c.getInt(c.getColumnIndex("pathway"));
     }
-    public static int getSettingsSubPathway(){
+    public static String getSettingsSubPathway(){
         Cursor c = db.query(true,"settings", new String[]{"subpathway"},null,null,null,null,null,null);
-        if (c.getCount()==0){ return -1;}
+        if (c.getCount()==0){ return "null";}
         c.moveToNext();
-        return c.getInt(c.getColumnIndex("subpathway"));
+        return c.getString(c.getColumnIndex("subpathway"));
     }
 
     public static boolean setSettingsPathway(int pathway){
@@ -234,7 +234,7 @@ public class DatabaseWrapper {
         cv.put("pathway",pathway);
         return db.update("settings", cv, null, null)!=0;
     }
-    public static boolean setSettingsSubPathway(int pathway){
+    public static boolean setSettingsSubPathway(String pathway){
         ContentValues cv = new ContentValues();
         cv.put("subpathway",pathway);
         return db.update("settings", cv, null, null)!=0;
