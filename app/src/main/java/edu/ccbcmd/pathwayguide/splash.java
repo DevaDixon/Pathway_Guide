@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 public class splash extends AppCompatActivity
@@ -32,9 +33,14 @@ public class splash extends AppCompatActivity
         this.setContentView(R.layout.activity_splash); //2130968622
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        final ImageView imageView = (ImageView)this.findViewById(R.id.imageView);
+        final ImageView imageView = (ImageView) this.findViewById(R.id.imageView);
         imageView.setImageDrawable(getResources().getDrawable(R.drawable.health));
+        imageView.setVisibility(View.VISIBLE);
+    }
 
+    @Override
+    public void onStart(){
+        super.onStart();
         // set-up the database
         Runnable runnable = new Runnable() {
             @Override
@@ -92,7 +98,7 @@ public class splash extends AppCompatActivity
 
 
                 animationDrawable.setOneShot(true);
-
+                ImageView imageView = (ImageView) findViewById(R.id.imageView);
                 if (Build.VERSION.SDK_INT < 16) {
                     imageView.setImageDrawable(animationDrawable);
                 }
@@ -101,7 +107,7 @@ public class splash extends AppCompatActivity
                 }
                 animationDrawable.start();
             }
-        }, 200);
+        }, 100);
 
         handler.postDelayed( new Runnable() {
 

@@ -43,77 +43,70 @@ public class CourseClassLoader {
         //The fifth instance of sharedpreferences is to get the double class status
         SharedPreferences pathwayDoubleCourse = context.getSharedPreferences("DoubleCourse",Context.MODE_PRIVATE);
 
-        int pathway =DatabaseWrapper.getSettingsPathway();
-        if (pathway == -1){pathway = 100;}
         String subpathway = DatabaseWrapper.getSettingsSubPathway();
         if (subpathway == "null") { subpathway = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;}
 
-        //Once the pathway choice is memorialized as an integer, the switch case statement here will load in the appropriate
-        // vectors into the courseLabels and coursePrereqs and courseURLs variables.
-        //TODO: FIX THIS SWITCH STATEMENT TO ENCOMPASS ALL OF THE PATHWAYS.
-        //TODO: INCLUDE THE SUBPATHWAY STATMENTS AS WELL!
-        switch (pathway){
-            case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH:
-            {
-                switch (subpathway) {
-                    case CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME: {
-                        courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
-                        pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
-                        coursePrereqs = loadInPreReqs(courseLabels);
-                        courseFullTitles = loadInTitles(courseLabels);
-                        courseURLs = new String[courseLabels.length];
-                        break;
-                    }
-                    default:{
-                        Log.e("CCL", "You loaded default!");
-                        courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
-                        pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
-                        coursePrereqs = loadInPreReqs(courseLabels);
-                        courseFullTitles = loadInTitles(courseLabels);
-                        courseURLs = new String[courseLabels.length];
-                        break;
-                    }
-                }
-                break;
-            }
-            case CourseContract.TSM.TSM:
-            {
-                switch (subpathway) {
-                    case CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME: {
-                        courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
-                        pathwayText = CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME;
-                        coursePrereqs = loadInPreReqs(courseLabels);
-                        courseFullTitles = loadInTitles(courseLabels);
-                        courseURLs = new String[courseLabels.length];
-                        break;
-                    }
-                    default:{
-                        Log.e("CCL", "You loaded default!");
-                        courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
-                        pathwayText = CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME;
-                        coursePrereqs = loadInPreReqs(courseLabels);
-                        courseFullTitles = loadInTitles(courseLabels);
-                        courseURLs = new String[courseLabels.length];
-                        break;
-                    }
-                }
-                break;
-            }
-            default:
-            {
-                //Database way
+        // This switch statement will load in the proper subpathways and the associated data.
+        switch (subpathway) {
+            case CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME: {
                 courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
                 pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
-                coursePrereqs = loadInPreReqs(courseLabels);
-                courseFullTitles = loadInTitles(courseLabels);
-                courseURLs = new String[courseLabels.length];
+
+                break;
+            }
+            case CourseContract.PRE_ALLIED_HEALTH.OCCUPATIONAL_THERAPY_ASSISTANT_NAME: {
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.OCCUPATIONAL_THERAPY_ASSISTANT_NAME);
+                pathwayText = CourseContract.PRE_ALLIED_HEALTH.OCCUPATIONAL_THERAPY_ASSISTANT_NAME;
+                break;
+            }
+            case CourseContract.PRE_ALLIED_HEALTH.DENTAL_HYGIENE_NAME: {
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.DENTAL_HYGIENE_NAME);
+                pathwayText = CourseContract.PRE_ALLIED_HEALTH.DENTAL_HYGIENE_NAME;
+                break;
+            }
+            case CourseContract.PRE_ALLIED_HEALTH.MEDICAL_LAB_TECHNOLOGY_NAME: {
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.MEDICAL_LAB_TECHNOLOGY_NAME);
+                pathwayText = CourseContract.PRE_ALLIED_HEALTH.MEDICAL_LAB_TECHNOLOGY_NAME;
+                break;
+            }
+            /*case CourseContract.PRE_ALLIED_HEALTH.VETERINARY_TECHNOLOGY_NAME: {
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.VETERINARY_TECHNOLOGY_NAME);
+                pathwayText = CourseContract.PRE_ALLIED_HEALTH.VETERINARY_TECHNOLOGY_NAME;
+                break;
+            }
+            case CourseContract.PRE_ALLIED_HEALTH.EMT_NAME: {
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.EMT_NAME);
+                pathwayText = CourseContract.PRE_ALLIED_HEALTH.EMT_NAME;
+                break;
+            }
+            case CourseContract.PRE_ALLIED_HEALTH.RCT_NAME: {
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.RCT_NAME);
+                pathwayText = CourseContract.PRE_ALLIED_HEALTH.RCT_NAME;
+                break;
+            }*/
+            case CourseContract.PRE_ALLIED_HEALTH.RADIOGRAPHY_NAME: {
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.RADIOGRAPHY_NAME);
+                pathwayText = CourseContract.PRE_ALLIED_HEALTH.RADIOGRAPHY_NAME;
+                break;
+            }
+            case CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME: {
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
+                pathwayText = CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME;
+                break;
+            }
+            default: {
+                Log.e("CCL", "You loaded default!");
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
+                pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
                 break;
             }
         }
 
+        coursePrereqs = loadInPreReqs(courseLabels);
+        courseFullTitles = loadInTitles(courseLabels);
+        courseURLs = new String[courseLabels.length];
 
-        //This is the assignment of courseObjects and sortedObjects
-        //coursesObject = new ArrayList<CourseClass>();
+        //This holds the courseclass list
         sortedObject = new ArrayList<CourseClass>();
 
         //These Objects are instantiated to hold the categories of courseobjects
