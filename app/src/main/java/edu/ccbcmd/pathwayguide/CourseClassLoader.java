@@ -69,7 +69,7 @@ public class CourseClassLoader {
                 pathwayText = CourseContract.PRE_ALLIED_HEALTH.MEDICAL_LAB_TECHNOLOGY_NAME;
                 break;
             }
-            /*case CourseContract.PRE_ALLIED_HEALTH.VETERINARY_TECHNOLOGY_NAME: {
+            case CourseContract.PRE_ALLIED_HEALTH.VETERINARY_TECHNOLOGY_NAME: {
                 courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.VETERINARY_TECHNOLOGY_NAME);
                 pathwayText = CourseContract.PRE_ALLIED_HEALTH.VETERINARY_TECHNOLOGY_NAME;
                 break;
@@ -83,7 +83,7 @@ public class CourseClassLoader {
                 courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.RCT_NAME);
                 pathwayText = CourseContract.PRE_ALLIED_HEALTH.RCT_NAME;
                 break;
-            }*/
+            }
             case CourseContract.PRE_ALLIED_HEALTH.RADIOGRAPHY_NAME: {
                 courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.RADIOGRAPHY_NAME);
                 pathwayText = CourseContract.PRE_ALLIED_HEALTH.RADIOGRAPHY_NAME;
@@ -161,7 +161,7 @@ public class CourseClassLoader {
 
                 String[] doubleClasses = {""};
                 if (title.equals(courseLabels[i])) {
-                    doubleClasses = DatabaseWrapper.getCoursesThatQualify(title);
+                    doubleClasses = DatabaseWrapper.getCoursesThatQualify(title, subpathway);
                 } else {
 
                     doubleClasses = new String[] {title};

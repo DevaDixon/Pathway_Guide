@@ -155,7 +155,7 @@ public class DatabaseWrapper {
         return info;
     }
 
-    public static String[] getCoursesThatQualify(String classID){
+    public static String[] getCoursesThatQualify(String classID, String subpathway){
         String genEdId;
         switch (classID.substring(0,7)){
             case "GENMATH":{
@@ -191,8 +191,10 @@ public class DatabaseWrapper {
                 break;
             }
             case "PRGELEC": {
+                //Where things get complicated.
+
                 int num = Integer.parseInt(classID.substring(7,8))-1;
-                return getProgramElectives(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME,num);
+                return getProgramElectives(subpathway,num);
             }
             default:{
                 genEdId = "M";
