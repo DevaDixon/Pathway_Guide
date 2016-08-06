@@ -41,6 +41,18 @@ public class CourseContract {
 
         final public static int RADIOGRAPHY = 108;
         final public static String RADIOGRAPHY_NAME = "Radiography";
+
+        final public static int RADIATION_THERAPY = 109;
+        final public static String RADIATION_THERAPY_NAME = "Radiation Therapy";
+
+        final public static int MASSAGE_THERAPY = 110;
+        final public static String MASSAGE_THERAPY_NAME = "Massage Therapy";
+
+        final public static int MORTUARY_SCIENCE = 111;
+        final public static String MORTUARY_SCIENCE_NAME = "Mortuary Science";
+
+        final public static int MENTAL_HEALTH = 112;
+        final public static String MENTAL_HEALTH_NAME = "Mental Health";
     }
 
 
@@ -50,6 +62,7 @@ public class CourseContract {
         final public static int TSM = 200;
 
         final public static int TSM_COMPUTER_SCIENCE = 210;
+        final public static String TSM_COMPUTER_SCIENCE_NAME = "Computer Science";
 
 
         final public static int TSM_COMPUTER_SCIENCE_IT = 211;

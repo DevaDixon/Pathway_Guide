@@ -87,19 +87,27 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
                         break;
                     }
                     case 8: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        DatabaseWrapper.setSettingsSubPathway(CourseContract.PRE_ALLIED_HEALTH.RADIATION_THERAPY_NAME);
+                        valid = true;
+                        //Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
                         break;
                     }
                     case 9: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        DatabaseWrapper.setSettingsSubPathway(CourseContract.PRE_ALLIED_HEALTH.MASSAGE_THERAPY_NAME);
+                        valid = true;
+                        //Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
                         break;
                     }
                     case 10: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        DatabaseWrapper.setSettingsSubPathway(CourseContract.PRE_ALLIED_HEALTH.MORTUARY_SCIENCE_NAME);
+                        valid = true;
+                        //Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
                         break;
                     }
                     case 11: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        DatabaseWrapper.setSettingsSubPathway(CourseContract.PRE_ALLIED_HEALTH.MENTAL_HEALTH_NAME);
+                        valid = true;
+                        //Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
                         break;
                     }
                     default: {
@@ -118,7 +126,9 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
                         break;
                     }
                     case 1: {
-                        Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
+                        DatabaseWrapper.setSettingsSubPathway(CourseContract.TSM.TSM_COMPUTER_SCIENCE_NAME);
+                        valid = true;
+                        //Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
                         break;
                     }
                     case 2: {
@@ -162,8 +172,8 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
                         break;
                     }
                     default:{
-                        editor.putInt("PathwaySubChoice", CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT);
-                        valid=true;
+                        DatabaseWrapper.setSettingsSubPathway(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
+                        valid = true;
                         break;
                     }
                 }

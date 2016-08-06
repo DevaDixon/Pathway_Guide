@@ -89,9 +89,34 @@ public class CourseClassLoader {
                 pathwayText = CourseContract.PRE_ALLIED_HEALTH.RADIOGRAPHY_NAME;
                 break;
             }
+            case CourseContract.PRE_ALLIED_HEALTH.RADIATION_THERAPY_NAME: {
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.RADIATION_THERAPY_NAME);
+                pathwayText = CourseContract.PRE_ALLIED_HEALTH.RADIATION_THERAPY_NAME;
+                break;
+            }
+            case CourseContract.PRE_ALLIED_HEALTH.MASSAGE_THERAPY_NAME: {
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.MASSAGE_THERAPY_NAME);
+                pathwayText = CourseContract.PRE_ALLIED_HEALTH.MASSAGE_THERAPY_NAME;
+                break;
+            }
+            case CourseContract.PRE_ALLIED_HEALTH.MORTUARY_SCIENCE_NAME: {
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.MORTUARY_SCIENCE_NAME);
+                pathwayText = CourseContract.PRE_ALLIED_HEALTH.MORTUARY_SCIENCE_NAME;
+                break;
+            }
+            case CourseContract.PRE_ALLIED_HEALTH.MENTAL_HEALTH_NAME: {
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.MENTAL_HEALTH_NAME);
+                pathwayText = CourseContract.PRE_ALLIED_HEALTH.MENTAL_HEALTH_NAME;
+                break;
+            }
             case CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME: {
                 courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
                 pathwayText = CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME;
+                break;
+            }
+            case CourseContract.TSM.TSM_COMPUTER_SCIENCE_NAME: {
+                courseLabels = DatabaseWrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_NAME);
+                pathwayText = CourseContract.TSM.TSM_COMPUTER_SCIENCE_NAME;
                 break;
             }
             default: {
