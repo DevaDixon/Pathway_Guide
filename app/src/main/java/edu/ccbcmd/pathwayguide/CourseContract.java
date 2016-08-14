@@ -13,13 +13,10 @@ public class CourseContract {
     final public static class PRE_ALLIED_HEALTH {
         public static final String PRE_ALLIED_HEALTH_NAME = "Pre-Allied Health";
 
-
-
         final public static int _PRE_ALLIED_HEALTH = 100;
 
         final public static int ALLIED_HEALTH_NURSING_ASN = 101;
         final public static String ALLIED_HEALTH_NURSING_ASN_NAME = "Nursing";
-
 
         final public static int OCCUPATIONAL_THERAPY_ASSISTANT = 102;
         final public static String OCCUPATIONAL_THERAPY_ASSISTANT_NAME = "Occupational Therapy Assistant";

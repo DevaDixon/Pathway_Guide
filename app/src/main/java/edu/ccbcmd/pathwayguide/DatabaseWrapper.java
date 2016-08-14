@@ -49,7 +49,7 @@ public class DatabaseWrapper {
             String[] elecGroups = c.getString(c.getColumnIndex("prgelec")).split(" ");
             String[][] electives = new String[elecGroups.length][0];
             for (int i=0; i<elecGroups.length; i++) electives[i] = elecGroups[i].split(",");
-
+            c.close();
             return electives[num];
         }
     }
@@ -64,6 +64,7 @@ public class DatabaseWrapper {
         else {
             String[] result = new String[c.getCount()];
             for (int i=0;c.moveToNext();i++) result[i] = c.getString(c.getColumnIndex("id"));
+            c.close();
             return result;
         }
     }
@@ -132,6 +133,7 @@ public class DatabaseWrapper {
                     set.add(pr);
             }
         }
+        c.close();
         return (String[])set.toArray();
     }
 
@@ -202,7 +204,6 @@ public class DatabaseWrapper {
             }
         }
         String [] classesThatQualify = getGenEdClasses(genEdId);
-
         return classesThatQualify;
     }
 
@@ -222,13 +223,17 @@ public class DatabaseWrapper {
         Cursor c = db.query(true,"settings", new String[]{"pathway"},null,null,null,null,null,null);
         if (c.getCount()==0){ return -1;}
         c.moveToNext();
-        return c.getInt(c.getColumnIndex("pathway"));
+        int returnInt = c.getInt(c.getColumnIndex("pathway"));
+        c.close();
+        return returnInt;
     }
     public static String getSettingsSubPathway(){
         Cursor c = db.query(true,"settings", new String[]{"subpathway"},null,null,null,null,null,null);
         if (c.getCount()==0){ return "null";}
         c.moveToNext();
-        return c.getString(c.getColumnIndex("subpathway"));
+        String returnString = c.getString(c.getColumnIndex("subpathway"));
+        c.close();
+        return returnString;
     }
 
     public static boolean setSettingsPathway(int pathway){
