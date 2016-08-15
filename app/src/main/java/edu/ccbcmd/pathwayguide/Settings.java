@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+//Checked and pasted.
 public class Settings extends AppCompatActivity
 {
 
@@ -50,57 +51,57 @@ public class Settings extends AppCompatActivity
 
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int n, final long n2) {
 
-                    switch (n) {
+                switch (n) {
 
-                        case 0: {
+                    case 0: {
 
-                            Settings.this.startActivity(new Intent(Settings.this, (Class)internet_setting.class));
-                            break;
-                        }
-                        case 1: {
+                        Settings.this.startActivity(new Intent(Settings.this, (Class)internet_setting.class));
+                        break;
+                    }
+                    case 1: {
 
-                            startActivity(new Intent(Settings.this, (Class)links.class));
-                            break;
-                        }
-                        case 2: {
+                        startActivity(new Intent(Settings.this, (Class)links.class));
+                        break;
+                    }
+                    case 2: {
 
-                            startActivity(new Intent(Settings.this, (Class)NotificationActivity.class));
-                            break;
-                        }
-                        case 3: {
+                        startActivity(new Intent(Settings.this, (Class)NotificationActivity.class));
+                        break;
+                    }
+                    case 3: {
 
-                            startActivity(new Intent(Settings.this, (Class)choosePathway.class));
-                            break;
-                        }
-                        case 4: {
-
-
-                            new AlertDialog.Builder(new ContextThemeWrapper(Settings.this, R.style.SplashTheme))
-                                    .setTitle("Confirm Progress Erase")
-                                    .setMessage("This action will reset the app back to the very first time you installed it. Continuing with action will erase all saved information and your current pathway selection. This action cannot be undone. Are you sure you want to reset your progress?")
-                                    .setIcon(17301543)
-                                    .setPositiveButton(17039379, new DialogInterface.OnClickListener() { //2131361978, 17301543, 17039379
+                        startActivity(new Intent(Settings.this, (Class)choosePathway.class));
+                        break;
+                    }
+                    case 4: {
 
 
-                                public void onClick(final DialogInterface dialogInterface, final int n) {
+                        new AlertDialog.Builder(new ContextThemeWrapper(Settings.this, R.style.SplashTheme))
+                                .setTitle("Confirm Progress Erase")
+                                .setMessage("This action will reset the app back to the very first time you installed it. Continuing with action will erase all saved information and your current pathway selection. This action cannot be undone. Are you sure you want to reset your progress?")
+                                .setIcon(17301543)
+                                .setPositiveButton(17039379, new DialogInterface.OnClickListener() { //2131361978, 17301543, 17039379
 
-                                    final SharedPreferences.Editor edit = Settings.this.prefs.edit();
-                                    edit.clear();
-                                    edit.commit();
-                                    Settings.this.startActivity(new Intent(Settings.this, (Class)choosePathway.class));
-                                }
-                            })
-                                    .setNegativeButton(17039369, null)
-                                    .show();
-                            break;
-                        }
-                        case 5: {
 
-                            Settings.this.prefs.edit().putInt("demo", 1).commit();
-                            Settings.this.startActivity(new Intent(Settings.this, (Class)demo_MainActivity.class));
-                            break;
-                        }
-                        case 6: {
+                                    public void onClick(final DialogInterface dialogInterface, final int n) {
+
+                                        final SharedPreferences.Editor edit = Settings.this.prefs.edit();
+                                        edit.clear();
+                                        edit.commit();
+                                        Settings.this.startActivity(new Intent(Settings.this, (Class)choosePathway.class));
+                                    }
+                                })
+                                .setNegativeButton(17039369, null)
+                                .show();
+                        break;
+                    }
+                    case 5: {
+
+                        Settings.this.prefs.edit().putInt("demo", 1).commit();
+                        Settings.this.startActivity(new Intent(Settings.this, (Class)demo_MainActivity.class));
+                        break;
+                    }
+                    case 6: {
 /*
                             final Settings this$0 = Settings.this;
                             final Intent intent = new Intent(Settings.this, (Class)openBlackboard.class);
@@ -122,10 +123,10 @@ public class Settings extends AppCompatActivity
                                 Settings.this.startActivity(new Intent(Settings.this, (Class)MainActivityZoomOut.class));
                                 return;
                             }*/
-                            break;
-                        }
+                        break;
+                    }
 
-                        case 7: {
+                    case 7: {
 /*
                             final Settings this$2 = Settings.this;
                             final Intent intent2 = new Intent(this$2, (Class)NotificationActivity.class);
@@ -148,14 +149,14 @@ public class Settings extends AppCompatActivity
                                 Settings.this.startActivity(new Intent(Settings.this, (Class)MainActivityZoomOut.class));
                                 return;
                             }*/
-                            break;
-                        }
-
-                        default: {
-
-                            break;
-                        }
+                        break;
                     }
+
+                    default: {
+
+                        break;
+                    }
+                }
 
             }
         });
@@ -167,7 +168,7 @@ public class Settings extends AppCompatActivity
 
 
         Log.e("Hey",menuItem.getItemId() +"");
-            switch (menuItem.getItemId()) {
+        switch (menuItem.getItemId()) {
 
                 /*case 16908333: {
                     final Integer value = this.prefs.getInt("zoom", 0);
@@ -181,11 +182,11 @@ public class Settings extends AppCompatActivity
                     }
                     break;
                 }*/
-                default: {
-                    return super.onOptionsItemSelected(menuItem);
+            default: {
+                return super.onOptionsItemSelected(menuItem);
 
-                }
             }
+        }
 
         //return booleanValue;
     }

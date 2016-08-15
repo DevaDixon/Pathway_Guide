@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+//Checked and pasted.
 public class DatabaseWrapper {
 
     protected static SQLiteDatabase db;
@@ -47,17 +48,9 @@ public class DatabaseWrapper {
         } else {
             c.moveToNext();
             String[] elecGroups = c.getString(c.getColumnIndex("prgelec")).split(" ");
-<<<<<<< HEAD
-            Log.e("DBW", elecGroups.length+"");
-=======
-<<<<<<< HEAD
-            Log.e("DBW", elecGroups.length+"");
-=======
->>>>>>> refs/remotes/origin/master
->>>>>>> parent of 4e1924c... Revert "Nothing really"
             String[][] electives = new String[elecGroups.length][0];
             for (int i=0; i<elecGroups.length; i++) electives[i] = elecGroups[i].split(",");
-
+            c.close();
             return electives[num];
         }
     }
@@ -72,6 +65,7 @@ public class DatabaseWrapper {
         else {
             String[] result = new String[c.getCount()];
             for (int i=0;c.moveToNext();i++) result[i] = c.getString(c.getColumnIndex("id"));
+            c.close();
             return result;
         }
     }
@@ -140,6 +134,7 @@ public class DatabaseWrapper {
                     set.add(pr);
             }
         }
+        c.close();
         return (String[])set.toArray();
     }
 
@@ -163,7 +158,7 @@ public class DatabaseWrapper {
         return info;
     }
 
-    public static String[] getCoursesThatQualify(String classID){
+    public static String[] getCoursesThatQualify(String classID, String subpathway){
         String genEdId;
         switch (classID.substring(0,7)){
             case "GENMATH":{
@@ -199,8 +194,10 @@ public class DatabaseWrapper {
                 break;
             }
             case "PRGELEC": {
+                //Where things get complicated.
+
                 int num = Integer.parseInt(classID.substring(7,8))-1;
-                return getProgramElectives(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME,num);
+                return getProgramElectives(subpathway,num);
             }
             default:{
                 genEdId = "M";
@@ -208,7 +205,6 @@ public class DatabaseWrapper {
             }
         }
         String [] classesThatQualify = getGenEdClasses(genEdId);
-
         return classesThatQualify;
     }
 
@@ -228,13 +224,17 @@ public class DatabaseWrapper {
         Cursor c = db.query(true,"settings", new String[]{"pathway"},null,null,null,null,null,null);
         if (c.getCount()==0){ return -1;}
         c.moveToNext();
-        return c.getInt(c.getColumnIndex("pathway"));
+        int returnInt = c.getInt(c.getColumnIndex("pathway"));
+        c.close();
+        return returnInt;
     }
-    public static int getSettingsSubPathway(){
+    public static String getSettingsSubPathway(){
         Cursor c = db.query(true,"settings", new String[]{"subpathway"},null,null,null,null,null,null);
-        if (c.getCount()==0){ return -1;}
+        if (c.getCount()==0){ return "null";}
         c.moveToNext();
-        return c.getInt(c.getColumnIndex("subpathway"));
+        String returnString = c.getString(c.getColumnIndex("subpathway"));
+        c.close();
+        return returnString;
     }
 
     public static boolean setSettingsPathway(int pathway){
@@ -242,7 +242,7 @@ public class DatabaseWrapper {
         cv.put("pathway",pathway);
         return db.update("settings", cv, null, null)!=0;
     }
-    public static boolean setSettingsSubPathway(int pathway){
+    public static boolean setSettingsSubPathway(String pathway){
         ContentValues cv = new ContentValues();
         cv.put("subpathway",pathway);
         return db.update("settings", cv, null, null)!=0;
@@ -250,19 +250,19 @@ public class DatabaseWrapper {
 
 
     /**
-          * Returns the names of all distinct pathways listed in database.
-          *
-          * If no pathways are found, returns a string array of length 0.
-          * For list of pathway names, consult /res/raw/pathwayvallues.txt
-          * @return the unique values from column "pathways" as String[]
-          */
-        public static String[] getAllPathways() {
-                Cursor c = db.query(true, "subpathways", new String[] {"pathway"}, null, null, null, null, null, null);
-                String[] pathways = new String[c.getCount()];
-                for (int i = 0; c.moveToNext(); i++) {
-                        pathways[i] = c.getString(c.getColumnIndex("pathway"));
-                    }
-                c.close();
-                return pathways;
-            }
+     * Returns the names of all distinct pathways listed in database.
+     *
+     * If no pathways are found, returns a string array of length 0.
+     * For list of pathway names, consult /res/raw/pathwayvallues.txt
+     * @return the unique values from column "pathways" as String[]
+     */
+    public static String[] getAllPathways() {
+        Cursor c = db.query(true, "subpathways", new String[] {"pathway"}, null, null, null, null, null, null);
+        String[] pathways = new String[c.getCount()];
+        for (int i = 0; c.moveToNext(); i++) {
+            pathways[i] = c.getString(c.getColumnIndex("pathway"));
+        }
+        c.close();
+        return pathways;
+    }
 }

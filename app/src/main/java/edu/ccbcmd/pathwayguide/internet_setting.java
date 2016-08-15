@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
+//Checked and pasted
 public class internet_setting extends AppCompatActivity
 {
 

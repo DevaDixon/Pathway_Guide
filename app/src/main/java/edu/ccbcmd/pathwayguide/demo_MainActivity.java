@@ -19,6 +19,7 @@ import showcaseview.ShowcaseView;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
+//Checked
 public class demo_MainActivity extends Activity
 {
 

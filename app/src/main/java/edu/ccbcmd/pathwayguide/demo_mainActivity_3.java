@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
+//Checked
 public class demo_mainActivity_3 extends AppCompatActivity implements View.OnClickListener
 {
 

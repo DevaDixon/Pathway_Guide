@@ -1,72 +1,37 @@
 package edu.ccbcmd.pathwayguide;
 
-<<<<<<< HEAD
-
-
-
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.preference.PreferenceManager;
 import android.util.TypedValue;
+
 import android.view.Gravity;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.BitmapFactory;
 import android.widget.Toast;
-=======
-        import android.content.pm.ActivityInfo;
-        import android.content.res.Resources;
-        import android.preference.PreferenceManager;
-        import android.util.TypedValue;
+import android.util.Log;
 
-        import android.view.Gravity;
-        import android.widget.Button;
-        import android.widget.LinearLayout;
-        import android.graphics.drawable.BitmapDrawable;
-        import android.graphics.BitmapFactory;
-        import android.widget.Toast;
-        import android.util.Log;
+import android.graphics.drawable.Drawable;
 
-        import android.graphics.drawable.Drawable;
+import android.content.Context;
 
-        import android.content.Context;
+import android.view.MenuItem;
 
-        import android.view.MenuItem;
+import android.view.View;
+import android.content.Intent;
+import android.os.Bundle;
 
-        import android.view.View;
-        import android.content.Intent;
-        import android.os.Bundle;
+import android.content.SharedPreferences;
 
-        import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
 
-        import android.support.v7.app.AppCompatActivity;
->>>>>>> refs/remotes/origin/master
-
+//Checked and pasted
 public class choosePathway extends AppCompatActivity implements View.OnClickListener {
 
     public SharedPreferences prefs;
 
-<<<<<<< HEAD
-    protected String[] pathwaysTop;
-
-
-
-    public void onClick(final View view) {
-
-
-        //This shared preferences allows us to record the user choices. THIS shared preferences variable will be
-        //for the courses that are done.
-        SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
-        //The editor so we can save those preferences.
-        SharedPreferences.Editor editor = pathwayPref.edit();
-=======
     public void onClick(final View view) {
 
         boolean valid = false;
@@ -78,8 +43,7 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
                 break;
             }
             case 1: {
-                boolean truth =DatabaseWrapper.setSettingsPathway(CourseContract.TSM.TSM);
-                Log.e("WOAH",truth+"");
+                DatabaseWrapper.setSettingsPathway(CourseContract.TSM.TSM);
                 valid = true;
                 break;
             }
@@ -103,20 +67,14 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
                 break;
             }
         }
->>>>>>> refs/remotes/origin/master
 
 
-        // TODO: 7/18/2016 REMOVE BEFORE RELEASE: conditional intentionally limits to first 2 paths since DB not complete as of now.
-        if (view.getId() == 0 ||((Integer)view.getId()) == 1) {
-            String pathText = pathwaysTop[view.getId()];
-            editor.putString("PathTitle", pathText).apply();
+        if(valid) {
             final Intent intent = new Intent(this, (Class) chooseSub_Pathway.class);
             intent.putExtra("arrayID", String.valueOf(view.getId()));
             this.startActivity(intent);
         }
-        else {
-            Toast.makeText(getApplicationContext(), "This pathway is not supported yet", Toast.LENGTH_LONG).show();
-        }
+
 
     }
 
@@ -129,7 +87,7 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         //The fifth instance of sharedpreferences is to get the double class status
         SharedPreferences pathwayDoubleCourse = getSharedPreferences("DoubleCourse",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pathwayDoubleCourse.edit();
-
+        DatabaseWrapper wrapper = new DatabaseWrapper();
         String[] removeCourses = DatabaseWrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
         for (int i = 0; i< removeCourses.length;i++){
             editor.remove("Double"+removeCourses[i]).apply();
@@ -155,23 +113,14 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         }
 
         final LinearLayout linearLayout = (LinearLayout) this.findViewById(R.id.linearLayout3);
-<<<<<<< HEAD
-
-
-        //Retrieves the pathway names from DB
-        pathwaysTop = DatabaseWrapper.getAllPathways();
-
-=======
         String[] pathwaysTop = DatabaseWrapper.getAllPathways();// resources.getStringArray(R.array.PathwayCategory);
->>>>>>> refs/remotes/origin/master
         int length = pathwaysTop.length;
-
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < length; ++i) {
             final Button button = new Button(this);
             button.setOnClickListener(this);
             button.setText(pathwaysTop[i]);
             final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
-            if (i != length) { // TODO: 7/18/2016 Why is index being compared to array length? will always be less.
+            if (i != length) {
                 layoutParams.setMargins(5, 5, 5, 5);
             } else {
                 layoutParams.setMargins(5, 25, 5, 5);

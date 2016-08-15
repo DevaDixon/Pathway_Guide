@@ -10,6 +10,7 @@ package edu.ccbcmd.pathwayguide;
 
         import android.content.BroadcastReceiver;
 
+//Checked
 public class BlackBoardAlarmReceiver extends BroadcastReceiver
 {
 

@@ -1,5 +1,6 @@
 package edu.ccbcmd.pathwayguide;
 
+//Checked and pasted
 public class CourseClass {
 
     //These are the different types of information used by the course class.
@@ -51,7 +52,7 @@ public class CourseClass {
         super();
         title = null;
         fullTitle = null;
-        status = -1;
+        url = null;
         done = false;
         inProgress = false;
         anyPreReqs = false;
@@ -61,15 +62,13 @@ public class CourseClass {
         canTakeWOPrereq = false;
         isDoubleCourse = false;
         doubleCourses = null;
-<<<<<<< HEAD
-
-=======
         status = -2;
->>>>>>> refs/remotes/origin/master
     }
     public CourseClass(String title,
                        String fullTitle,
-                       int status,
+                       String url,
+                       boolean done,
+                       boolean inProgress,
                        boolean anyPreReqs,
                        String[] preReqs,
                        boolean isOpenForRegistration,
@@ -77,13 +76,15 @@ public class CourseClass {
                        boolean meet,
                        boolean jumpTheLine,
                        boolean doubleCourse,
-                       String[] doubleChoices
-                       ){
+                       String[] doubleChoices,
+                       int status){
         super();
         //The proper constructor.
         this.title = title;
         this.fullTitle = fullTitle;
-        this.status = status;
+        this.url = url;
+        this.done = done;
+        this.inProgress = inProgress;
         this.anyPreReqs = anyPreReqs;
         this.preReqs = preReqs;
         this.isOpenForRegistration = isOpenForRegistration;
@@ -92,7 +93,7 @@ public class CourseClass {
         this.canTakeWOPrereq = jumpTheLine;
         this.isDoubleCourse = doubleCourse;
         this.doubleCourses = doubleChoices;
-
+        this.status = status;
     }
 
     //The getters and setters.
@@ -100,18 +101,14 @@ public class CourseClass {
     public String getTitle(){
         return title;
     }
-
+    public String getUrl(){
+        return url;
+    }
     public boolean getDone(){
-        if(status ==2)
-            return true;
-        else
-            return false;
+        return done;
     }
     public boolean getInProgress(){
-        if(status ==1)
-            return true;
-        else
-            return false;
+        return inProgress;
     }
     public boolean getAnyPreReqs(){
         return anyPreReqs;
@@ -133,12 +130,6 @@ public class CourseClass {
         this.title = title;
     }
     public boolean setStatus(int status) {
-        boolean success = DatabaseWrapper.writeClassStatus(this.title, status);
-        return success;
-    }
-
-    public boolean setStatus(int status) {
-        this.status = status;
         boolean success = DatabaseWrapper.writeClassStatus(this.title, status);
         return success;
     }

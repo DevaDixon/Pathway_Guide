@@ -9,42 +9,43 @@ import android.support.v7.app.AlertDialog;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.widget.Toast;
-        import android.annotation.TargetApi;
+import android.annotation.TargetApi;
 
-        import android.webkit.WebResourceError;
+import android.webkit.WebResourceError;
 
-        import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceRequest;
 
-        import android.webkit.WebViewClient;
-        import android.webkit.WebView;
-        import java.util.Calendar;
+import android.webkit.WebViewClient;
+import android.webkit.WebView;
+import java.util.Calendar;
 import java.util.List;
 
 import android.content.DialogInterface;
 
-        import android.widget.Button;
-        import android.graphics.drawable.ColorDrawable;
-        import android.graphics.Color;
-        import android.util.Log;
-        import android.widget.TextView;
-        import android.graphics.Point;
+import android.widget.Button;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.Color;
+import android.util.Log;
+import android.widget.TextView;
+import android.graphics.Point;
 
-        import android.view.MenuItem;
+import android.view.MenuItem;
 
-        import android.net.Uri;
+import android.net.Uri;
 
-        import android.graphics.Bitmap;
+import android.graphics.Bitmap;
 
-        import android.view.View;
-        import android.content.Intent;
-        import android.os.Bundle;
+import android.view.View;
+import android.content.Intent;
+import android.os.Bundle;
 
-        import android.content.SharedPreferences;
-        import android.widget.ProgressBar;
-        import android.content.Context;
+import android.content.SharedPreferences;
+import android.widget.ProgressBar;
+import android.content.Context;
 
-        import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;
 
+//Checked and pasted
 public class info extends AppCompatActivity
 {
 
@@ -102,13 +103,11 @@ public class info extends AppCompatActivity
         ((TextView)this.findViewById(R.id.textView)).setText(course.getFullTitle()); //2131624036
         this.getSupportActionBar().setTitle(course.getTitle());
 
-        final int status = course.getStatus();
-
-        if (status == 2) {
+        if (course.getDone()) {
             this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#159b8a"))); //Green
 
         }
-        else if (status == 1) {
+        else if (course.getInProgress()) {
             this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#644181"))); //Purple
 
         }
@@ -137,17 +136,17 @@ public class info extends AppCompatActivity
                     info.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://simon.ccbcmd.edu/pls/PROD/twbkwbis.P_WWWLogin")));
                     return;
                 }
-               info.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://simon.ccbcmd.edu/pls/PROD/twbkwbis.P_WWWLogin")));
+                info.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://simon.ccbcmd.edu/pls/PROD/twbkwbis.P_WWWLogin")));
             }
         });
 
 
         final Button button2 = (Button)this.findViewById(R.id.colorChange); //2131624038
-        if (status == 2) {
+        if (course.getDone()) {
             button.setVisibility(View.INVISIBLE); //4
             button2.setText("I have not successfully completed this class");
         }
-        else if (status == 1) {
+        else if (course.getInProgress()) {
             button2.setText("Class End Results");
         }
         else if (course.getIsOpenForRegistration()) {
@@ -164,20 +163,14 @@ public class info extends AppCompatActivity
 
             public void onClick(final View view) {
 
-<<<<<<< HEAD
-
-                if (status == 2) {
-                    course.setStatus(0);
-=======
                 if (course.getDone()) {
 
                     DatabaseWrapper.writeClassStatus(courseLabels[int3],0);
->>>>>>> refs/remotes/origin/master
                     info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
                     return;
                 }
 
-                if (status == 1) {
+                if (course.getInProgress()) {
                     info.this.startActivity(new Intent(info.this, (Class)alert.class));
                     return;
                 }
@@ -185,16 +178,10 @@ public class info extends AppCompatActivity
 
 
 
-
                 if (course.getIsOpenForRegistration()) {
-<<<<<<< HEAD
-                    course.setStatus(1);
-
-=======
                     //editorIP.putBoolean(courseLabels[int3],true);
                     //editorIP.apply();
                     DatabaseWrapper.writeClassStatus(courseLabels[int3],1);
->>>>>>> refs/remotes/origin/master
                     info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
                     return;
                 }
@@ -234,24 +221,24 @@ public class info extends AppCompatActivity
         boolean booleanValue = true;
 
 
-            switch (menuItem.getItemId()) {
-                default: {
-                    return super.onOptionsItemSelected(menuItem);
-                }
-
-                case 16908332: {
-                    final Integer value = this.prefs.getInt("zoom", 0);
-                    if (value == 0) {
-                        this.startActivity(new Intent(this, (Class)MainActivity.class));
-                        return true;
-                    }
-                    if (value == 1) {
-                        this.startActivity(new Intent(this, (Class)MainActivityZoomOut.class));
-                        return true;
-                    }
-                    break;
-                }
+        switch (menuItem.getItemId()) {
+            default: {
+                return super.onOptionsItemSelected(menuItem);
             }
+
+            case 16908332: {
+                final Integer value = this.prefs.getInt("zoom", 0);
+                if (value == 0) {
+                    this.startActivity(new Intent(this, (Class)MainActivity.class));
+                    return true;
+                }
+                if (value == 1) {
+                    this.startActivity(new Intent(this, (Class)MainActivityZoomOut.class));
+                    return true;
+                }
+                break;
+            }
+        }
 
         return booleanValue;
     }
@@ -259,16 +246,16 @@ public class info extends AppCompatActivity
     public void onResume() {
 
 
-            super.onResume();
-            this.c = this;
-            if (this.c.getSystemService(CONNECTIVITY_SERVICE) != null) { //"connectivity"
-                try {
-                    if (InetAddress.getByName("google.com").equals("")) {
-                        return;
-                    }
+        super.onResume();
+        this.c = this;
+        if (this.c.getSystemService(CONNECTIVITY_SERVICE) != null) { //"connectivity"
+            try {
+                if (InetAddress.getByName("google.com").equals("")) {
+                    return;
                 }
-                catch (Exception ex) {}
             }
+            catch (Exception ex) {}
+        }
 
     }
 }

@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatDelegate;
 
 import android.preference.PreferenceActivity;
 
+//Checked and repasted
 public abstract class AppCompatPreferenceActivity extends PreferenceActivity
 {
 

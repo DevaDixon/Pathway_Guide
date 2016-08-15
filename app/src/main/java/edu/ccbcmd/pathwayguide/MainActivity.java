@@ -33,7 +33,7 @@ import java.util.TimeZone;
 
 import android.widget.TextView;
 
-
+//Checked and pasted
 
 public class MainActivity extends Activity implements View.OnClickListener
 {
@@ -68,20 +68,11 @@ public class MainActivity extends Activity implements View.OnClickListener
 
 
 
-<<<<<<< HEAD
-        //Integer value2 = this.prefs.getInt("pathwaysubID", 0);
-        String subPathTitle = this.prefs.getString("SubPathTitle", "null");
-=======
->>>>>>> refs/remotes/origin/master
         String string = this.prefs.getString("notifydate", "00/00/0000");
         checkAlarm(string);
 
 
-<<<<<<< HEAD
-        if (subPathTitle == null) {
-=======
         if (DatabaseWrapper.getSettingsPathway() == -1 ) {
->>>>>>> refs/remotes/origin/master
             this.startActivity(new Intent(this, (Class)choosePathway.class));
             return;
         }
@@ -111,24 +102,23 @@ public class MainActivity extends Activity implements View.OnClickListener
 
             CourseClass curCourse = coursesList.get(i);
 
-             float density = this.getResources().getDisplayMetrics().density;
-             int n8 = (int)(13 * density);
-             int n9 = (int)(2.2 * density);
-             Button button = new Button(this);
+            float density = this.getResources().getDisplayMetrics().density;
+            int n8 = (int)(13 * density);
+            int n9 = (int)(2.2 * density);
+            Button button = new Button(this);
 
             //id seems to serve as which one we are talking about in the list.
-             int id = i;
+            int id = i;
             button.setText(curCourse.getTitle());
 
-             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
             button.setPadding(n8, n8, n8, n8);
             button.setGravity(16);
             button.setGravity(1);
             button.setGravity(17);
             button.setTextSize(1, 14.0f);
             button.setTypeface(null, 1);
-
-            if (i != n7) { //What does this do?
+            if (i != n7) {
                 layoutParams.setMargins(n9, n9, n9, n9);
             }
             else {
@@ -143,54 +133,44 @@ public class MainActivity extends Activity implements View.OnClickListener
 
             //Length is asking how many courses?  No idea why?  It seems this is a catch case so that
             //bad pathways don't crash the program.
-<<<<<<< HEAD
-            int length = 1;// choosePathway.coursePreRec[value][id].length;
-
-
-
-
-=======
             int length = 1;
->>>>>>> refs/remotes/origin/master
 
             button.setTextColor(Color.parseColor("#ffffff"));
 
-            if (curCourse.getStatus() == 2) {
+            if (curCourse.getDone()) {
                 button.setBackgroundColor(Color.parseColor("#159b8a")); //Green  DONE
             }
-            else if (curCourse.getStatus() == 1) {
+            else if (curCourse.getInProgress()) {
                 button.setBackgroundColor(Color.parseColor("#644181"));  //purple Currently taking
             }
             else if (curCourse.getIsOpenForRegistration()) {
                 button.setTextColor(Color.parseColor("#000000"));
                 button.setBackgroundColor(Color.parseColor("#fcd054"));  //YelloW!  Available for register
             }
-            /* Length is always 1, this seems pointless.
             else if (length == 0) {
                 button.setTextColor(Color.parseColor("#000000"));
                 button.setBackgroundColor(Color.parseColor("#fcd054"));
-            //    Log.w("if/else", "=0");
+                //    Log.w("if/else", "=0");
             }
-            */
             else {
 
-                    button.setBackgroundColor(Color.parseColor("#893f4e"));  //RED  NEED PERMISSION
+                button.setBackgroundColor(Color.parseColor("#893f4e"));  //RED  NEED PERMISSION
             }
             linearLayout2.addView(button);
-             LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams)button.getLayoutParams();
+            LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams)button.getLayoutParams();
             layoutParams2.gravity = Gravity.CENTER; //17
             button.setLayoutParams(layoutParams2);
         }
-         float density2 = this.getResources().getDisplayMetrics().density;
-         int n13 = (int)(13 * density2);
-         int n14 = (int)(2.2 * density2);
-         NonBreakingPeriodTextView nonBreakingPeriodTextView = new NonBreakingPeriodTextView(this);
+        float density2 = this.getResources().getDisplayMetrics().density;
+        int n13 = (int)(13 * density2);
+        int n14 = (int)(2.2 * density2);
+        NonBreakingPeriodTextView nonBreakingPeriodTextView = new NonBreakingPeriodTextView(this);
 
 
 
 
         nonBreakingPeriodTextView.setText((courseClassLoader.getPathway()+ "\nPathway"), TextView.BufferType.EDITABLE);
-         LinearLayout.LayoutParams layoutParams3 = new LinearLayout.LayoutParams(-2, -2);
+        LinearLayout.LayoutParams layoutParams3 = new LinearLayout.LayoutParams(-2, -2);
         nonBreakingPeriodTextView.setPadding(n13, n13, n13, n13);
         nonBreakingPeriodTextView.setGravity(16);
         nonBreakingPeriodTextView.setGravity(1);
@@ -202,7 +182,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         nonBreakingPeriodTextView.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
         nonBreakingPeriodTextView.setTextColor(Color.parseColor("#ffffff"));
         linearLayout2.addView(nonBreakingPeriodTextView);
-         LinearLayout.LayoutParams layoutParams4 = (LinearLayout.LayoutParams)nonBreakingPeriodTextView.getLayoutParams();
+        LinearLayout.LayoutParams layoutParams4 = (LinearLayout.LayoutParams)nonBreakingPeriodTextView.getLayoutParams();
         layoutParams4.gravity = Gravity.CENTER; //17
         nonBreakingPeriodTextView.setLayoutParams(layoutParams4);
         (this.findViewById(R.id.zoomout)).setOnClickListener(new View.OnClickListener() { //2131624047
@@ -227,7 +207,7 @@ public class MainActivity extends Activity implements View.OnClickListener
 
         super.onResume();
         if (this.getIntent().getIntExtra("intVariableName", 1) == 0) {
-             int int1 = this.prefs.getInt("opencount", 1);
+            int int1 = this.prefs.getInt("opencount", 1);
 
             int n;
             if (int1 == 5) {
@@ -472,7 +452,7 @@ public class MainActivity extends Activity implements View.OnClickListener
             instance4.set(Calendar.SECOND, 0);
 
 
-
+            Log.e("Alarm", "Notify date: "+instance4.toString());
             Intent intent2 = new Intent("android.media.action.DISPLAY_NOTIFICATION");
             intent2.addCategory("android.intent.category.DEFAULT");
             PendingIntent broadcast2 = PendingIntent.getBroadcast(this, 100, intent2, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
@@ -556,7 +536,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         instance5.set(Calendar.YEAR, value6);
         instance5.set(Calendar.MINUTE, 0);
         instance5.set(Calendar.SECOND, 0);
-
+        Log.e("Alarm2", "Notify date: "+instance5.toString());
         Intent intent3 = new Intent("android.media.action.DISPLAY_Blackboard_NOTIFICATION");
         intent3.addCategory("android.intent.category.DEFAULT_Blackboard");
         PendingIntent broadcast3 = PendingIntent.getBroadcast(this, 100, intent3, PendingIntent.FLAG_UPDATE_CURRENT); //134217728

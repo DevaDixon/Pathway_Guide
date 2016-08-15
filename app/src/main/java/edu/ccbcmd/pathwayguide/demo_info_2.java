@@ -18,6 +18,7 @@ import com.github.amlcurran.showcaseview.ShowcaseView;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 
+//Checked
 public class demo_info_2 extends AppCompatActivity implements View.OnClickListener
 {
     private int counter;

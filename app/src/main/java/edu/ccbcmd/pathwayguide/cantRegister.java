@@ -1,25 +1,23 @@
 package edu.ccbcmd.pathwayguide;
 
-        import android.content.pm.ActivityInfo;
-        import android.content.res.Resources;
+import android.content.pm.ActivityInfo;
+import android.content.res.Resources;
 
-        import android.widget.Button;
-        import android.graphics.drawable.BitmapDrawable;
-        import android.graphics.BitmapFactory;
+import android.widget.Button;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.BitmapFactory;
 
-        import android.net.Uri;
+import android.net.Uri;
 
-        import android.view.View;
-        import android.content.Intent;
-        import android.os.Bundle;
+import android.view.View;
+import android.content.Intent;
+import android.os.Bundle;
 
-        import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;
 
+//Checked
 public class cantRegister extends AppCompatActivity
 {
-
-
-
 
     public void onCreate(final Bundle bundle) {
 

@@ -10,7 +10,7 @@ package edu.ccbcmd.pathwayguide;
         import android.os.Bundle;
 
         import android.support.v7.app.AppCompatActivity;
-
+//Checked
 public class blackboardReminder extends AppCompatActivity
 {
 

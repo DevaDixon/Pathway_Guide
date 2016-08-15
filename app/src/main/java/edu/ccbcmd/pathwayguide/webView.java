@@ -14,7 +14,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import java.net.InetAddress;
-
+//Checked and pasted
 public class webView extends AppCompatActivity
 {
 
@@ -51,7 +51,7 @@ public class webView extends AppCompatActivity
             public boolean shouldOverrideUrlLoading(final WebView webView, final String s) {
                 boolean booleanValue = false;
 
-               if (!access$000(webView.this)) {
+                if (!access$000(webView.this)) {
                     webView.loadData("<h1>MESSAGE 1</h1><h4>Course Description could not be loaded. Please check your internet connection and try again</h4>", "text/html", "utf-8");
                     return true;
                 }
@@ -80,21 +80,21 @@ public class webView extends AppCompatActivity
     public void onResume() {
 
 
-            super.onResume();
-            this.c = this;
-            if (this.c.getSystemService(CONNECTIVITY_SERVICE) != null) { //"connectivity"
-                try {
-                    if (InetAddress.getByName("google.com").equals("")) {
-                        this.isConnected = false;
-                        return;
-                    }
-                }
-                catch (Exception ex) {
+        super.onResume();
+        this.c = this;
+        if (this.c.getSystemService(CONNECTIVITY_SERVICE) != null) { //"connectivity"
+            try {
+                if (InetAddress.getByName("google.com").equals("")) {
                     this.isConnected = false;
                     return;
                 }
-                this.isConnected = true;
             }
+            catch (Exception ex) {
+                this.isConnected = false;
+                return;
+            }
+            this.isConnected = true;
+        }
 
     }
 }

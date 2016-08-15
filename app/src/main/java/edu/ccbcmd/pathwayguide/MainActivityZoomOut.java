@@ -1,37 +1,38 @@
 package edu.ccbcmd.pathwayguide;
 
-        import android.content.pm.ActivityInfo;
-        import android.os.Build;
+import android.content.pm.ActivityInfo;
+import android.os.Build;
 
-        import android.content.res.Resources;
+import android.content.res.Resources;
 
-        import java.util.Date;
+import java.util.Date;
 
-        import android.view.Gravity;
-        import android.widget.ImageButton;
-        import android.graphics.Color;
-        import android.widget.TextView;
-        import android.util.TypedValue;
-        import android.widget.ImageView;
-        import android.widget.ScrollView;
-        import android.widget.LinearLayout;
-        import android.widget.RelativeLayout;
-        import android.app.PendingIntent;
-        import android.app.AlarmManager;
+import android.view.Gravity;
+import android.widget.ImageButton;
+import android.graphics.Color;
+import android.widget.TextView;
+import android.util.TypedValue;
+import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.app.PendingIntent;
+import android.app.AlarmManager;
 
-        import java.util.List;
-        import java.util.Locale;
-        import java.util.TimeZone;
-        import java.util.Calendar;
-        import android.util.Log;
+import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
+import java.util.Calendar;
+import android.util.Log;
 
-        import android.content.Context;
-        import android.view.View;
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.content.SharedPreferences;
-        import android.app.Activity;
+import android.content.Context;
+import android.view.View;
+import android.content.Intent;
+import android.os.Bundle;
+import android.content.SharedPreferences;
+import android.app.Activity;
 
+//Checked and pasted
 public class MainActivityZoomOut extends Activity implements View.OnClickListener
 {
 
@@ -108,8 +109,8 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
                     textView6.setTextColor(Color.parseColor("#ffffff"));
                     final LinearLayout.LayoutParams layoutParams11 = new LinearLayout.LayoutParams(-2, -2);
 
-                        layoutParams11.setMargins(5, 5, 5, 0);
-                        layoutParams11.height = n7;
+                    layoutParams11.setMargins(5, 5, 5, 0);
+                    layoutParams11.height = n7;
 
                     textView6.setLayoutParams(layoutParams11);
                     textView6.setTag(id6);
@@ -135,8 +136,8 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
                     textView5.setTextColor(Color.parseColor("#ffffff"));
                     final LinearLayout.LayoutParams layoutParams9 = new LinearLayout.LayoutParams(-2, -2);
 
-                        layoutParams9.setMargins(5, 5, 5, 0);
-                        layoutParams9.height = n7;
+                    layoutParams9.setMargins(5, 5, 5, 0);
+                    layoutParams9.height = n7;
 
                     textView5.setLayoutParams(layoutParams9);
                     textView5.setTag(i);
@@ -162,8 +163,8 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
                     textView2.setTextColor(Color.parseColor("#ffffff"));
                     final LinearLayout.LayoutParams layoutParams3 = new LinearLayout.LayoutParams(-2, -2);
 
-                        layoutParams3.setMargins(5, 5, 5, 0);
-                        layoutParams3.height = n7;
+                    layoutParams3.setMargins(5, 5, 5, 0);
+                    layoutParams3.height = n7;
 
                     textView2.setLayoutParams(layoutParams3);
                     textView2.setTag(id2);
@@ -185,33 +186,33 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
 
                 if (!courseAdded) {
 
-                        final TextView textView = new TextView(this);
-                        final int id = course.getPosition();
-                        textView.setText(course.getTitle());
-                        textView.setTextColor(Color.parseColor("#ffffff"));
-                        final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
-                        if (i != length) {
-                            layoutParams.setMargins(5, 0, 5, 0);
-                            layoutParams.height = n7;
-                        }
-                        else {
-                            layoutParams.setMargins(5, 5, 5, 0);
-                            layoutParams.height = n7;
-                        }
-                        textView.setLayoutParams(layoutParams);
-                        textView.setTag(id);
-                        textView.setGravity(16);
-                        textView.setGravity(1);
-                        textView.setGravity(17);
-                        textView.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
-                        textView.setId(id);
-                        textView.setOnClickListener(this);
+                    final TextView textView = new TextView(this);
+                    final int id = course.getPosition();
+                    textView.setText(course.getTitle());
+                    textView.setTextColor(Color.parseColor("#ffffff"));
+                    final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
+                    if (i != length) {
+                        layoutParams.setMargins(5, 0, 5, 0);
+                        layoutParams.height = n7;
+                    }
+                    else {
+                        layoutParams.setMargins(5, 5, 5, 0);
+                        layoutParams.height = n7;
+                    }
+                    textView.setLayoutParams(layoutParams);
+                    textView.setTag(id);
+                    textView.setGravity(16);
+                    textView.setGravity(1);
+                    textView.setGravity(17);
+                    textView.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
+                    textView.setId(id);
+                    textView.setOnClickListener(this);
 
-                        textView.setBackgroundColor(Color.parseColor("#893f4e"));
-                        linearLayout2.addView(textView);
-                        final LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams)textView.getLayoutParams();
-                        layoutParams2.gravity = Gravity.CENTER; //17
-                        textView.setLayoutParams(layoutParams2);
+                    textView.setBackgroundColor(Color.parseColor("#893f4e"));
+                    linearLayout2.addView(textView);
+                    final LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams)textView.getLayoutParams();
+                    layoutParams2.gravity = Gravity.CENTER; //17
+                    textView.setLayoutParams(layoutParams2);
 
                 }
             }

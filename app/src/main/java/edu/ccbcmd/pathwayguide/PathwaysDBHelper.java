@@ -16,6 +16,7 @@ import android.database.Cursor;
 import android.content.ContentValues;
 import android.util.Log;
 
+//Checked and pasted
 public class PathwaysDBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "pathways.db";
     public static final int DATABASE_VERSION = 2;
@@ -46,56 +47,39 @@ public class PathwaysDBHelper extends SQLiteOpenHelper {
         // create tables
         db.execSQL("create table classes (id text primary key, name text, description text, prereqs text, gened text, status int)");
         db.execSQL("create table subpathways  (name text, degree text, pathway text, classes text, prgelec text)");
-<<<<<<< HEAD
-=======
-        db.execSQL("create table settings (pathway integer, subpathway integer)");
->>>>>>> refs/remotes/origin/master
+        db.execSQL("create table settings (pathway integer, subpathway text)");
 
         // populate all the classes from file
-            BufferedReader rd = new BufferedReader(new InputStreamReader(classes));
-            try {
-                String line = rd.readLine();
-                while (line != null) {
-                    String[] values = line.split("\\|", 0);
-                    ContentValues cv = new ContentValues();
-
-                    // indices 0: id 1: name 2: description 3: prereqs 4: gen ed
-
-                    // now the rest of the data
-                    cv.put("id", values[0]);
-                    cv.put("name", values[1]);
-                    cv.put("description", values[2]);
-                    cv.put("prereqs", values[3]);
-                    cv.put("status", DatabaseWrapper.NOT_COMPLETED);
-                    cv.put("gened", values[4]);
-                    db.insert("classes", null, cv);
-
-                    line = rd.readLine();
-                }
-
-                // the pathways too
-                rd = new BufferedReader(new InputStreamReader(pathways));
-                line = rd.readLine();
-                while (line != null) {
-                    String[] values = line.split("\\|", 0);
-                    ContentValues cv = new ContentValues();
-
-                    // indices 0: name of major 1: degree type 2: pathway name 3: class sequence 4: program electives
-
-                    cv.put("name", values[0]);
-                    cv.put("degree", values[1]);
-                    cv.put("pathway", values[2]);
-                    cv.put("classes", values[3]);
-                    cv.put("prgelec", values[4]);
-                    db.insert("subpathways", null, cv);
-                    line = rd.readLine();
-                }
+        BufferedReader rd = new BufferedReader(new InputStreamReader(classes));
+        try {
+            String line = rd.readLine();
+            while (line != null) {
+                String[] values = line.split("\\|", 0);
                 ContentValues cv = new ContentValues();
-                cv.put("pathway", -1);
-                cv.put("subpathway",-1);
-                db.insert("settings", null, cv);
 
-<<<<<<< HEAD
+                // indices 0: id 1: name 2: description 3: prereqs 4: gen ed
+
+                // now the rest of the data
+                cv.put("id", values[0]);
+                cv.put("name", values[1]);
+                cv.put("description", values[2]);
+                cv.put("prereqs", values[3]);
+                cv.put("status", DatabaseWrapper.NOT_COMPLETED);
+                cv.put("gened", values[4]);
+                db.insert("classes", null, cv);
+
+                line = rd.readLine();
+            }
+
+            // the pathways too
+            rd = new BufferedReader(new InputStreamReader(pathways));
+            line = rd.readLine();
+            while (line != null) {
+                String[] values = line.split("\\|", 0);
+                ContentValues cv = new ContentValues();
+
+                // indices 0: name of major 1: degree type 2: pathway name 3: class sequence 4: program electives
+
                 cv.put("name", values[0]);
                 cv.put("degree", values[1]);
                 cv.put("pathway", values[2]);
@@ -104,8 +88,11 @@ public class PathwaysDBHelper extends SQLiteOpenHelper {
                 db.insert("subpathways", null, cv);
                 line = rd.readLine();
             }
-=======
->>>>>>> refs/remotes/origin/master
+            ContentValues cv = new ContentValues();
+            cv.put("pathway", -1);
+            cv.put("subpathway", "null");
+            db.insert("settings", null, cv);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

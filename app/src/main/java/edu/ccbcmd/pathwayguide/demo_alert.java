@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 
+//Checked
 public class demo_alert extends Activity
 {
 

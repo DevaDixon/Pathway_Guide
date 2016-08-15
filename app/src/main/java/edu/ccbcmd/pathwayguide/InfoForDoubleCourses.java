@@ -29,6 +29,7 @@ import android.widget.TextView;
 
 import java.net.InetAddress;
 
+//Checked and pasted
 
 public class InfoForDoubleCourses extends AppCompatActivity
 {
@@ -101,24 +102,24 @@ public class InfoForDoubleCourses extends AppCompatActivity
         boolean booleanValue = true;
 
 
-            switch (menuItem.getItemId()) {
-                default: {
-                    return super.onOptionsItemSelected(menuItem);
-                }
-
-                case 16908332: {
-                    final Integer value = this.prefs.getInt("zoom", 0);
-                    if (value == 0) {
-                        this.startActivity(new Intent(this, (Class)MainActivity.class));
-                        return true;
-                    }
-                    if (value == 1) {
-                        this.startActivity(new Intent(this, (Class)MainActivityZoomOut.class));
-                        return true;
-                    }
-                    break;
-                }
+        switch (menuItem.getItemId()) {
+            default: {
+                return super.onOptionsItemSelected(menuItem);
             }
+
+            case 16908332: {
+                final Integer value = this.prefs.getInt("zoom", 0);
+                if (value == 0) {
+                    this.startActivity(new Intent(this, (Class)MainActivity.class));
+                    return true;
+                }
+                if (value == 1) {
+                    this.startActivity(new Intent(this, (Class)MainActivityZoomOut.class));
+                    return true;
+                }
+                break;
+            }
+        }
 
         return booleanValue;
     }
@@ -126,16 +127,16 @@ public class InfoForDoubleCourses extends AppCompatActivity
     public void onResume() {
 
 
-            super.onResume();
-            this.c = this;
-            if (this.c.getSystemService(CONNECTIVITY_SERVICE) != null) { //"connectivity"
-                try {
-                    if (InetAddress.getByName("google.com").equals("")) {
-                        return;
-                    }
+        super.onResume();
+        this.c = this;
+        if (this.c.getSystemService(CONNECTIVITY_SERVICE) != null) { //"connectivity"
+            try {
+                if (InetAddress.getByName("google.com").equals("")) {
+                    return;
                 }
-                catch (Exception ex) {}
             }
+            catch (Exception ex) {}
+        }
 
     }
 
@@ -219,15 +220,9 @@ public class InfoForDoubleCourses extends AppCompatActivity
                 if (course.getDone()) {
                     editorDblClass.putString(("Double"+"GENMATH"),course.getTitle());
                     editorDblClass.apply();
-<<<<<<< HEAD
-                    editorDone.putBoolean(course.getTitle(), false);
-                    editorDone.apply();
-                    course.setStatus(0);
-=======
 
                     DatabaseWrapper.writeClassStatus(course.getTitle(),0);
 
->>>>>>> refs/remotes/origin/master
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)MainActivity.class));
                     return;
                 }
@@ -247,17 +242,10 @@ public class InfoForDoubleCourses extends AppCompatActivity
                 if (course.getIsOpenForRegistration()) {
                     editorDblClass.putString(("Double"+"GENMATH"),course.getTitle());
                     editorDblClass.apply();
-<<<<<<< HEAD
-                    editorIP.putBoolean(course.getTitle(),true);
-                    editorIP.apply();
-                    Log.e("Wonderful Error", course.getTitle());
-                    course.setStatus(0);
-=======
 
                     DatabaseWrapper.writeClassStatus("GENMATH",1);
                     DatabaseWrapper.writeClassStatus(course.getTitle(),1);
 
->>>>>>> refs/remotes/origin/master
                     InfoForDoubleCourses.this.startActivity(new Intent(InfoForDoubleCourses.this, (Class)MainActivity.class));
                     return;
                 }

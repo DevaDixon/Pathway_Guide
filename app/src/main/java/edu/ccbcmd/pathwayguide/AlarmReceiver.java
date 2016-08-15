@@ -13,7 +13,7 @@ package edu.ccbcmd.pathwayguide;
 
         import android.content.BroadcastReceiver;
 
-
+//CHECKED
 public class AlarmReceiver extends BroadcastReceiver
 {
 

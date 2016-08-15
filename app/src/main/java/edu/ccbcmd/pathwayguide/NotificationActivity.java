@@ -1,35 +1,36 @@
 package edu.ccbcmd.pathwayguide;
 
-        import android.content.pm.ActivityInfo;
-        import android.content.res.Resources;
-        import android.app.PendingIntent;
-        import android.app.AlarmManager;
-        import android.os.Build;
-        import android.util.Log;
-        import java.util.Calendar;
-        import java.util.Locale;
-        import java.util.TimeZone;
+import android.content.pm.ActivityInfo;
+import android.content.res.Resources;
+import android.app.PendingIntent;
+import android.app.AlarmManager;
+import android.os.Build;
+import android.util.Log;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
-        import android.widget.Button;
-        import android.graphics.drawable.BitmapDrawable;
-        import android.graphics.BitmapFactory;
+import android.widget.Button;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.BitmapFactory;
 
-        import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Drawable;
 
-        import android.content.Context;
+import android.content.Context;
 
-        import android.view.MenuItem;
+import android.view.MenuItem;
 
-        import android.net.Uri;
+import android.net.Uri;
 
-        import android.view.View;
-        import android.content.Intent;
-        import android.os.Bundle;
+import android.view.View;
+import android.content.Intent;
+import android.os.Bundle;
 
-        import android.content.SharedPreferences;
+import android.content.SharedPreferences;
 
-        import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;
 
+//Checked and pasted.
 public class NotificationActivity extends AppCompatActivity
 {
 
@@ -64,9 +65,9 @@ public class NotificationActivity extends AppCompatActivity
             }
         });
         this.findViewById(R.id.this1).setOnClickListener(new View.OnClickListener() { //2131624056
-           
+
             public void onClick(final View view) {
-              
+
                 final Calendar instance = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
                 instance.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR)); //1, 1
                 instance.set(Calendar.MONTH, Calendar.getInstance().get(Calendar.MONTH)); //2, 2
@@ -100,26 +101,26 @@ public class NotificationActivity extends AppCompatActivity
 
     public boolean onOptionsItemSelected(final MenuItem menuItem) {
         boolean booleanValue = true;
-        
-        
-            switch (menuItem.getItemId()) {
-                default: {
-                    return super.onOptionsItemSelected(menuItem);
-                }
-                case 16908332: {
-                    final Integer value = this.prefs.getInt("zoom", 0);
-                    if (value == 0) {
-                        this.startActivity(new Intent(this, (Class)MainActivity.class));
-                        return true;
-                    }
-                    if (value == 1) {
-                        this.startActivity(new Intent(this, (Class)MainActivityZoomOut.class));
-                        return true;
-                    }
-                    break;
-                }
+
+
+        switch (menuItem.getItemId()) {
+            default: {
+                return super.onOptionsItemSelected(menuItem);
             }
-        
+            case 16908332: {
+                final Integer value = this.prefs.getInt("zoom", 0);
+                if (value == 0) {
+                    this.startActivity(new Intent(this, (Class)MainActivity.class));
+                    return true;
+                }
+                if (value == 1) {
+                    this.startActivity(new Intent(this, (Class)MainActivityZoomOut.class));
+                    return true;
+                }
+                break;
+            }
+        }
+
         return booleanValue;
     }
 }

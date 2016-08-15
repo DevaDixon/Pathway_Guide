@@ -8,6 +8,7 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+//Checked
 public class ShowNotification extends Service
 {
 

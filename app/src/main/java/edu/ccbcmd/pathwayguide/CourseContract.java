@@ -1,8 +1,6 @@
 package edu.ccbcmd.pathwayguide;
 
-/**
- * Created by jones on 7/4/2016.
- */
+//Checked and pasted
 public class CourseContract {
 
     public CourseContract()
@@ -13,16 +11,43 @@ public class CourseContract {
     final public static class PRE_ALLIED_HEALTH {
         public static final String PRE_ALLIED_HEALTH_NAME = "Pre-Allied Health";
 
-
-
         final public static int _PRE_ALLIED_HEALTH = 100;
 
         final public static int ALLIED_HEALTH_NURSING_ASN = 101;
         final public static String ALLIED_HEALTH_NURSING_ASN_NAME = "Nursing";
 
+        final public static int OCCUPATIONAL_THERAPY_ASSISTANT = 102;
+        final public static String OCCUPATIONAL_THERAPY_ASSISTANT_NAME = "Occupational Therapy Assistant";
 
-        final public static int THE_REST = 102;
-        final public static String THE_REST_NAME = "Not Implemented";
+        final public static int DENTAL_HYGIENE = 103;
+        final public static String DENTAL_HYGIENE_NAME = "Dental Hygiene";
+
+        final public static int MEDICAL_LAB_TECHNOLOGY = 104;
+        final public static String MEDICAL_LAB_TECHNOLOGY_NAME = "Medical Lab. Technology";
+
+        final public static int VETERINARY_TECHNOLOGY = 105;
+        final public static String VETERINARY_TECHNOLOGY_NAME = "Veterinary Technology";
+
+        final public static int EMT = 106;
+        final public static String EMT_NAME = "Emergency Medical Technology";
+
+        final public static int RCT = 107;
+        final public static String RCT_NAME = "Respiratory Care Therapy";
+
+        final public static int RADIOGRAPHY = 108;
+        final public static String RADIOGRAPHY_NAME = "Radiography";
+
+        final public static int RADIATION_THERAPY = 109;
+        final public static String RADIATION_THERAPY_NAME = "Radiation Therapy";
+
+        final public static int MASSAGE_THERAPY = 110;
+        final public static String MASSAGE_THERAPY_NAME = "Massage Therapy";
+
+        final public static int MORTUARY_SCIENCE = 111;
+        final public static String MORTUARY_SCIENCE_NAME = "Mortuary Science";
+
+        final public static int MENTAL_HEALTH = 112;
+        final public static String MENTAL_HEALTH_NAME = "Mental Health";
     }
 
 
@@ -32,6 +57,7 @@ public class CourseContract {
         final public static int TSM = 200;
 
         final public static int TSM_COMPUTER_SCIENCE = 210;
+        final public static String TSM_COMPUTER_SCIENCE_NAME = "Computer Science";
 
 
         final public static int TSM_COMPUTER_SCIENCE_IT = 211;
