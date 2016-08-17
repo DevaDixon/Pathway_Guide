@@ -57,7 +57,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         this.setContentView(R.layout.activity_main); //2130968616
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        Log.e("DatabaseQuery",DatabaseWrapper.getSettingsPathway()+"");
+        Log.e("Unique identifier", android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID));
 
         courseClassLoader = new CourseClassLoader(getApplicationContext());
 
