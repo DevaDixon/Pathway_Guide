@@ -108,7 +108,7 @@ public class splash extends AppCompatActivity
                 }
                 animationDrawable.start();
             }
-        }, 100);
+        }, 1000);
 
         handler.postDelayed( new Runnable() {
 
