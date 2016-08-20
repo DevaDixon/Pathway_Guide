@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 //Checked and pasted.
+/// YOU MUST PUT THIS AS AN ASYNC TASK!!
 public class splash extends AppCompatActivity
 {
     Handler handler = new Handler(){
@@ -108,7 +109,7 @@ public class splash extends AppCompatActivity
                 }
                 animationDrawable.start();
             }
-        }, 100);
+        }, 1000);
 
         handler.postDelayed( new Runnable() {
 
