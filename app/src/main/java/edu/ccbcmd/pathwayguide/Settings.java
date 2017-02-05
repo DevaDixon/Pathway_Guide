@@ -88,6 +88,7 @@ public class Settings extends AppCompatActivity
                                         final SharedPreferences.Editor edit = Settings.this.prefs.edit();
                                         edit.clear();
                                         edit.commit();
+                                        DatabaseWrapper.eraseAllProgress();
                                         Settings.this.startActivity(new Intent(Settings.this, (Class)choosePathway.class));
                                     }
                                 })

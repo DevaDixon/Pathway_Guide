@@ -140,6 +140,7 @@ public class InfoForDoubleCourses extends AppCompatActivity
 
     }
 
+    //TODO: make back button return to course selection list instead of MainActivity
     public void runRest(final CourseClass course){
         findViewById(R.id.textView).setVisibility(View.VISIBLE);
         findViewById(R.id.button).setVisibility(View.VISIBLE);
@@ -169,6 +170,7 @@ public class InfoForDoubleCourses extends AppCompatActivity
 
         this.getSupportActionBar().setDisplayShowTitleEnabled(false);
         this.getSupportActionBar().setDisplayShowTitleEnabled(true);
+        //this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setHomeButtonEnabled(true);
 
 

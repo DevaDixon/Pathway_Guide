@@ -220,6 +220,12 @@ public class DatabaseWrapper {
         return db.update("classes", cv, "id = ?", new String[]{classID}) != 0;
     }
 
+    public static boolean eraseAllProgress() {
+        ContentValues cv = new ContentValues();
+        cv.put("status", 0);
+        return db.update("classes", cv,null,null) != 0;
+    }
+
     public static int getSettingsPathway(){
         Cursor c = db.query(true,"settings", new String[]{"pathway"},null,null,null,null,null,null);
         if (c.getCount()==0){ return -1;}

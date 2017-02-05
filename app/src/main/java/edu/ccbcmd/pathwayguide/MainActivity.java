@@ -42,6 +42,7 @@ public class MainActivity extends Activity implements View.OnClickListener
     public static CourseClassLoader courseClassLoader;
     public List<CourseClass> coursesList;
 
+
     public void onClick(View view) {
 
         Intent intent = new Intent(this, info.class);
